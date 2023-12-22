@@ -19,7 +19,7 @@ const ProtocolTracker: React.FC = () => {
 
       {startDate ? (
         <>
-          <p>NAC Protocol tracking started on:</p>
+          <p>Tracking started on:</p>
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-light"> {startDate}</h3>
             <Button
