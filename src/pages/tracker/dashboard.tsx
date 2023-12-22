@@ -1,6 +1,8 @@
 import { differenceInCalendarDays, addMonths } from 'date-fns'
+import { Moon, Sun } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
 import { Progress } from 'src/components/ui/progress'
+import DieOffSymptoms from './die-off-symptoms'
 
 interface DashboardProps {
   startDate: Date
@@ -26,17 +28,24 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         <p>2 months have passed since protocol started.</p>
       )}
 
-      <h3 className="my-4 text-center text-2xl font-light">Daily Regimen</h3>
-      <div className="grid grid-cols-2 gap-4">
+      <h3 className="my-4 text-center text-2xl font-light">Your Daily Regimen</h3>
+      <div className="grid grid-cols-2 gap-2">
+        <Button>
+          Morning <Sun className="w-4 text-yellow-300" />
+        </Button>
+        <Button>
+          Nightime
+          <Moon className="w-4 text-blue-400" />
+        </Button>
         <button className="border p-2">Oregano Oil</button>
         <button className="border p-2">Oregano Oil</button>
         <button className="border p-2">NAC</button>
         <button className="border p-2">NAC</button>
         <button className="border p-2">Black Seed Oil</button>
         <button className="border p-2">Black Seed Oil</button>
-        <Button>Morning</Button>
-        <Button>Nightime</Button>
       </div>
+      <h3 className="my-4 text-center text-2xl font-light">How do you feel?</h3>
+      <DieOffSymptoms />
     </div>
   )
 }
