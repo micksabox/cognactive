@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useLocalStorageState from '../../hooks/use-localstorage-state'
 import { Button } from 'src/components/ui/button'
 import { DatePicker } from 'src/components/date-picker'
+import Dashboard from './dashboard'
 
 const ProtocolTracker: React.FC = () => {
   const [startDate, setStartDate] = useLocalStorageState<string | null>('protocol_start_date', null)
+  const [pickerDate, setPickerDate] = useState<Date | undefined>()
 
   const handleStartProtocol = () => {
-    const currentDate = new Date().toISOString().split('T')[0]
+    const currentDate = (pickerDate || new Date()).toISOString().split('T')[0]
     setStartDate(currentDate)
   }
 
@@ -19,7 +21,7 @@ const ProtocolTracker: React.FC = () => {
         <>
           <p>NAC Protocol tracking started on:</p>
           <div className="flex items-center justify-between">
-            <h3 className="text-3xl font-bold"> {startDate}</h3>
+            <h3 className="text-xl font-light"> {startDate}</h3>
             <Button
               variant={'secondary'}
               onClick={() => {
@@ -29,9 +31,11 @@ const ProtocolTracker: React.FC = () => {
                 }
               }}
             >
-              Reset Tracking
+              Reset Tracker
             </Button>
           </div>
+          <hr className="my-4" />
+          <Dashboard startDate={new Date(startDate)} />
         </>
       ) : (
         <>
@@ -39,7 +43,7 @@ const ProtocolTracker: React.FC = () => {
 
           <br />
           <p className="font-semibold text-slate-500">Protocol Start Date</p>
-          <DatePicker />
+          <DatePicker onSetDate={(d) => setPickerDate(d)} />
           <br />
           <Button size={'lg'} className="mt-4 w-full" onClick={handleStartProtocol}>
             Start Tracking NAC Protocol
