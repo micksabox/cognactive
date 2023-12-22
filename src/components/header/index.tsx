@@ -9,8 +9,8 @@ export function Header(props: IProps) {
   const { t } = useTranslation()
 
   return (
-    <div className="fixed left-0 top-0 flex w-full items-center justify-between border bg-slate-50 bg-opacity-70 px-4 py-4 md:px-12">
-      <a href="/" className="text-xs md:text-base">
+    <div className="flex w-full items-center justify-between border bg-slate-50 bg-opacity-70 px-4 py-4 md:px-12">
+      <a href="/" className="text-base font-semibold">
         {t('title')}
       </a>
       <div className="flex items-center gap-4">
