@@ -1,6 +1,7 @@
 import { Rocket, Globe2, Wrench, Zap } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/button'
+import { Link } from 'react-router-dom'
 
 export const Hero = () => {
   const { t } = useTranslation()
@@ -16,10 +17,10 @@ export const Hero = () => {
                   {t('hero-title')}
                 </h1>
                 <Button className="font-semiboldn gap-3 py-6 text-lg" size={'lg'} asChild>
-                  <a href="https://github.com/Quilljou/vite-react-ts-tailwind-starter">
+                  <Link to="/tracker">
                     <Zap />
                     {t('get-started')}
-                  </a>
+                  </Link>
                 </Button>
               </div>
               <div className="mx-auto w-full max-w-full space-y-4">

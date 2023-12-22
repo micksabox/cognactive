@@ -7,6 +7,6 @@
   "i18nsupport-desc": "Ship your product with different languages natively",
   "linters": "Lint all code at save",
   "linters-desc": "Built with ESLint, Prettier, Stylelint, and Commitlint",
-  "hero-title": "Building Apps with the best DX we love",
-  "get-started": "Get Started"
+  "hero-title": "Track NAC Protocol",
+  "get-started": "Launch Tracker"
 }
