@@ -6,7 +6,7 @@ export const Hero = () => {
   const { t } = useTranslation()
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-lime-300 to-lime-500">
+    <div className="flex min-h-screen bg-gradient-to-b from-slate-600 to-slate-900">
       <section className="w-full py-32 md:py-48">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6">
