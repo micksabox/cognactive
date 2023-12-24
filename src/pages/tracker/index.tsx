@@ -14,7 +14,7 @@ const ProtocolTracker: React.FC = () => {
   }
 
   return (
-    <div className="p-2">
+    <div className="mx-auto max-w-xl p-2">
       <h3 className="text-3xl font-bold">NAC Protocol Tracker</h3>
 
       {startDate ? (
