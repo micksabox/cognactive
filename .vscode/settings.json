@@ -4,6 +4,7 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
+  "editor.formatOnSave": true,
   "git.ignoreLimitWarning": true,
   "editor.quickSuggestions": {
     "strings": true
