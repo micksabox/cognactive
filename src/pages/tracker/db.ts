@@ -18,14 +18,15 @@ export interface ISupplement {
 
 export interface ISymptom {
   id?: number
-  date: Date
+  date: string
   type: string
   severity: number
+  custom: number
 }
 
 export interface IBreakthrough {
   id?: number
-  date: Date
+  date: string
   description: string
 }
 
@@ -39,7 +40,7 @@ class NACTrackDB extends Dexie {
     super('NACTrackDB')
 
     // Only columns that are indexed need to be specified here
-    this.version(2)
+    this.version(3)
       .stores({
         supplements: '++id, date, name, dosage',
         symptoms: '++id, date, type, severity',
@@ -50,12 +51,34 @@ class NACTrackDB extends Dexie {
           .table<ISupplement, number>('supplements')
           .toCollection()
           .modify((supplement) => {
-            if ((supplement.date as any) instanceof Date) {
+            if ((supplement.date as Date | string) instanceof Date) {
               // @ts-ignore
               supplement.date = supplement.date.toISOString().split('T')[0]
             }
           })
       })
+
+    this.version(5)
+      .stores({
+        symptoms: '++id, date, type, severity, custom',
+      })
+      .upgrade((trans) => {
+        return trans.db
+          .table<ISymptom, number>('symptoms')
+          .toCollection()
+          .modify((s) => {
+            s.custom = 0
+          })
+      })
+
+    /*
+    // Version 3 setup with upgrade path from version 2
+    this.version(3).stores({
+        // ... (version 3 schema changes)
+      }).upgrade(trans => {
+        // ... (version 3 data migrations)
+      });
+      */
 
     // Define tables
     this.supplements = this.table('supplements')
