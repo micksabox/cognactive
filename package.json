@@ -33,6 +33,7 @@
     "react-day-picker": "^8.9.1",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.4.1",
     "react-i18next": "^13.2.2",
     "react-router-dom": "^6.10.0",
     "tailwind-merge": "^1.14.0",
