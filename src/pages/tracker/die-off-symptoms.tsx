@@ -3,6 +3,7 @@ import { useTrackSymptom } from './use-track-symptom'
 import { Button } from 'src/components/ui/button'
 import { PenLineIcon, Plus } from 'lucide-react'
 import { toast } from 'react-hot-toast'
+import { formatDateKey } from 'src/lib/utils'
 
 const defaultSymptoms = [
   'Tiredness',
@@ -21,7 +22,7 @@ const defaultSymptoms = [
 ]
 
 const DieOffSymptoms: React.FC = () => {
-  const dateKey = new Date().toISOString().split('T')[0]
+  const dateKey = formatDateKey(new Date())
 
   const { symptoms, customSymptoms, addSymptom } = useTrackSymptom(dateKey)
 

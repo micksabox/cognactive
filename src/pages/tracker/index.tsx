@@ -3,13 +3,14 @@ import useLocalStorageState from '../../hooks/use-localstorage-state'
 import { Button } from 'src/components/ui/button'
 import { DatePicker } from 'src/components/date-picker'
 import Dashboard from './dashboard'
+import { formatDateKey } from 'src/lib/utils'
 
 const ProtocolTracker: React.FC = () => {
   const [startDate, setStartDate] = useLocalStorageState<string | null>('protocol_start_date', null)
   const [pickerDate, setPickerDate] = useState<Date | undefined>()
 
   const handleStartProtocol = () => {
-    const currentDate = (pickerDate || new Date()).toISOString().split('T')[0]
+    const currentDate = formatDateKey(pickerDate || new Date())
     setStartDate(currentDate)
   }
 

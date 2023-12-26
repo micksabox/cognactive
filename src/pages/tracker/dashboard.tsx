@@ -5,6 +5,7 @@ import { Progress } from 'src/components/ui/progress'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
 import { RegimenActivities } from './db'
+import { formatDateKey } from 'src/lib/utils'
 
 interface DashboardProps {
   startDate: Date
@@ -13,18 +14,17 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const today = new Date()
   const start = startDate
-  const dateKey = today.toISOString().split('T')[0]
+  const dateKey = formatDateKey(today)
   const dayNumber = differenceInCalendarDays(today, start)
   const twoMonthsLater = addMonths(start, 2)
   const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, today)
 
-  const { supplements, activities, addSupplementActivity } = useTrackSupplement(dateKey)
+  const { activities, addSupplementActivity } = useTrackSupplement(dateKey)
 
-  console.log(supplements, activities)
   const saveActivityState = (activityName: keyof RegimenActivities, state: boolean) => {
     addSupplementActivity({
-      date: today.toISOString().split('T')[0],
-      dosage: '200mg', // ex.
+      date: dateKey,
+      dosage: '', // TODO: Implement
       name: activityName,
     }).then((maybeId) => {
       console.log(activityName, state, maybeId)

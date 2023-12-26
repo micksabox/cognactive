@@ -2,9 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import db, { RegimenActivities } from './db' // Import your Dexie database instance
 
 export const useTrackSupplement = (dateKey: string) => {
-  const parsedDate = new Date(dateKey).toISOString().split('T')[0]
-
-  const supplements = useLiveQuery(() => db.supplements.where({ date: parsedDate }).toArray(), [parsedDate])
+  const supplements = useLiveQuery(() => db.supplements.where({ date: dateKey }).toArray(), [dateKey])
 
   const activities: RegimenActivities = {
     oreganoOil: false,

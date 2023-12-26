@@ -1,4 +1,5 @@
 import Dexie from 'dexie'
+import { formatDateKey } from 'src/lib/utils'
 
 export type RegimenActivities = {
   oreganoOil: boolean
@@ -53,7 +54,7 @@ class NACTrackDB extends Dexie {
           .modify((supplement) => {
             if ((supplement.date as Date | string) instanceof Date) {
               // @ts-ignore
-              supplement.date = supplement.date.toISOString().split('T')[0]
+              supplement.date = formatDateKey(supplement.date)
             }
           })
       })
