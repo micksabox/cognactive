@@ -99,7 +99,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
           ) : (
             <Circle className="w-4" />
           )}
-          Night Oregano Oil
+          Oregano Oil
         </Button>
         <Button
           onClick={() => saveActivityState('nac', !todaysActivities.nac)}
@@ -115,7 +115,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
           className="flex justify-between border p-2"
         >
           {todaysActivities.nightNac ? <CheckCircle className="w-4 text-green-600" /> : <Circle className="w-4" />}
-          Night NAC
+          NAC
         </Button>
         <Button
           onClick={() => saveActivityState('blackSeedOil', !todaysActivities.blackSeedOil)}
