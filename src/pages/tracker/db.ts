@@ -23,6 +23,7 @@ export interface ISymptom {
   type: string
   severity: number
   custom: number
+  createdAt: Date
 }
 
 export interface IBreakthrough {
@@ -72,6 +73,11 @@ class NACTrackDB extends Dexie {
           })
       })
 
+    // Index the createdAt field
+    this.version(7).stores({
+      symptoms: '++id, date, type, custom, createdAt',
+    })
+
     /*
     // Version 3 setup with upgrade path from version 2
     this.version(3).stores({
@@ -94,6 +100,13 @@ class NACTrackDB extends Dexie {
       return await this.supplements.delete(existing.id)
     }
     return await this.supplements.add(supplement)
+  }
+
+  // Function to reset all data in all tables
+  resetAllData = async (): Promise<void> => {
+    await this.supplements.clear()
+    await this.symptoms.clear()
+    await this.breakthroughs.clear()
   }
 }
 

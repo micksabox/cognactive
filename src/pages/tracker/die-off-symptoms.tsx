@@ -38,6 +38,7 @@ const DieOffSymptoms: React.FC = () => {
       type: symptom,
       severity: 1, // by default
       custom: custom ? 1 : 0,
+      createdAt: new Date(),
     }).then((maybeId) => {
       if (maybeId) {
         toast.success(`${dateKey}\nTracked${custom ? ' custom ' : ' '}symptom\n${symptom}`, { position: 'top-left' })
@@ -86,7 +87,7 @@ const DieOffSymptoms: React.FC = () => {
             <label className="w-full items-center">
               <input
                 type="checkbox"
-                checked={symptoms && symptoms.find((s) => s.type == symptom) !== undefined}
+                checked={symptoms && symptoms.find((s) => s.type == symptom) !== undefined ? true : false}
                 onChange={() => handleSymptomChange(symptom, false)}
               />{' '}
               {symptom}
