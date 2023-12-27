@@ -1,0 +1,16 @@
+{
+  "short_name": "cognactive",
+  "name": "cognactive",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "72x72 96x96 128x128 256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/tracker",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000000"
+}

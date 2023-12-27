@@ -52,7 +52,14 @@ const DieOffSymptoms: React.FC = () => {
 
   return (
     <div>
-      <h3 className="my-4 text-center text-2xl font-light">Die-Off Symptoms</h3>
+      <div className="my-4 flex gap-4">
+        <h3 className="text-2xl font-light">Die-Off Symptoms</h3>
+        {/* <Button variant={'secondary'} asChild>
+          <Link to={'reports'}>
+            <BarChartBigIcon className="w-4" /> Metrics
+          </Link>
+        </Button> */}
+      </div>
       <ul>
         <li>
           <form
@@ -76,7 +83,7 @@ const DieOffSymptoms: React.FC = () => {
               name="custom_symptom"
             />
             <PenLineIcon className="absolute left-0 w-4 text-slate-400" />
-            <Button size={'sm'} variant={'outline'} type="submit">
+            <Button size={'sm'} variant={'secondary'} type="submit">
               <Plus className="w-4" />
               Track
             </Button>
