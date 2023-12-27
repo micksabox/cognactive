@@ -1,12 +1,18 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 
 import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
+import { cn } from 'src/lib/utils'
 interface IProps {
-  leftNode?: ReactNode
+  className?: string
 }
 export function Header(props: IProps) {
   return (
-    <div className="flex w-full items-center justify-between border bg-slate-50 bg-opacity-70 px-4 py-4 md:px-12">
+    <div
+      className={cn(
+        props.className,
+        'flex w-full items-center justify-between border-b bg-slate-50 px-4 py-4 shadow md:px-12',
+      )}
+    >
       <a href="/" className="flex items-center text-base font-semibold">
         <span className="mr-2 inline-block w-8">
           <CognactiveIcon />
