@@ -46,7 +46,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         <p>2 months have passed since protocol started.</p>
       )}
 
-      <h3 className="my-4 text-center text-2xl font-light">Your Daily Regimen</h3>
+      <h3 className="my-4 text-center text-2xl font-light">Daily Regimen</h3>
       <div className="grid grid-cols-2 gap-2">
         <Button
           onClick={() => {
@@ -138,7 +138,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
           Black Seed Oil
         </Button>
       </div>
-      <h3 className="my-4 text-center text-2xl font-light">How do you feel?</h3>
       <DieOffSymptoms />
     </div>
   )

@@ -52,7 +52,7 @@ const DieOffSymptoms: React.FC = () => {
 
   return (
     <div>
-      <h3>Select your symptoms:</h3>
+      <h3 className="my-4 text-center text-2xl font-light">Die-Off Symptoms</h3>
       <ul>
         <li>
           <form
