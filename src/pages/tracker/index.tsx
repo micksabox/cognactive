@@ -6,7 +6,6 @@ import Dashboard from './dashboard'
 import { formatDateKey } from 'src/lib/utils'
 import db from './db'
 import { toast } from 'react-hot-toast'
-import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
 import useIsAppInstalled from './use-is-app-installed'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { LayoutGrid } from 'lucide-react'
@@ -71,10 +70,6 @@ const ProtocolTracker: React.FC = () => {
         </>
       ) : (
         <>
-          <div className="w-32">
-            <CognactiveIcon />
-          </div>
-          <h2 className="my-2 text-2xl font-bold">cognactive</h2>
           <p className="text-xl">Track daily activities, die-off symptoms and breakthroughs for the NAC protocol.</p>
 
           <br />
