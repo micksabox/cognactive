@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 const useIsAppInstalled = () => {
   const [isAppInstalled, setIsAppInstalled] = useState(false)
 
+  // @ts-ignore
   useEffect(() => {
     // Detecting iOS
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
