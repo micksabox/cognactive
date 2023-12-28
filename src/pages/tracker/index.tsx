@@ -84,9 +84,8 @@ const ProtocolTracker: React.FC = () => {
               <LayoutGrid className="w-4" />
               <AlertTitle>Install cognactive to mobile device</AlertTitle>
               <AlertDescription>
-                cognactive should be used as a mobile app during the protocol. Open this webpage from your mobile
-                device. Then open the Share menu <ShareIcon className="inline-block w-4" /> and select &apos;Add to Home
-                Screen&apos;.
+                To continue, open this webpage from your mobile device. Then open the Share menu{' '}
+                <ShareIcon className="inline-block w-4" /> and select &apos;Add to Home Screen&apos;.
               </AlertDescription>
             </Alert>
           )}
