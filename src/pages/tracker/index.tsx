@@ -48,7 +48,9 @@ const ProtocolTracker: React.FC = () => {
             <Button
               variant={'secondary'}
               onClick={() => {
-                const sure = confirm('Are you sure? Your progress will be reset. This action cannot be undone.')
+                const sure = confirm(
+                  'Are you sure? Your progress will be reset. All activity data will be erased. This action cannot be undone.',
+                )
                 if (sure) {
                   db.resetAllData().then(
                     () => {
