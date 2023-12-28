@@ -6,6 +6,7 @@ import Dashboard from './dashboard'
 import { formatDateKey } from 'src/lib/utils'
 import db from './db'
 import { toast } from 'react-hot-toast'
+import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
 
 const ProtocolTracker: React.FC = () => {
   const [startDate, setStartDate] = useLocalStorageState<string | null>('protocol_start_date', null)
@@ -48,7 +49,11 @@ const ProtocolTracker: React.FC = () => {
         </>
       ) : (
         <>
-          <p className="text-xl">Set start date and track daily activities, die-off symptoms and breakthroughs.</p>
+          <div className="w-32">
+            <CognactiveIcon />
+          </div>
+          <h2 className="my-2 text-2xl font-bold">cognactive</h2>
+          <p className="text-xl">Track daily activities, die-off symptoms and breakthroughs for the NAC protocol.</p>
 
           <br />
           <p className="font-semibold text-slate-500">Protocol Start Date</p>
@@ -57,7 +62,15 @@ const ProtocolTracker: React.FC = () => {
           <Button size={'lg'} className="mt-4 w-full" onClick={handleStartProtocol}>
             Start Tracking NAC Protocol
           </Button>
-          <p className="mt-2 text-center">All data is saved locally in web browser and not sent to any server.</p>
+          <div className="mt-2 text-sm">
+            By proceeding you agree to:
+            <p className="font-semibold">Privacy Policy</p>
+            All personal event activity data (symptoms, supplements, breakthroughs) is stored locally in web browser and
+            not shared with any third-party.
+            <p className="font-semibold">Legal Disclaimer</p>
+            The cognactive app helps track activities and events and is for personal use only. cognactive is not a
+            medical app. Use this app at your own risk and liability.
+          </div>
         </>
       )}
     </div>
