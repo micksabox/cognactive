@@ -1,0 +1,72 @@
+/*
+SVG path ids:
+- layer-outer-bl
+- layer-outer-br
+- layer-inner-bl
+- layer-inner-br
+- layer-outer-tl
+- layer-outer-tr
+- layer-inner-tl
+- layer-inner-tr
+*/
+
+#cognactive-symbol path {
+  fill: white;
+}
+
+#cognactive-symbol circle,
+ellipse {
+  fill: none;
+}
+
+@keyframes defence-falling-animation {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+:root {
+  --animation-delay: 0.2s;
+}
+
+.defence-falling #layer-outer-bl {
+  animation: defence-falling-animation 1s var(--animation-delay) forwards;
+}
+
+.defence-falling #layer-outer-br {
+  animation: defence-falling-animation 1s calc(2 * var(--animation-delay)) forwards;
+}
+
+.defence-falling #layer-inner-bl {
+  animation: defence-falling-animation 1s calc(3 * var(--animation-delay)) forwards;
+}
+
+.defence-falling #layer-inner-br {
+  animation: defence-falling-animation 1s calc(4 * var(--animation-delay)) forwards;
+}
+
+.defence-falling #layer-outer-tl {
+  animation: defence-falling-animation 1s calc(5 * var(--animation-delay)) forwards;
+}
+
+.defence-falling #layer-outer-tr {
+  animation: defence-falling-animation 1s calc(6 * var(--animation-delay)) forwards;
+}
+
+.defence-falling #layer-inner-tl {
+  animation: defence-falling-animation 1s calc(7 * var(--animation-delay)) forwards;
+}
+
+.defence-falling #layer-inner-tr {
+  animation: defence-falling-animation 1s calc(8 * var(--animation-delay)) forwards;
+}
+
+.defence-falling #mushroom {
+  animation: defence-falling-animation 2s calc(9 * var(--animation-delay)) backwards;
+}

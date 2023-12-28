@@ -1,12 +1,10 @@
 {
   "title": "cognactive",
   "features": "Features",
-  "modernstack": "Modern and efficient stack",
-  "modernstack-desc": "Built with Vite, React, Tailwind CSS, Shadcnui, and more",
-  "i18nsupport": "i18n support out of the box",
-  "i18nsupport-desc": "Ship your product with different languages natively",
-  "linters": "Lint all code at save",
-  "linters-desc": "Built with ESLint, Prettier, Stylelint, and Commitlint",
+  "tracking": "Track your NAC",
+  "tracking-desc": "Track NAC protocol regimen, die-off symptoms and more.",
+  "i18nsupport": "App Experience",
+  "i18nsupport-desc": "Install cognactive to your mobile device home screen to track NAC protocol events daily",
   "hero-title": "Track NAC Protocol",
   "get-started": "Launch Tracker"
 }
