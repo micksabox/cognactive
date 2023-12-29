@@ -9,6 +9,7 @@ import { toast } from 'react-hot-toast'
 import useIsAppInstalled from './use-is-app-installed'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { LayoutGrid, ShareIcon } from 'lucide-react'
+import { getEnv } from 'src/lib/env'
 
 const ProtocolTracker: React.FC = () => {
   const [startDate, setStartDate] = useLocalStorageState<string | null>('protocol_start_date', null)
@@ -16,7 +17,7 @@ const ProtocolTracker: React.FC = () => {
   const isAppInstalled = useIsAppInstalled()
 
   const handleStartProtocol = () => {
-    if (isAppInstalled) {
+    if (isAppInstalled || getEnv() == 'development') {
       const currentDate = formatDateKey(pickerDate || new Date())
       setStartDate(currentDate)
     } else {
