@@ -6,13 +6,29 @@ import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
 import { RegimenActivities } from './db'
 import { formatDateKey } from 'src/lib/utils'
+import { useState, useEffect } from 'react'
 
 interface DashboardProps {
   startDate: Date
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
-  const today = new Date()
+  const [currentDate, setCurrentDate] = useState<Date>(new Date())
+
+  // On focus sets date to today
+  useEffect(() => {
+    const handleFocus = () => {
+      setCurrentDate(new Date())
+    }
+
+    window.addEventListener('focus', handleFocus)
+
+    return () => {
+      window.removeEventListener('focus', handleFocus)
+    }
+  }, [])
+
+  const today = currentDate
   const start = startDate
   const dateKey = formatDateKey(today)
   const dayNumber = differenceInCalendarDays(today, start)
