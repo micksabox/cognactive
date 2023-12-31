@@ -1,11 +1,11 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { CheckCircle, Circle, Moon, Sun } from 'lucide-react'
+import { CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
 import { Progress } from 'src/components/ui/progress'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
 import { RegimenActivities } from './db'
-import { formatDateKey } from 'src/lib/utils'
+import { cn, formatDateKey } from 'src/lib/utils'
 import { useState, useEffect } from 'react'
 import { DatePicker } from 'src/components/date-picker'
 import { toast } from 'react-hot-toast'
@@ -50,6 +50,13 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   }
 
   const todaysActivities = activities
+  const morningDone =
+    todaysActivities && todaysActivities.oreganoOil && todaysActivities.nac && todaysActivities.blackSeedOil
+  const nightDone =
+    todaysActivities &&
+    todaysActivities.nightOreganoOil &&
+    todaysActivities.nightNac &&
+    todaysActivities.nightBlackSeedOil
 
   return (
     <div>
@@ -89,7 +96,14 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         />
       </div>
 
-      <h3 className="my-4 text-2xl font-light">Daily Regimen</h3>
+      <h3 className="my-4 text-2xl font-light">
+        Daily Regimen{' '}
+        {morningDone && nightDone && (
+          <span>
+            <ListChecksIcon className="inline-block text-green-700" />
+          </span>
+        )}
+      </h3>
       <div className="grid grid-cols-2 gap-2">
         <Button
           onClick={() => {
@@ -97,13 +111,9 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             saveActivityState('nac', true)
             saveActivityState('blackSeedOil', true)
           }}
-          className="flex justify-between"
+          className={cn(morningDone && 'bg-gradient-to-r from-blue-300 to-green-800', 'flex justify-between')}
         >
-          {todaysActivities && todaysActivities.oreganoOil && todaysActivities.nac && todaysActivities.blackSeedOil ? (
-            <Sun className="w-4 text-yellow-300" />
-          ) : (
-            <Circle className="w-4" />
-          )}
+          {morningDone ? <Sun className="w-4 text-yellow-300" /> : <Circle className="w-4" />}
           Morning
         </Button>
         <Button
@@ -112,16 +122,12 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             saveActivityState('nightNac', true)
             saveActivityState('nightBlackSeedOil', true)
           }}
-          className="flex justify-between"
-        >
-          {todaysActivities &&
-          todaysActivities.nightOreganoOil &&
-          todaysActivities.nightNac &&
-          todaysActivities.nightBlackSeedOil ? (
-            <Moon className="w-4 text-blue-400" />
-          ) : (
-            <Circle className="w-4" />
+          className={cn(
+            nightDone && 'bg-gradient-to-r from-slate-900 to-blue-900',
+            'flex justify-between transition-colors',
           )}
+        >
+          {nightDone ? <Moon className="w-4 text-blue-400" /> : <Circle className="w-4" />}
           Nightime
         </Button>
         <Button
