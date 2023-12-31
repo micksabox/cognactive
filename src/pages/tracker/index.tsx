@@ -11,6 +11,7 @@ import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { LayoutGrid, ShareIcon } from 'lucide-react'
 import { getEnv } from 'src/lib/env'
 import { parse } from 'date-fns'
+import { Popover, PopoverContent, PopoverTrigger } from 'src/components/ui/popover'
 
 const ProtocolTracker: React.FC = () => {
   const [startDate, setStartDate] = useLocalStorageState<string | null>('protocol_start_date', null)
@@ -44,32 +45,43 @@ const ProtocolTracker: React.FC = () => {
     <div className="mx-auto max-w-xl p-2">
       {startDate ? (
         <>
-          <p className="font-bold">Tracking started on:</p>
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-light"> {startDate}</h3>
-            <Button
-              variant={'secondary'}
-              onClick={() => {
-                const sure = confirm(
-                  'Are you sure? Your progress will be reset. All activity data will be erased. This action cannot be undone.',
-                )
-                if (sure) {
-                  db.resetAllData().then(
-                    () => {
-                      setStartDate(null)
-                    },
-                    (err) => {
-                      console.log(err)
-                      toast.error('Something went wrong while resetting tracker data')
-                    },
-                  )
-                }
-              }}
-            >
-              Reset Tracker
-            </Button>
+            <span>Started NAC protocol on</span>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant={'outline'} size={'sm'} className="text-md font-light">
+                  {' '}
+                  {startDate}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <p className="text-xl font-bold">Reset Tracking</p>
+                <p>Reset the tracking start date and delete all data.</p>
+                <Button
+                  className="mt-2"
+                  variant={'destructive'}
+                  onClick={() => {
+                    const sure = confirm(
+                      'Are you sure? Your progress will be reset. All activity data will be erased. This action cannot be undone.',
+                    )
+                    if (sure) {
+                      db.resetAllData().then(
+                        () => {
+                          setStartDate(null)
+                        },
+                        (err) => {
+                          console.log(err)
+                          toast.error('Something went wrong while resetting tracker data')
+                        },
+                      )
+                    }
+                  }}
+                >
+                  Reset Tracker
+                </Button>
+              </PopoverContent>
+            </Popover>
           </div>
-          <hr className="my-4" />
           <Dashboard startDate={parse(startDate, 'yyyy-MM-dd', new Date())} />
         </>
       ) : (

@@ -53,42 +53,43 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
 
   return (
     <div>
-      <p className="text-2xl font-bold">Day {dayNumber} </p>
-      <DatePicker
-        currentDate={currentDate}
-        fromDate={startDate}
-        toDate={new Date()}
-        onSetDate={(d) => {
-          if (!d) {
-            setCurrentDate(new Date())
-            return
-          }
-          if (isSameDay(d, startDate)) {
-            toast('Tracking started on this day', { position: 'bottom-center' })
-            setCurrentDate(startDate)
-            return
-          }
-          if (startOfDay(d) >= start && d <= new Date()) {
-            setCurrentDate(d)
-          } else {
-            toast.error('Selected date cannot be before the start date or after today.', {
-              position: 'bottom-center',
-              duration: 1000,
-            })
-          }
-        }}
-      />
-
       {daysUntilTwoMonths > 0 ? (
         <>
-          <p className="mt-2 text-center text-xs">{daysUntilTwoMonths} days until 2 month milestone</p>
-          <Progress value={dayNumber} max={daysUntilTwoMonths + dayNumber} />
+          <Progress className="mt-2" value={dayNumber} max={daysUntilTwoMonths + dayNumber} />
         </>
       ) : (
         <p>2 months have passed since protocol started.</p>
       )}
 
-      <h3 className="my-4 text-center text-2xl font-light">Daily Regimen</h3>
+      <div className="mt-2 flex items-center">
+        <span className="w-32 text-2xl font-bold">Day {dayNumber} </span>
+        <DatePicker
+          currentDate={currentDate}
+          fromDate={startDate}
+          toDate={new Date()}
+          onSetDate={(d) => {
+            if (!d) {
+              setCurrentDate(new Date())
+              return
+            }
+            if (isSameDay(d, startDate)) {
+              toast('Tracking started on this day', { position: 'bottom-center' })
+              setCurrentDate(startDate)
+              return
+            }
+            if (startOfDay(d) >= start && d <= new Date()) {
+              setCurrentDate(d)
+            } else {
+              toast.error('Selected date cannot be before the start date or after today.', {
+                position: 'bottom-center',
+                duration: 1000,
+              })
+            }
+          }}
+        />
+      </div>
+
+      <h3 className="my-4 text-2xl font-light">Daily Regimen</h3>
       <div className="grid grid-cols-2 gap-2">
         <Button
           onClick={() => {
