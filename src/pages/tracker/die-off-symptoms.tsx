@@ -21,8 +21,12 @@ const defaultSymptoms = [
   'Increased gas',
 ]
 
-const DieOffSymptoms: React.FC = () => {
-  const dateKey = formatDateKey(new Date())
+type DieOffSymptomsProps = {
+  date: Date
+}
+
+const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
+  const dateKey = formatDateKey(props.date)
 
   const { symptoms, customSymptoms, addSymptom } = useTrackSymptom(dateKey)
 

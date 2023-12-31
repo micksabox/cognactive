@@ -180,7 +180,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
           Black Seed Oil
         </Button>
       </div>
-      <DieOffSymptoms />
+      <DieOffSymptoms date={currentDate} />
     </div>
   )
 }
