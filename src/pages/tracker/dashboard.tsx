@@ -96,9 +96,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             saveActivityState('oreganoOil', true)
             saveActivityState('nac', true)
             saveActivityState('blackSeedOil', true)
-            if (window.navigator && window.navigator.vibrate) {
-              window.navigator.vibrate(200)
-            }
           }}
           className="flex justify-between"
         >
@@ -114,9 +111,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             saveActivityState('nightOreganoOil', true)
             saveActivityState('nightNac', true)
             saveActivityState('nightBlackSeedOil', true)
-            if (window.navigator && window.navigator.vibrate) {
-              window.navigator.vibrate(200)
-            }
           }}
           className="flex justify-between"
         >
