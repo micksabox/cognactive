@@ -1,4 +1,4 @@
-import { differenceInCalendarDays, addMonths } from 'date-fns'
+import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
 import { CheckCircle, Circle, Moon, Sun } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
 import { Progress } from 'src/components/ui/progress'
@@ -7,6 +7,8 @@ import { useTrackSupplement } from './use-track-supplement'
 import { RegimenActivities } from './db'
 import { formatDateKey } from 'src/lib/utils'
 import { useState, useEffect } from 'react'
+import { DatePicker } from 'src/components/date-picker'
+import { toast } from 'react-hot-toast'
 
 interface DashboardProps {
   startDate: Date
@@ -31,7 +33,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const today = currentDate
   const start = startDate
   const dateKey = formatDateKey(today)
-  const dayNumber = differenceInCalendarDays(today, start)
+  const dayNumber = differenceInCalendarDays(today, start) + 1
   const twoMonthsLater = addMonths(start, 2)
   const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, today)
 
@@ -51,11 +53,35 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
 
   return (
     <div>
-      <p className="text-2xl font-bold">Today is day {dayNumber}</p>
+      <p className="text-2xl font-bold">Day {dayNumber} </p>
+      <DatePicker
+        currentDate={currentDate}
+        fromDate={startDate}
+        toDate={new Date()}
+        onSetDate={(d) => {
+          if (!d) {
+            setCurrentDate(new Date())
+            return
+          }
+          if (isSameDay(d, startDate)) {
+            toast('Tracking started on this day', { position: 'bottom-center' })
+            setCurrentDate(startDate)
+            return
+          }
+          if (startOfDay(d) >= start && d <= new Date()) {
+            setCurrentDate(d)
+          } else {
+            toast.error('Selected date cannot be before the start date or after today.', {
+              position: 'bottom-center',
+              duration: 1000,
+            })
+          }
+        }}
+      />
 
       {daysUntilTwoMonths > 0 ? (
         <>
-          <p className="mb-2">{daysUntilTwoMonths} days until 2 month milestone</p>
+          <p className="mt-2 text-center text-xs">{daysUntilTwoMonths} days until 2 month milestone</p>
           <Progress value={dayNumber} max={daysUntilTwoMonths + dayNumber} />
         </>
       ) : (
