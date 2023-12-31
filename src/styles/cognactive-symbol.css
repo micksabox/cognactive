@@ -1,5 +1,5 @@
 /*
-SVG path ids:
+SVG path ids for shell paths:
 - layer-outer-bl
 - layer-outer-br
 - layer-inner-bl
@@ -12,6 +12,10 @@ SVG path ids:
 
 #cognactive-symbol path {
   fill: white;
+}
+
+#cognactive-symbol #mushroom {
+  fill: url(#mushroomGradient);
 }
 
 #cognactive-symbol circle,
@@ -28,6 +32,18 @@ ellipse {
   }
   100% {
     opacity: 0.3;
+  }
+}
+
+@keyframes defence-falling-recovered {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -68,5 +84,5 @@ ellipse {
 }
 
 .defence-falling #mushroom {
-  animation: defence-falling-animation 2s calc(9 * var(--animation-delay)) backwards;
+  animation: defence-falling-recovered 2s calc(9 * var(--animation-delay)) backwards;
 }
