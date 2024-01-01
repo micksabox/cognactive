@@ -45,11 +45,11 @@ const ProtocolTracker: React.FC = () => {
     <div className="mx-auto max-w-xl p-2">
       {startDate ? (
         <>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center">
             <span>Started NAC protocol on</span>
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant={'outline'} size={'sm'} className="text-md font-light">
+                <Button variant={'outline'} size={'sm'} className="text-md ml-2 font-light">
                   {' '}
                   {startDate}
                 </Button>
