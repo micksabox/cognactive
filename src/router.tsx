@@ -5,7 +5,6 @@ import { getDefaultLayout } from './components/layout'
 import HomePage from './pages/home'
 import AboutPage from './pages/about'
 import TrackerPage from './pages/tracker'
-import Reports from './pages/tracker/reports'
 
 export const routerObjects: RouteObject[] = [
   {
@@ -19,10 +18,6 @@ export const routerObjects: RouteObject[] = [
   {
     path: 'tracker',
     Component: TrackerPage,
-  },
-  {
-    path: 'tracker/reports',
-    Component: Reports,
   },
 ]
 
