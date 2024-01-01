@@ -61,7 +61,10 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
     <div>
       <div className="my-4 flex items-center justify-between gap-4">
         <h3 className="text-2xl font-light">Die-Off Symptoms</h3>
-        <span>Count: {totalSymptoms}</span>
+        <div className="flex items-center gap-2">
+          <div className="text-right text-xs font-semibold">TOTAL</div>
+          <span className="text-2xl font-bold">{totalSymptoms}</span>
+        </div>
       </div>
       <ul>
         <li>
