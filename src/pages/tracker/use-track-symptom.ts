@@ -17,3 +17,14 @@ export const useTrackSymptom = (dateKey: string) => {
 
   return { symptoms, customSymptoms, addSymptom }
 }
+
+export const useSymptomCount = (symptomType: string | undefined) => {
+  const symptomCount = useLiveQuery(() => {
+    if (!symptomType) {
+      return db.symptoms.count()
+    }
+
+    return db.symptoms.where('type').equals(symptomType).count()
+  }, [symptomType])
+  return symptomCount
+}
