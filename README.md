@@ -1,17 +1,18 @@
-## Vite-React-TS-Tailwind-Starter
+# cognactive
 
-Choosing a technology stack is a very subjective matter, if you happen to like using `Vite`, `Tailwind`, `TS` and `shadcn ui` and more to build React SPA applications, then give it a try.
+Web application to track NAC protocol events.
+
+- regimen
+- symptoms
 
 ## Run
 
+Clone this repository and run
 
 ```sh
-yarn
-yarn dev
+npm install
+npm dev
 ```
-
-We prefer `Yarn` as package manager, If you want to use `pnpm` or `npm`, feel free to use
-
 
 ## Tech Stack
 
@@ -33,7 +34,6 @@ We prefer `Yarn` as package manager, If you want to use `pnpm` or `npm`, feel fr
 - [husky](https://typicode.github.io/husky/#/)/[lint-staged](https://github.com/okonet/lint-staged)
 - [commitlint](https://commitlint.js.org/)
 
-
 ## Project Structure
 
 ```sh
@@ -52,19 +52,7 @@ src
 └── vite-env.d.ts
 ```
 
-## Deploy
+## Roadmap
 
-[Cloudflare Pages](https://pages.cloudflare.com/) is my first option to deploy React App，follow [this documentation](https://developers.cloudflare.com/pages/framework-guides/deploy-a-react-site/#deploying-with-cloudflare-pages) to deploy your site. Don't forget build directory should	choose `dist`
-
-[Vercel](https://pages.cloudflare.com/) is a good option too，Go to [Vercel](https://vercel.com/new) and link to your Git Repo
-
-Enjoy building.
-
-
-## Related
-
-- [Next Starter](https://github.com/Quilljou/next-ts-tailwind-starter)
-
-- [React Starter](https://github.com/Quilljou/vite-react-ts-tailwind-starter)
-
-- [Figma Starter](https://github.com/Quilljou/figma-react-tailwind-starter)
+- [ ] Track breakthroughs
+- [x] Symptom stats
