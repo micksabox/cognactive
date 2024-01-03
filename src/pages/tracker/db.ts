@@ -78,6 +78,10 @@ class NACTrackDB extends Dexie {
       symptoms: '++id, date, type, custom, createdAt',
     })
 
+    this.version(9).stores({
+      symptomCounts: null,
+    })
+
     /*
     // Version 3 setup with upgrade path from version 2
     this.version(3).stores({

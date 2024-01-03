@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
+import { ArrowRight, CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
 import { Progress } from 'src/components/ui/progress'
 import DieOffSymptoms from './die-off-symptoms'
@@ -61,9 +61,15 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   return (
     <div>
       {daysUntilTwoMonths > 0 ? (
-        <>
-          <Progress className="mt-2" value={dayNumber} max={daysUntilTwoMonths + dayNumber} />
-        </>
+        <div className="mt-2 flex items-center gap-1">
+          <Progress value={dayNumber} max={daysUntilTwoMonths + dayNumber} />
+          <ArrowRight />
+          <span className="text-xs ">
+            2 month
+            <br />
+            milestone
+          </span>
+        </div>
       ) : (
         <p>2 months have passed since protocol started.</p>
       )}
@@ -123,7 +129,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             saveActivityState('nightBlackSeedOil', true)
           }}
           className={cn(
-            nightDone && 'bg-gradient-to-r from-slate-900 to-blue-900',
+            nightDone && 'bg-gradient-to-r from-indigo-950 to-blue-900',
             'flex justify-between transition-colors',
           )}
         >

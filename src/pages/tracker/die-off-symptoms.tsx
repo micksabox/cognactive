@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
-import { useTrackSymptom } from './use-track-symptom'
+import { useSymptomCount, useTrackSymptom } from './use-track-symptom'
 import { Button } from 'src/components/ui/button'
 import { PenLineIcon, Plus } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { formatDateKey } from 'src/lib/utils'
+import { ISymptom } from './db'
 
-const defaultSymptoms = [
+export const defaultSymptoms = [
   'Tiredness',
   'Exhaustion',
   'Muscle soreness',
@@ -29,6 +30,8 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
   const dateKey = formatDateKey(props.date)
 
   const { symptoms, customSymptoms, addSymptom } = useTrackSymptom(dateKey)
+
+  const totalSymptoms = useSymptomCount(undefined)
 
   const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -56,13 +59,12 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
 
   return (
     <div>
-      <div className="my-4 flex gap-4">
+      <div className="my-4 flex items-center justify-between gap-4">
         <h3 className="text-2xl font-light">Die-Off Symptoms</h3>
-        {/* <Button variant={'secondary'} asChild>
-          <Link to={'reports'}>
-            <BarChartBigIcon className="w-4" /> Metrics
-          </Link>
-        </Button> */}
+        <div className="flex items-center gap-2">
+          <div className="text-right text-xs font-semibold">TOTAL</div>
+          <span className="text-2xl font-bold">{totalSymptoms}</span>
+        </div>
       </div>
       <ul>
         <li>
@@ -94,19 +96,41 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
           </form>
         </li>
         {defaultSymptoms.concat((customSymptoms || []).map((s) => s.type)).map((symptom) => (
-          <li className="flex w-full border border-b-0 px-4 py-2 last-of-type:border-b" key={symptom}>
-            <label className="w-full items-center">
-              <input
-                type="checkbox"
-                checked={symptoms && symptoms.find((s) => s.type == symptom) !== undefined ? true : false}
-                onChange={() => handleSymptomChange(symptom, false)}
-              />{' '}
-              {symptom}
-            </label>
-          </li>
+          <SymptomListItem
+            key={symptom}
+            symptom={symptom}
+            symptoms={symptoms}
+            handleSymptomChange={handleSymptomChange}
+          />
         ))}
       </ul>
     </div>
+  )
+}
+
+const SymptomListItem = ({
+  symptom,
+  symptoms,
+  handleSymptomChange,
+}: {
+  symptom: string
+  symptoms?: ISymptom[]
+  handleSymptomChange: (symptom: string, flag: boolean) => void
+}) => {
+  const symptomCount = useSymptomCount(symptom)
+
+  return (
+    <li className="flex w-full border border-b-0 px-4 py-2 last-of-type:border-b" key={symptom}>
+      <label className="w-full items-center">
+        <input
+          type="checkbox"
+          checked={symptoms && symptoms.find((s) => s.type == symptom) !== undefined ? true : false}
+          onChange={() => handleSymptomChange(symptom, false)}
+        />{' '}
+        {symptom}
+      </label>
+      <span className="text-slate-300">{symptomCount}</span>
+    </li>
   )
 }
 
