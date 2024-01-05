@@ -42,7 +42,7 @@ const ProtocolTracker: React.FC = () => {
   }
 
   return (
-    <div className="mx-auto max-w-xl p-2">
+    <div className="bottom-inset mx-auto max-w-xl p-2">
       {startDate ? (
         <>
           <div className="flex items-center">
