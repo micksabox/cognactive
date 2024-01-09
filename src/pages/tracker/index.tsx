@@ -86,7 +86,7 @@ const ProtocolTracker: React.FC = () => {
         </>
       ) : (
         <>
-          <p className="text-xl">Track daily activities, die-off symptoms and breakthroughs for the NAC protocol.</p>
+          <p className="text-xl">Track daily activities and die-off symptoms for the NAC protocol.</p>
 
           <br />
           <p className="font-semibold text-slate-500">Protocol Start Date</p>
