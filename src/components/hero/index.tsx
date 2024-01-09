@@ -1,4 +1,4 @@
-import { Zap, ActivitySquare, Globe2, ScrollIcon } from 'lucide-react'
+import { ActivitySquare, Globe2, ScrollIcon, ListTodo } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
 
@@ -21,17 +21,19 @@ export const Hero = () => {
                 <h1 className="my-6 text-3xl font-bold tracking-tighter text-transparent text-white sm:text-5xl xl:text-6xl/none">
                   {t('hero-title')}
                 </h1>
-                <Button className="font-semiboldn gap-3 py-6 text-lg" size={'lg'} asChild>
-                  <Link to="/tracker">
-                    <Zap />
-                    {t('get-started')}
-                  </Link>
-                </Button>
-                <Button variant={'ghost'} className="mt-2 text-white">
-                  <a href="/files/NAC_Protocol_Printable.pdf">
-                    <ScrollIcon className="inline-block w-4" /> Read NAC protocol whitepaper
-                  </a>
-                </Button>
+                <div className="mx-auto flex max-w-sm flex-col gap-2">
+                  <Button className="font-semiboldn py-6 text-lg" size={'lg'} asChild>
+                    <Link to="/tracker">
+                      <ListTodo className="mr-2" />
+                      {t('get-started')}
+                    </Link>
+                  </Button>
+                  <Button size={'lg'} variant={'ghost'} className="text-white" asChild>
+                    <a href="/files/NAC_Protocol_Printable.pdf">
+                      <ScrollIcon className="mr-2 inline-block w-4" /> Read NAC protocol whitepaper
+                    </a>
+                  </Button>
+                </div>
               </div>
               <div className="mx-auto w-full max-w-full space-y-4">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
