@@ -1,4 +1,4 @@
-import { Zap, ActivitySquare, Globe2 } from 'lucide-react'
+import { Zap, ActivitySquare, Globe2, ScrollIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
 
@@ -14,11 +14,11 @@ export const Hero = () => {
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6">
             <div className="flex flex-col justify-center space-y-4 text-center">
-              <div className="mb-24">
+              <div className="mb-12">
                 <div id="cognactive-symbol" className="defence-falling m-auto w-48">
                   <CognactiveIcon />
                 </div>
-                <h1 className="mb-6 text-3xl font-bold tracking-tighter text-transparent text-white sm:text-5xl xl:text-6xl/none">
+                <h1 className="my-6 text-3xl font-bold tracking-tighter text-transparent text-white sm:text-5xl xl:text-6xl/none">
                   {t('hero-title')}
                 </h1>
                 <Button className="font-semiboldn gap-3 py-6 text-lg" size={'lg'} asChild>
@@ -26,6 +26,11 @@ export const Hero = () => {
                     <Zap />
                     {t('get-started')}
                   </Link>
+                </Button>
+                <Button variant={'ghost'} className="mt-2 text-white">
+                  <a href="/files/NAC_Protocol_Printable.pdf">
+                    <ScrollIcon className="inline-block w-4" /> Read NAC protocol whitepaper
+                  </a>
                 </Button>
               </div>
               <div className="mx-auto w-full max-w-full space-y-4">
