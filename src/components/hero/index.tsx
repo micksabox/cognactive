@@ -49,7 +49,7 @@ export const Hero = () => {
                       <LayoutGridIcon size={32} />
                     </div>
                     <h2 className="text-2xl font-bold text-white">{t('hero-appexperience')}</h2>
-                    <p className="text-white">{t('hero-opensource-desc')}</p>
+                    <p className="text-white">{t('hero-appexperience-desc')}</p>
                   </div>
                   <div className="flex flex-col items-center space-y-2 rounded-lg p-4">
                     <div className="rounded-full bg-black p-4 text-white">
