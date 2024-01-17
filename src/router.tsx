@@ -9,6 +9,7 @@ import TrackerPage from './pages/tracker'
 export const routerObjects: RouteObject[] = [
   {
     path: '/',
+    id: 'homepage',
     Component: HomePage,
   },
   {

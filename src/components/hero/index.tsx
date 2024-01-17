@@ -1,4 +1,4 @@
-import { ActivitySquare, Globe2, ScrollIcon, ListTodo } from 'lucide-react'
+import { ActivitySquare, ScrollIcon, ListTodo, HeartHandshakeIcon, LayoutGridIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
 
@@ -46,18 +46,18 @@ export const Hero = () => {
                   </div>
                   <div className="flex flex-col items-center space-y-2 rounded-lg p-4">
                     <div className="rounded-full bg-black p-4 text-white">
-                      <Globe2 size={32} />
+                      <LayoutGridIcon size={32} />
                     </div>
-                    <h2 className="text-2xl font-bold text-white">{t('i18nsupport')}</h2>
-                    <p className="text-white">{t('i18nsupport-desc')}</p>
+                    <h2 className="text-2xl font-bold text-white">{t('hero-appexperience')}</h2>
+                    <p className="text-white">{t('hero-opensource-desc')}</p>
                   </div>
-                  {/* <div className="flex flex-col items-center p-4 space-y-2 rounded-lg">
-                    <div className="p-4 text-white bg-black rounded-full">
-                      <HeartHandshake size={32} />
+                  <div className="flex flex-col items-center space-y-2 rounded-lg p-4">
+                    <div className="rounded-full bg-black p-4 text-white">
+                      <HeartHandshakeIcon size={32} />
                     </div>
-                    <h2 className="text-2xl font-bold text-white"> {t('linters')} </h2>
-                    <p className="text-white">{t('linters-desc')}</p>
-                  </div> */}
+                    <h2 className="text-2xl font-bold text-white">{t('hero-opensource')}</h2>
+                    <p className="text-white">{t('hero-opensource-desc')}</p>
+                  </div>
                 </div>
               </div>
             </div>

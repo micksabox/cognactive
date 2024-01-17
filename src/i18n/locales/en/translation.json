@@ -3,8 +3,10 @@
   "features": "Features",
   "tracking": "Track your NAC",
   "tracking-desc": "Track NAC protocol regimen, die-off symptoms and more.",
-  "i18nsupport": "App Experience",
-  "i18nsupport-desc": "Install cognactive to your mobile device home screen to track NAC protocol events daily",
+  "hero-appexperience": "App Experience",
+  "hero-appexperience-desc": "Install to your mobile device home screen to track NAC protocol events daily",
+  "hero-opensource": "Open source",
+  "hero-opensource-desc": "Ready for customization, collaboration and improvements as a community public good.",
   "hero-title": "Track NAC Protocol",
   "get-started": "Launch Tracker"
 }

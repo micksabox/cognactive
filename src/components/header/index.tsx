@@ -2,10 +2,17 @@ import React from 'react'
 
 import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
 import { cn } from 'src/lib/utils'
+import { Button } from '../ui/button'
+import { Github } from 'lucide-react'
+import { useMatches } from 'react-router'
 interface IProps {
   className?: string
 }
 export function Header(props: IProps) {
+  const matches = useMatches()
+
+  const isHomepage = matches.find((m) => m.id == 'homepage') && matches.length == 1
+
   return (
     <div
       className={cn(
@@ -21,12 +28,14 @@ export function Header(props: IProps) {
       </a>
       <div className="flex items-center gap-4">
         {/* <LanguageSelector /> */}
-        {/* <Button asChild>
-          <a href="https://github.com/Quilljou/vite-react-ts-tailwind-starter" target="_blank" rel="noreferrer">
-            View Code &nbsp;
-            <Github className="w-4" />
-          </a>
-        </Button> */}
+        {isHomepage && (
+          <Button asChild>
+            <a href="https://github.com/sovilon/cognactive" target="_blank" rel="noreferrer">
+              View Code &nbsp;
+              <Github className="w-4" />
+            </a>
+          </Button>
+        )}
       </div>
     </div>
   )
