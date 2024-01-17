@@ -5,7 +5,7 @@ Web application to track NAC protocol events.
 - regimen
 - symptoms
 
-## Run
+## Local Development
 
 Clone this repository and run
 
@@ -56,3 +56,11 @@ src
 
 - [ ] Track breakthroughs
 - [x] Symptom stats
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- The template for this project initialization used [Vite-React-TS-Tailwind-Starter](https://github.com/Quilljou/vite-react-ts-tailwind-starter).
