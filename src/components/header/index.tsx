@@ -30,7 +30,7 @@ export function Header(props: IProps) {
         {/* <LanguageSelector /> */}
         {isHomepage && (
           <Button asChild>
-            <a href="https://github.com/sovilon/cognactive" target="_blank" rel="noreferrer">
+            <a href="https://github.com/micksabox/cognactive" target="_blank" rel="noreferrer">
               View Code &nbsp;
               <Github className="w-4" />
             </a>
