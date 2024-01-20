@@ -1,7 +1,7 @@
 {
-  "name": "vite-react-tailwind-starter",
-  "private": true,
-  "version": "0.0.0",
+  "name": "cognactive",
+  "private": false,
+  "version": "0.0.1",
   "scripts": {
     "prepare": "husky install",
     "dev": "vite",
