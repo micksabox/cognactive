@@ -1,10 +1,11 @@
-import React from 'react'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 import ErrorPage from './components/error-page'
 import { getDefaultLayout } from './components/layout'
 import HomePage from './pages/home'
 import AboutPage from './pages/about'
 import TrackerPage from './pages/tracker'
+import BlogLayout from './pages/blog/layout'
+import Blog from './pages/blog/metagame.mdx'
 
 export const routerObjects: RouteObject[] = [
   {
@@ -19,6 +20,16 @@ export const routerObjects: RouteObject[] = [
   {
     path: 'tracker',
     Component: TrackerPage,
+  },
+  {
+    path: 'blog/*',
+    Component: BlogLayout,
+    children: [
+      {
+        path: 'the-game',
+        Component: Blog,
+      },
+    ],
   },
 ]
 
