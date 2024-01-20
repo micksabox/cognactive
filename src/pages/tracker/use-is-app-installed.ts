@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 
+// Hook to detect and set state when web app is in standalone. Cross-platform.
 const useIsAppInstalled = () => {
   const [isAppInstalled, setIsAppInstalled] = useState(false)
 
-  // @ts-ignore
   useEffect(() => {
     // Detecting iOS
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
     // @ts-ignore
     if (isIOS && window.navigator.standalone) {
       setIsAppInstalled(true)
-      return
+      // Empty cleanup function
+      return () => ({})
     }
 
     // Detecting Android
@@ -21,12 +22,14 @@ const useIsAppInstalled = () => {
 
       checkDisplayMode() // Check on initial load
 
-      // Listen for changes in display mode
-      mediaQuery.addListener(checkDisplayMode)
+      // Modern browsers
+      mediaQuery.addEventListener('change', checkDisplayMode)
 
       // Cleanup
-      return () => mediaQuery.removeListener(checkDisplayMode)
+      return () => mediaQuery.removeEventListener('change', checkDisplayMode)
     }
+    // Empty cleanup function
+    return () => ({})
   }, [])
 
   return isAppInstalled
