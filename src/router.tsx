@@ -26,7 +26,7 @@ export const routerObjects: RouteObject[] = [
     Component: BlogLayout,
     children: [
       {
-        path: 'the-game',
+        path: 'metagame',
         Component: Blog,
       },
     ],
