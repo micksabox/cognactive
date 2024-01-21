@@ -1,6 +1,6 @@
 import { ActivitySquare, ScrollIcon, ListTodo, HeartHandshakeIcon, LayoutGridIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
+import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 
 import { Button } from '../ui/button'
 import { Link } from 'react-router-dom'

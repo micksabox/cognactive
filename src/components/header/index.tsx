@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
+import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { cn } from 'src/lib/utils'
 import { Button } from '../ui/button'
 import { Github } from 'lucide-react'
