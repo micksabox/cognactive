@@ -1,7 +1,12 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { unstable_vitePlugin as remix } from '@remix-run/dev'
+import { installGlobals } from '@remix-run/node'
+import tsconfigPaths from 'vite-tsconfig-paths'
+
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
+
+installGlobals()
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
@@ -11,13 +16,7 @@ export default defineConfig(async () => {
 
   return {
     base: './',
-    plugins: [
-      svgr({
-        exportAsDefault: true,
-      }),
-      react(),
-      mdx.default({}),
-    ],
+    plugins: [remix({}), svgr({}), mdx.default({}), tsconfigPaths()],
     resolve: {
       alias: {
         src: path.resolve(__dirname, './src'),

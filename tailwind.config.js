@@ -3,7 +3,7 @@ import typography from '@tailwindcss/typography'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  content: ['./src/**/*.{ts,tsx}'],
+  content: ['./**/*.{ts,tsx}'],
   theme: {
     container: {
       center: true,

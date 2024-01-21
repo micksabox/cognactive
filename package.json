@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "prepare": "husky install",
-    "dev": "vite",
-    "build": "npm run typecheck && vite build",
+    "dev": "remix vite:dev",
+    "build": "remix vite:build",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
     "lint": "eslint --quiet src --ext .ts,.tsx && stylelint src/**/*.less",
@@ -19,6 +19,9 @@
     "@radix-ui/react-popover": "^1.0.6",
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@remix-run/node": "^2.5.1",
+    "@remix-run/react": "^2.5.1",
+    "@remix-run/serve": "^2.5.1",
     "@tailwindcss/typography": "^0.5.10",
     "@tanstack/react-query": "^4.29.3",
     "@transmart/cli": "^0.2.4",
@@ -30,6 +33,7 @@
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-resources-to-backend": "^1.1.4",
+    "isbot": "^4.4.0",
     "lucide-react": "^0.277.0",
     "react": "^18.2.0",
     "react-day-picker": "^8.9.1",
@@ -44,6 +48,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
+    "@remix-run/dev": "^2.5.1",
     "@tanstack/react-query-devtools": "^4.29.1",
     "@types/loadable__component": "^5.13.4",
     "@types/node": "^18.15.11",
@@ -52,7 +57,7 @@
     "@types/react-helmet": "^6.1.6",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
@@ -76,9 +81,10 @@
     "stylelint-prettier": "3",
     "tailwindcss": "3.3.1",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.3",
-    "vite": "^4.2.0",
+    "typescript": "^5.1.0",
+    "vite": "^5.0.12",
     "vite-plugin-external": "^1.2.8",
-    "vite-plugin-svgr": "^2.4.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^4.3.1"
   }
 }
