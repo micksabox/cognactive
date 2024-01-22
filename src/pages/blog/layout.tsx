@@ -1,5 +1,5 @@
+import { Outlet } from '@remix-run/react'
 import React from 'react'
-import { Outlet } from 'react-router'
 
 const BlogLayout: React.FC = () => {
   return (
