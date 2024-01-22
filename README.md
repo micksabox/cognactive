@@ -18,6 +18,7 @@ npm dev
 
 - [vite](https://vitejs.dev/)
 - [react](https://reactjs.org/)
+- [remix](https://remix.run)
 - [shadcn ui](https://ui.shadcn.com/)
 - [react-i18next](https://github.com/i18next/react-i18next)
 - [react-lucide](https://lucide.dev/)
@@ -26,7 +27,6 @@ npm dev
 - [tailwindcss](https://tailwindcss.com/)
 - [less](http://lesscss.org/)
 - [postcss](https://postcss.org/)
-- [react-router-dom](https://reactrouter.com/en/6.16.0)
 - [eslint](https://eslint.org/)/[stylelint](https://stylelint.io/)
 - [prettier](https://prettier.io/)
 - [svgr](https://react-svgr.com/)
