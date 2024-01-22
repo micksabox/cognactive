@@ -2,7 +2,7 @@ import React from 'react'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react'
 
 import 'src/styles/cognactive-symbol.css'
-import 'src/styles/globals.less'
+import 'src/styles/globals.css'
 import 'src/i18n/config'
 import { Toaster } from 'react-hot-toast'
 
