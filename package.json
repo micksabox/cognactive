@@ -2,10 +2,12 @@
   "name": "cognactive",
   "private": false,
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "prepare": "husky install",
     "dev": "remix vite:dev",
     "build": "remix vite:build",
+    "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
     "lint": "eslint --quiet src --ext .ts,.tsx && stylelint src/**/*.less",
