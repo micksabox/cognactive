@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import { unstable_vitePlugin as remix } from '@remix-run/dev'
 import { installGlobals } from '@remix-run/node'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { flatRoutes } from 'remix-flat-routes'
 
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
@@ -21,9 +20,15 @@ export default defineConfig(async () => {
     base: './',
     plugins: [
       remix({
-        async routes(defineRoutes) {
-          return flatRoutes('routes', defineRoutes)
-        },
+        ignoredRouteFiles: ['**/.*'],
+        // serverModuleFormat: "cjs",
+        appDirectory: 'app',
+        assetsBuildDirectory: 'public/build',
+        publicPath: '/build/',
+        serverBuildFile: 'build/index.js',
+        // async routes(defineRoutes) {
+        //   return flatRoutes('routes', defineRoutes)
+        // },
       }),
       svgr({}),
       mdx.default({
