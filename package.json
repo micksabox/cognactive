@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "remix vite:dev",
-    "build": "remix vite:build",
+    "dev": "remix dev",
+    "build": "remix build",
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",

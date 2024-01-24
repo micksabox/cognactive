@@ -1,9 +1,24 @@
 import { json } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 
-import { getPosts } from '@/.server/blogposts'
+import * as firstPost from './posts+/metagame.mdx'
+console.log(firstPost)
 
-export const loader = async () => json(await getPosts())
+// Enable with vite support
+// import { getPosts } from '@/.server/blogposts'
+
+function postFromModule(mod: any) {
+  return {
+    slug: mod.filename.replace(/\.mdx?$/, ''),
+    ...mod.attributes.meta,
+  }
+}
+
+export const loader = async () => {
+  const posts = [postFromModule(firstPost)]
+
+  return json(posts)
+}
 
 export default function Component() {
   const posts = useLoaderData<typeof loader>()

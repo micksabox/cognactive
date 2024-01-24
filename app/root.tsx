@@ -1,9 +1,17 @@
 import React from 'react'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react'
 
-import 'src/styles/cognactive-symbol.css'
-import 'src/styles/globals.css'
-import 'src/i18n/config'
+// TODO: Remove after Vite migration
+import cognactiveSymbolStyles from '../src/styles/cognactive-symbol.css?url'
+import globalStyles from '../src/styles/globals.css?url'
+import type { LinksFunction } from '@remix-run/node'
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: globalStyles },
+  { rel: 'stylesheet', href: cognactiveSymbolStyles },
+]
+// import 'src/i18n/config'
+// /TODO
+
 import { Toaster } from 'react-hot-toast'
 
 import { Header } from 'src/components/header'

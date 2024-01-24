@@ -1,3 +1,3 @@
-export const getEnv = () => import.meta.env.MODE
+export const getEnv = () => process.env.NODE_ENV;
 
-export const isLocal = import.meta.env.DEV
+// export const isLocal = process.env.DEV
