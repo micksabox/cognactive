@@ -2,7 +2,6 @@ import { json } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 
 import * as firstPost from './posts+/metagame.mdx'
-console.log(firstPost)
 
 // Enable with vite support
 // import { getPosts } from '@/.server/blogposts'
@@ -10,7 +9,7 @@ console.log(firstPost)
 function postFromModule(mod: any) {
   return {
     slug: mod.filename.replace(/\.mdx?$/, ''),
-    ...mod.attributes.meta,
+    ...mod.attributes,
   }
 }
 
@@ -29,11 +28,11 @@ export default function Component() {
       <ul className="space-y-8">
         {posts.map((post) => (
           <li key={post.slug}>
-            <Link prefetch="intent" to={post.slug}>
-              {post.frontmatter.title}
+            <Link prefetch="intent" to={`posts/${post.slug}`}>
+              {post.title}
             </Link>
-            <p>{post.frontmatter.description}</p>
-            <p>Published on {post.frontmatter.published}</p>
+            <p>{post.description}</p>
+            <p>Published on {post.published}</p>
           </li>
         ))}
       </ul>
