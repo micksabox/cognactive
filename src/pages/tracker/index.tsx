@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import useLocalStorageState from '../../hooks/use-localstorage-state'
+import React, { useCallback, useState } from 'react'
 import { Button } from 'src/components/ui/button'
 import { DatePicker } from 'src/components/date-picker'
 import Dashboard from './dashboard'
@@ -12,15 +11,20 @@ import { LayoutGrid, ShareIcon } from 'lucide-react'
 import { getEnv } from 'src/lib/env'
 import { parse } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from 'src/components/ui/popover'
+import { PROTOCOL_START_DATE } from 'src/constants'
+interface ProtocolTrackerProps {
+  clientCachedStartDate: string | null
+}
 
-const ProtocolTracker: React.FC = () => {
-  const [startDate, setStartDate] = useLocalStorageState<string | null>('protocol_start_date', null)
+const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate }) => {
+  const [startDate, setStartDate] = useState<string | null>(clientCachedStartDate)
   const [pickerDate, setPickerDate] = useState<Date | undefined>()
   const isAppInstalled = useIsAppInstalled()
 
-  const handleStartProtocol = () => {
-    if (isAppInstalled || getEnv() == 'development') {
+  const handleStartProtocol = useCallback(() => {
+    if (isAppInstalled || getEnv() === 'development') {
       const currentDate = formatDateKey(pickerDate || new Date())
+      localStorage.setItem(PROTOCOL_START_DATE, currentDate)
       setStartDate(currentDate)
     } else {
       const alertElement = document.getElementById('app-install-alert')
@@ -39,7 +43,7 @@ const ProtocolTracker: React.FC = () => {
         )
       }
     }
-  }
+  }, [isAppInstalled, pickerDate])
 
   return (
     <div className="bottom-inset mx-auto max-w-xl p-2">
@@ -67,6 +71,7 @@ const ProtocolTracker: React.FC = () => {
                     if (sure) {
                       db.resetAllData().then(
                         () => {
+                          localStorage.removeItem(PROTOCOL_START_DATE)
                           setStartDate(null)
                         },
                         (err) => {
@@ -82,7 +87,7 @@ const ProtocolTracker: React.FC = () => {
               </PopoverContent>
             </Popover>
           </div>
-          <Dashboard startDate={parse(startDate, 'yyyy-MM-dd', new Date())} />
+          <Dashboard startDate={pickerDate || parse(startDate, 'yyyy-MM-dd', new Date())} />
         </>
       ) : (
         <>

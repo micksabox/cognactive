@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CognactiveIcon from 'src/assets/icons/cognactive-icon.svg'
+import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { cn } from 'src/lib/utils'
 import { Button } from '../ui/button'
 import { Github } from 'lucide-react'
@@ -11,7 +11,7 @@ interface IProps {
 export function Header(props: IProps) {
   const matches = useMatches()
 
-  const isHomepage = matches.find((m) => m.id == 'homepage') && matches.length == 1
+  const isHomepage = matches.findLastIndex((m) => m.pathname === '/') == matches.length - 1
 
   return (
     <div

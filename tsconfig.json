@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "ESNext",
     "useDefineForClassFields": true,
     "target": "ESNext",
     "lib": ["esnext", "dom"],
     "allowJs": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -24,8 +24,9 @@
     "rootDir": ".",
     "jsx": "react-jsx",
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["./src/*"],
+      "@/*": ["./app/*"]
     }
   },
-  "include": ["./src", "vite-env.d.ts"]
+  "include": ["**/*.ts", "**/*.tsx", "vite-env.d.ts"]
 }

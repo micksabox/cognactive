@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 589.00 589.00">
-  <defs>
-    <linearGradient id="mushroomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="20%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
-      <stop offset="100%" style="stop-color:rgb(170,170,170);stop-opacity:1" />
-    </linearGradient>
-  </defs>
-<path id="layer-outer-tl" fill="#1f3643" d="
+export default function Icon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 589.00 589.00">
+      <defs>
+        <linearGradient id="mushroomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="20%" style={{ stopColor: 'rgb(255,255,255)', stopOpacity: 1 }} />
+          <stop offset="100%" style={{ stopColor: 'rgb(170,170,170)', stopOpacity: 1 }} />
+        </linearGradient>
+      </defs>
+      <path
+        id="layer-outer-tl"
+        fill="#1f3643"
+        d="
   M 179.18 37.41
   Q 222.26 18.03 267.25 13.97
   C 271.55 13.59 276.02 16.47 275.97 21.10
@@ -26,8 +29,11 @@
   C 65.45 131.93 73.12 120.79 80.99 111.47
   Q 121.66 63.30 179.18 37.41
   Z"
-/>
-<path id="layer-outer-tr" fill="#1f3643" d="
+      />
+      <path
+        id="layer-outer-tr"
+        fill="#1f3643"
+        d="
   M 423.93 90.02
   C 400.46 74.64 372.93 63.10 344.98 56.76
   Q 333.55 54.16 321.34 53.30
@@ -48,8 +54,11 @@
   Q 515.27 178.02 470.94 129.70
   C 457.16 114.69 440.50 100.87 423.93 90.02
   Z"
-/>
-<path id="layer-inner-tl" fill="#1f3643" d="
+      />
+      <path
+        id="layer-inner-tl"
+        fill="#1f3643"
+        d="
   M 120.32 213.28
   C 113.93 226.56 109.50 241.54 106.83 256.11
   Q 106.27 259.14 105.65 268.46
@@ -71,8 +80,11 @@
   Q 214.94 113.74 182.41 137.93
   Q 142.20 167.83 120.32 213.28
   Z"
-/>
-<path id="layer-inner-tr" fill="#1f3643" d="
+      />
+      <path
+        id="layer-inner-tr"
+        fill="#1f3643"
+        d="
   M 376.16 120.67
   Q 350.25 107.45 319.37 103.12
   C 314.43 102.43 310.94 98.28 311.23 93.18
@@ -89,8 +101,11 @@
   C 478.33 220.79 451.25 175.02 413.38 144.36
   Q 397.69 131.66 376.16 120.67
   Z"
-/>
-<path id="mushroom" fill="#1f3643" d="
+      />
+      <path
+        id="mushroom"
+        fill="#1f3643"
+        d="
   M 249.32 340.56
   C 231.79 356.49 212.39 363.35 189.17 357.72
   Q 178.45 355.12 169.27 347.72
@@ -162,16 +177,33 @@
   A 20.76 20.76 0.0 0 0 292.83 325.11
   A 20.76 20.76 0.0 0 0 313.59 304.35
   Z"
-/>
-<ellipse fill="#ffffff" cx="0.00" cy="0.00" transform="translate(295.46,191.33) rotate(7.3)" rx="24.50" ry="24.16"/>
-<circle fill="#ffffff" cx="365.61" cy="212.26" r="17.54"/>
-<circle fill="#ffffff" cx="225.37" cy="216.08" r="20.91"/>
-<circle fill="#ffffff" cx="318.93" cy="247.08" r="14.30"/>
-<ellipse fill="#ffffff" cx="0.00" cy="0.00" transform="translate(266.87,254.52) rotate(83.9)" rx="15.18" ry="14.85"/>
-<circle fill="#ffffff" cx="374.23" cy="288.58" r="34.92"/>
-<circle fill="#ffffff" cx="211.70" cy="293.86" r="30.96"/>
-<circle fill="#ffffff" cx="292.83" cy="304.35" r="20.76"/>
-<path id="layer-outer-bl" fill="#1f3643" d="
+      />
+      <ellipse
+        fill="#ffffff"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(295.46,191.33) rotate(7.3)"
+        rx="24.50"
+        ry="24.16"
+      />
+      <circle fill="#ffffff" cx="365.61" cy="212.26" r="17.54" />
+      <circle fill="#ffffff" cx="225.37" cy="216.08" r="20.91" />
+      <circle fill="#ffffff" cx="318.93" cy="247.08" r="14.30" />
+      <ellipse
+        fill="#ffffff"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(266.87,254.52) rotate(83.9)"
+        rx="15.18"
+        ry="14.85"
+      />
+      <circle fill="#ffffff" cx="374.23" cy="288.58" r="34.92" />
+      <circle fill="#ffffff" cx="211.70" cy="293.86" r="30.96" />
+      <circle fill="#ffffff" cx="292.83" cy="304.35" r="20.76" />
+      <path
+        id="layer-outer-bl"
+        fill="#1f3643"
+        d="
   M 265.71 570.57
   C 219.74 566.71 174.70 550.97 137.27 525.09
   Q 129.32 519.59 121.44 513.52
@@ -188,8 +220,11 @@
   C 276.05 566.24 273.50 569.41 270.42 570.26
   Q 268.46 570.80 265.71 570.57
   Z"
-/>
-<path id="layer-inner-bl" fill="#1f3643" d="
+      />
+      <path
+        id="layer-inner-bl"
+        fill="#1f3643"
+        d="
   M 225.35 471.00
   Q 247.21 479.50 268.19 482.75
   C 272.89 483.48 276.12 487.00 276.05 491.89
@@ -210,8 +245,11 @@
   Q 151.75 432.71 207.05 462.50
   Q 216.28 467.48 225.35 471.00
   Z"
-/>
-<path id="layer-inner-br" fill="#1f3643" d="
+      />
+      <path
+        id="layer-inner-br"
+        fill="#1f3643"
+        d="
   M 497.59 383.20
   Q 481.93 417.77 455.86 445.79
   C 450.30 451.77 444.16 457.25 438.15 462.68
@@ -231,8 +269,11 @@
   C 510.56 315.48 515.44 318.74 514.72 325.27
   C 512.57 344.72 506.14 364.34 497.59 383.20
   Z"
-/>
-<path id="layer-outer-br" fill="#1f3643" d="
+      />
+      <path
+        id="layer-outer-br"
+        fill="#1f3643"
+        d="
   M 569.48 335.50
   C 564.98 363.36 556.82 389.88 544.81 415.23
   Q 532.73 440.71 517.26 460.37
@@ -253,5 +294,7 @@
   C 567.38 315.65 570.90 319.90 570.53 325.99
   Q 570.24 330.80 569.48 335.50
   Z"
-/>
-</svg>
+      />
+    </svg>
+  )
+}
