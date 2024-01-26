@@ -16,7 +16,7 @@ export const clientLoader = async () => {
 const TrackerComponent: React.FC = () => {
   const clientData = useLoaderData<typeof clientLoader>()
 
-  return <ProtocolTracker clientCachedStartDate={clientData} />
+  return <ProtocolTracker clientCachedStartDate={clientData ? JSON.parse(clientData) : null} />
 }
 
 export default TrackerComponent
