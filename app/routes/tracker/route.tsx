@@ -2,6 +2,10 @@ import { useLoaderData } from '@remix-run/react'
 import { PROTOCOL_START_DATE } from 'src/constants'
 import ProtocolTracker from 'src/pages/tracker/index'
 
+import { meta as RootMeta } from '../_index'
+
+export const meta = RootMeta
+
 export const clientLoader = async () => {
   const data = localStorage.getItem(PROTOCOL_START_DATE)
 
