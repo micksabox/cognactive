@@ -32,6 +32,8 @@
     "date-fns": "^2.30.0",
     "dexie": "^3.2.4",
     "dexie-react-hooks": "^1.1.7",
+    "embla-carousel-autoplay": "^8.0.0-rc20",
+    "embla-carousel-react": "^8.0.0-rc20",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-resources-to-backend": "^1.1.4",
@@ -43,6 +45,7 @@
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^13.2.2",
+    "react-simple-typewriter": "^5.0.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
