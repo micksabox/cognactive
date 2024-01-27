@@ -1,0 +1,68 @@
+---
+meta:
+  - title: NAC Food Guide
+---
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "src/components/ui/carousel"
+import { LoreContainer } from "src/components/lore"
+import { Link } from "@remix-run/react"
+import { Button } from "src/components/ui/button"
+import Autoplay from "embla-carousel-autoplay"
+import { ScrollIcon } from 'lucide-react'
+
+<Carousel plugins={[
+        Autoplay({
+          delay: 5000,
+        }),
+      ]}>
+  <CarouselContent>
+    <CarouselItem>
+        <img src='/images/blog/nutritionist-ai-2.png'/>
+    </CarouselItem>
+    <CarouselItem>
+        <img src='/images/blog/nutritionist-ai.png'/>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+
+# Project INGREAD
+### Intelligent Recommendation Agent for Anti-fung Diet
+
+<LoreContainer>
+> The food supply chain was compromised. It had been that way for many years, and when we finally figured this out, the community and the Machinists rallied to prepare resources and machine AI agents to assist the identification and selection of foods to minimize exposure. It was codenamed Project INGREAD.
+
+</LoreContainer>
+
+## What is INGREAD?
+INGREAD can quickly **recognize and scan food ingredients** from a photo, **provide suggestions** and attempt to **answer food questions** related to NAC protocol. These types of questions are common when starting NAC protocol and INGREAD is designed to be a helpful assistant for this task. 
+
+**⚠️ Note: INGREAD is still in development and may make mistakes. Please report any feedback to [@micksabox](https://twitter.com/micksabox), [create an issue on Github](https://github.com/micksabox/cognactive/issues/new?assignees=&labels=&projects=&template=ingread-issue-template.md&title=) or post in the Telegram group food channel.**
+
+## INGREAD GPT - ✅ Now Available
+A custom GPT **available for ChatGPT Plus** subscribers. INGREAD GPT includes photo ingredient scanning and conversation functionality.
+
+<Button asChild>
+    <Link className="no-underline" to="https://chat.openai.com/g/g-tXO0L0xQO-project-ingread">Launch INGREAD GPT ↗</Link>
+</Button>
+
+## INGREAD v1 - 🚧 Coming Soon 🚧
+To ensure accessibility for all [cognactive metagame](./metagame) players, INGREAD will be made available to all users freely. The functionalities should be at least similar to INGREAD GPT.
+
+<Button disabled>
+Launch INGREAD v1
+</Button>
+
+## Community Curated Resources
+
+* [Yeast Food Information ↗](https://docs.google.com/document/d/1Z0V9Peg38hQcGwc9fjYmeokAfVFGTxAjpHzGInInvVU)
+
+***
+Project INGREAD is an official part of the [cognactive metagame](./metagame)
