@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { ArrowRight, CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
+import { ArrowRight, BotIcon, CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
 import { Progress } from 'src/components/ui/progress'
 import DieOffSymptoms from './die-off-symptoms'
@@ -9,6 +9,7 @@ import { cn, formatDateKey } from 'src/lib/utils'
 import { useState, useEffect } from 'react'
 import { DatePicker } from 'src/components/date-picker'
 import { toast } from 'react-hot-toast'
+import { Link } from '@remix-run/react'
 
 interface DashboardProps {
   startDate: Date
@@ -194,6 +195,12 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         </Button>
       </div>
       <DieOffSymptoms date={currentDate} />
+      <div className="h-16">{/* Padding for bottom */}</div>
+      <Button asChild variant={'cyan'} className="fixed bottom-3 right-3">
+        <Link prefetch="intent" to="/blog/posts/food-guide">
+          <BotIcon className="mr-2" /> Food Guide
+        </Link>
+      </Button>
     </div>
   )
 }
