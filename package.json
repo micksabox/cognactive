@@ -39,6 +39,7 @@
     "i18next-resources-to-backend": "^1.1.4",
     "isbot": "^4.4.0",
     "lucide-react": "^0.277.0",
+    "openai": "^4.26.0",
     "react": "^18.2.0",
     "react-day-picker": "^8.9.1",
     "react-dom": "^18.2.0",
@@ -46,6 +47,7 @@
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^13.2.2",
     "react-simple-typewriter": "^5.0.1",
+    "react-webcam": "^7.2.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
