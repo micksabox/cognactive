@@ -195,12 +195,14 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         </Button>
       </div>
       <DieOffSymptoms date={currentDate} />
-      <div className="h-16">{/* Padding for bottom */}</div>
-      <Button asChild variant={'cyan'} className="fixed bottom-3 right-3">
-        <Link prefetch="intent" to="/blog/posts/food-guide">
-          <BotIcon className="mr-2" /> Food Guide
-        </Link>
-      </Button>
+      <div className="h-8">{/* Padding for bottom */}</div>
+      <div className="bottom-inset fixed bottom-3 right-3">
+        <Button asChild variant={'cyan'}>
+          <Link prefetch="intent" to="/blog/posts/food-guide">
+            <BotIcon className="mr-2" /> Food Guide
+          </Link>
+        </Button>
+      </div>
     </div>
   )
 }
