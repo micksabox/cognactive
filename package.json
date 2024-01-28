@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "remix dev --manual",
+    "dev": "NODE_END=development remix dev --manual",
     "build": "remix build",
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc --noEmit",
