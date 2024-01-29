@@ -10,7 +10,10 @@ import { openai } from 'src/lib/openai.server'
 const videoConstraints = {
   width: 512,
   height: 512,
-  facingMode: 'user',
+  facingMode: {
+    // Front-facing camera
+    exact: 'environment',
+  },
 }
 
 export async function action({ request }: ActionFunctionArgs) {
