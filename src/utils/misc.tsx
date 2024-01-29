@@ -2,7 +2,7 @@ import { useFormAction, useNavigation } from '@remix-run/react'
 import { useSpinDelay } from 'spin-delay'
 
 /**
- * Attribution: From epic web stack
+ 
  * Provide a condition and if that condition is falsey, this throws a 400
  * Response with the given message.
  *
@@ -16,6 +16,7 @@ import { useSpinDelay } from 'spin-delay'
  * @param responseInit Additional response init options if a response is thrown
  *
  * @throws {Response} if condition is falsey
+ *  Attribution: From epic web stack
  */
 export function invariantResponse(
   condition: any,
@@ -31,7 +32,7 @@ export function invariantResponse(
 }
 
 /**
- * Attribution: From epic web stack
+ 
  * Returns true if the current navigation is submitting the current route's
  * form. Defaults to the current route's form action and method POST.
  *
@@ -40,6 +41,7 @@ export function invariantResponse(
  * NOTE: the default formAction will include query params, but the
  * navigation.formAction will not, so don't use the default formAction if you
  * want to know if a form is submitting without specific query params.
+ * Attribution: From epic web stack
  */
 export function useIsPending({
   formAction,

@@ -64,7 +64,10 @@
   padding-bottom: env(safe-area-inset-bottom) !important;
 }
 
-/* HTML: <div class="loader"></div> */
+/*
+HTML: <div class="loader"></div> 
+https://css-loaders.com/spinner/
+*/
 .loader {
   --b: 2px;
 
@@ -81,5 +84,20 @@
 @keyframes l5 {
   to {
     transform: rotate(0.5turn);
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.square-loader {
+  width: 40px;
+  aspect-ratio: 1;
+  background: linear-gradient(to bottom right, #0000 calc(50% - 40px), #fff 50%, #0000 calc(50% + 40px)) bottom
+    right/calc(200% + 80px) calc(200% + 80px) var(--theme-cyan);
+  animation: l8 1s infinite;
+}
+
+@keyframes l8 {
+  100% {
+    background-position: top left;
   }
 }
