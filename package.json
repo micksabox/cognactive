@@ -16,6 +16,7 @@
     "translate": "transmart"
   },
   "dependencies": {
+    "@instructor-ai/instructor": "^0.0.4",
     "@loadable/component": "^5.15.3",
     "@mdx-js/rollup": "^3.0.0",
     "@radix-ui/react-popover": "^1.0.6",
@@ -38,6 +39,7 @@
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-resources-to-backend": "^1.1.4",
     "isbot": "^4.4.0",
+    "js-yaml": "^4.1.0",
     "lucide-react": "^0.277.0",
     "openai": "^4.26.0",
     "react": "^18.2.0",
@@ -50,13 +52,15 @@
     "react-webcam": "^7.2.0",
     "spin-delay": "^1.2.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@remix-run/dev": "^2.5.1",
     "@tanstack/react-query-devtools": "^4.29.1",
+    "@types/js-yaml": "^4.0.9",
     "@types/loadable__component": "^5.13.4",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.28",
