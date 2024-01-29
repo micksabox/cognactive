@@ -48,6 +48,7 @@
     "react-i18next": "^13.2.2",
     "react-simple-typewriter": "^5.0.1",
     "react-webcam": "^7.2.0",
+    "spin-delay": "^1.2.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },

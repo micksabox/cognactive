@@ -2,7 +2,7 @@ import React from 'react'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react'
 
 // TODO: Remove after Vite migration
-import cognactiveSymbolStyles from '../src/styles/cognactive-symbol.css?url'
+import cognactiveSymbolStyles from '../src/assets/icons/cognactive-symbol.css?url'
 import globalStyles from '../src/styles/globals.css?url'
 import type { LinksFunction } from '@remix-run/node'
 export const links: LinksFunction = () => [

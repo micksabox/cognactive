@@ -1,6 +1,15 @@
-export default function Icon() {
+interface IconProps {
+  biofilmVisibility?: 'visible' | 'hidden'
+}
+
+export default function Icon(props: IconProps) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 589.00 589.00">
+    <svg
+      className={'biofilm-' + props.biofilmVisibility}
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      viewBox="0.00 0.00 589.00 589.00"
+    >
       <defs>
         <linearGradient id="mushroomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="20%" style={{ stopColor: 'rgb(255,255,255)', stopOpacity: 1 }} />

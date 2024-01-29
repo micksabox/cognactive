@@ -5,7 +5,8 @@ import { cn } from 'src/lib/utils'
 import { Button } from '../ui/button'
 import { Github } from 'lucide-react'
 import { useMatches } from 'react-router'
-import { Link } from '@remix-run/react'
+import { Link, useNavigation } from '@remix-run/react'
+import { useSpinDelay } from 'spin-delay'
 interface IProps {
   className?: string
 }
@@ -13,6 +14,13 @@ export function Header(props: IProps) {
   const matches = useMatches()
 
   const isHomepage = matches.findLastIndex((m) => m.pathname === '/') == matches.length - 1
+  const transition = useNavigation()
+  const busy = transition.state !== 'idle'
+
+  const delayedPending = useSpinDelay(busy, {
+    delay: 200,
+    minDuration: 300,
+  })
 
   return (
     <div
@@ -21,9 +29,10 @@ export function Header(props: IProps) {
         'flex w-full items-center justify-between border-b bg-slate-50 px-4 py-4 shadow md:px-12',
       )}
     >
-      <Link prefetch="render" to="/" className="flex items-center text-base font-semibold">
+      <Link to="/" className="flex items-center text-base font-semibold">
         <span className="mr-2 inline-block w-8">
-          <CognactiveIcon />
+          {delayedPending && <div className="loader absolute w-8"></div>}
+          <CognactiveIcon biofilmVisibility={delayedPending ? 'hidden' : 'visible'} />
         </span>
         cognactive
       </Link>

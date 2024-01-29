@@ -14,22 +14,24 @@ SVG path ids for shell paths:
   fill: white;
 }
 
-#cognactive-symbol #mushroom {
-  fill: url(#mushroomGradient);
-}
-
 #cognactive-symbol circle,
 ellipse {
   fill: none;
+}
+
+.biofilm-hidden [id^='layer-'] {
+  opacity: 0;
 }
 
 @keyframes defence-falling-animation {
   0% {
     opacity: 1;
   }
+
   20% {
     opacity: 0;
   }
+
   100% {
     opacity: 0.3;
   }
@@ -39,9 +41,11 @@ ellipse {
   0% {
     opacity: 1;
   }
+
   20% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -85,4 +89,8 @@ ellipse {
 
 .defence-falling #mushroom {
   animation: defence-falling-recovered 2s calc(9 * var(--animation-delay)) backwards;
+}
+
+#cognactive-symbol #mushroom {
+  fill: url("#mushroomGradient");
 }
