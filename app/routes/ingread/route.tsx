@@ -8,6 +8,8 @@ import { invariantResponse } from 'src/utils/misc'
 import { openai } from 'src/lib/openai.server'
 import { clsx } from 'clsx'
 import { toast } from 'react-hot-toast'
+import { load, Schema, Type } from 'js-yaml'
+import { z } from 'zod'
 
 // OpenAI Vision API expects a 512x512 image at least
 // and is the cheapest option
@@ -37,7 +39,7 @@ export async function action({ request }: ActionFunctionArgs) {
         content: [
           {
             type: 'text',
-            text: 'What ingredients are in this image? Respond with just the ingredients as a YAML array',
+            text: 'List all the ingredients in this image. Respond in YAML array format with depth 1',
           },
           {
             type: 'image_url',
@@ -52,11 +54,42 @@ export async function action({ request }: ActionFunctionArgs) {
     max_tokens: 300,
   })
 
-  const rawResponse = response.choices[0]
-  console.log(response.usage)
-  console.log(response.choices)
+  let responseContent = response.choices[0].message.content
 
-  return json({ assistant: rawResponse.message.content })
+  let parsedIngredients: string[] = []
+
+  if (responseContent) {
+    try {
+      // Remove any ``` triple backticks and yaml start messages
+      responseContent = responseContent.replace(/```+/gm, '').replace('yaml', '')
+
+      // Define a custom schema that includes a list of strings
+      const customSchema = new Schema({
+        explicit: [
+          new Type('tag:yaml.org,2002:seq', {
+            kind: 'sequence',
+            construct: (data) => data.filter((item: any) => typeof item === 'string'),
+          }),
+        ],
+      })
+
+      const doc = load(responseContent, { json: true, schema: customSchema })
+
+      if (Array.isArray(doc)) {
+        const ingredientsSchema = z.array(z.string())
+        const validationResult = ingredientsSchema.safeParse(doc)
+        if (validationResult.success) {
+          parsedIngredients = validationResult.data
+        } else {
+          console.error('Invalid ingredients format:', validationResult.error)
+        }
+      }
+    } catch (e: any) {
+      console.error('Unable to parse YAML')
+    }
+  }
+
+  return json({ assistant: responseContent, ingredients: parsedIngredients })
 }
 
 const CameraCapture: React.FC = () => {
@@ -187,7 +220,25 @@ const CameraCapture: React.FC = () => {
         {!isScanning && !captureFetcher.data && (
           <p>Capture a photo of food ingredients to check with NAC protocol recommendations</p>
         )}
-        {!isScanning && isCaptureEnable && captureFetcher.data?.assistant && <p>{captureFetcher.data.assistant}</p>}
+        {!isScanning && isCaptureEnable && captureFetcher.data?.ingredients && (
+          <div className="prose">
+            <h3>
+              {captureFetcher.data.ingredients.length} Ingredients <small>🚧</small>
+            </h3>
+            {captureFetcher.data.ingredients.length === 0 && <p>{captureFetcher.data.assistant}</p>}
+            <table>
+              <tbody>
+                {captureFetcher.data.ingredients.map((ing) => (
+                  <tr key={ing}>
+                    <td>
+                      <small>{ing}</small>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   )
