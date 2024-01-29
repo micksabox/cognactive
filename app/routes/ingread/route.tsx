@@ -8,8 +8,8 @@ import { invariantResponse } from 'src/utils/misc'
 import { openai } from 'src/lib/openai.server'
 
 const videoConstraints = {
-  width: 720,
-  height: 360,
+  width: 512,
+  height: 512,
   facingMode: 'user',
 }
 
@@ -61,8 +61,8 @@ const CameraCapture: React.FC = () => {
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot({
-      width: videoConstraints.width * 2,
-      height: videoConstraints.height * 2,
+      width: 512,
+      height: 512,
     })
     if (imageSrc) {
       setUrl(imageSrc)
@@ -84,8 +84,9 @@ const CameraCapture: React.FC = () => {
           <div>
             <Webcam
               audio={false}
-              width={720}
-              height={360}
+              width={512}
+              height={512}
+              screenshotQuality={1}
               ref={webcamRef}
               screenshotFormat="image/png"
               videoConstraints={videoConstraints}
