@@ -142,7 +142,9 @@ const CameraCapture: React.FC = () => {
         <div
           style={{ height: rootWidth }}
           className="mx-auto flex max-h-[512px] w-full max-w-[512px] items-center justify-center bg-gray-200"
-        ></div>
+        >
+          <VideoIcon className="h-48 w-48 text-gray-300" />
+        </div>
       )}
       {isCaptureEnable || (
         <div className="flex justify-start p-4">
@@ -154,7 +156,7 @@ const CameraCapture: React.FC = () => {
             }}
             className="w-full"
           >
-            <VideoIcon className="mr-2" /> Startup INGREAD
+            <VideoIcon className="mr-2" /> Activate INGREAD
           </Button>
         </div>
       )}
@@ -213,12 +215,12 @@ const CameraCapture: React.FC = () => {
       <div className="p-4 pt-0">
         {isScanning && (
           <>
-            <div className="w-full animate-pulse bg-slate-400 p-2"></div>
-            <div className="w-full animate-pulse bg-slate-400 p-2"></div>
+            <div className="w-full animate-pulse bg-slate-400 p-3"></div>
+            <div className="mt-2 w-full animate-pulse bg-slate-400 p-3"></div>
           </>
         )}
         {!isScanning && !captureFetcher.data && (
-          <p>Capture a photo of food ingredients to check with NAC protocol recommendations</p>
+          <p>Capture a photo of food ingredients and check with NAC protocol recommendations (coming soon).</p>
         )}
         {!isScanning && isCaptureEnable && captureFetcher.data?.ingredients && (
           <div className="prose">
