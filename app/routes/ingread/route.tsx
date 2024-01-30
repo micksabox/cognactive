@@ -233,7 +233,10 @@ const CameraCapture: React.FC = () => {
                 {captureFetcher.data.ingredients.map((ing) => (
                   <tr key={ing}>
                     <td>
-                      <small>{ing}</small>
+                      <small>
+                        {ing.includes('yeast') && '😱'}
+                        {ing}
+                      </small>
                     </td>
                   </tr>
                 ))}
