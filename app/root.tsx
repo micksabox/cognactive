@@ -16,6 +16,7 @@ import { Toaster } from 'react-hot-toast'
 
 import { Header } from 'src/components/header'
 import ErrorPage from 'src/components/error-page'
+import Footer from 'src/components/footer'
 
 export default function Root() {
   return (
@@ -59,6 +60,7 @@ export default function Root() {
             <Outlet />
           </div>
         </div>
+        <Footer />
 
         <ScrollRestoration />
         <Scripts />
