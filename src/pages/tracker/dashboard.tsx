@@ -1,7 +1,6 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { ArrowRight, BotIcon, CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
+import { BotIcon, CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
-import { Progress } from 'src/components/ui/progress'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
 import { RegimenActivities } from './db'
@@ -10,6 +9,7 @@ import { useState, useEffect } from 'react'
 import { DatePicker } from 'src/components/date-picker'
 import { toast } from 'react-hot-toast'
 import { Link } from '@remix-run/react'
+import ProgressIndicator from './progress-indicator'
 
 interface DashboardProps {
   startDate: Date
@@ -61,20 +61,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
 
   return (
     <div>
-      {daysUntilTwoMonths > 0 ? (
-        <div className="mt-2 flex items-center gap-1">
-          <Progress value={dayNumber} max={daysUntilTwoMonths + dayNumber} />
-          <ArrowRight />
-          <span className="text-xs">
-            2 month
-            <br />
-            milestone
-          </span>
-        </div>
-      ) : (
-        <p>2 months have passed since protocol started.</p>
-      )}
-
+      <ProgressIndicator completed={false} startDate={startDate} currentDate={currentDate} />
       <div className="mt-2 flex items-center">
         <span className="w-32 text-2xl font-bold">Day {dayNumber} </span>
         <DatePicker
