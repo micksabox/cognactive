@@ -46,7 +46,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
   }, [isAppInstalled, pickerDate])
 
   return (
-    <div className="bottom-inset mx-auto max-w-xl p-2">
+    <div className="bottom-inset mx-auto min-h-full max-w-xl p-2">
       {startDate ? (
         <>
           <div className="flex items-center">
@@ -90,7 +90,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
           <Dashboard startDate={pickerDate || parse(startDate, 'yyyy-MM-dd', new Date())} />
         </>
       ) : (
-        <>
+        <div className="pb-8">
           <p className="text-xl">Track daily activities and die-off symptoms for the NAC protocol.</p>
 
           <br />
@@ -121,7 +121,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
               medical app. Use this app at your own risk and liability.
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   )
