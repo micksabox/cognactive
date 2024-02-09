@@ -1,15 +1,16 @@
 import { Edit3Icon } from 'lucide-react'
 import { Button } from 'src/components/ui/button'
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from 'src/components/ui/dialog'
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from 'src/components/ui/sheet'
+
 import { Textarea } from 'src/components/ui/textarea'
 import db from './db'
 import { useState } from 'react'
@@ -21,18 +22,18 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
   //   const recentNotes = useLiveQuery(() => db.notes.orderBy('date').limit(3).toArray(), [dateKey])
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <Sheet>
+      <SheetTrigger asChild>
         <Button className="ml-2" variant={'secondary'} size={'sm'}>
           <Edit3Icon className="mr-2 w-4" /> Notes
         </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>What&apos;s notable about {dateKey}?</DialogTitle>
-          <DialogDescription>Eat anything special? Do anything different?</DialogDescription>
-        </DialogHeader>
-        <div>
+      </SheetTrigger>
+      <SheetContent side={'top'}>
+        <SheetHeader>
+          <SheetTitle>What&apos;s notable about {dateKey}?</SheetTitle>
+          <SheetDescription>Eat anything special? Do anything different?</SheetDescription>
+        </SheetHeader>
+        <div className="py-4">
           <Textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Write your note here" />
           {/* <div>
             <h3 className="mt-4 mb-2 text-lg font-semibold">Recent Notes</h3>
@@ -50,8 +51,8 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
             </ul>
           </div> */}
         </div>
-        <DialogFooter>
-          <DialogClose asChild>
+        <SheetFooter>
+          <SheetClose asChild>
             <Button
               disabled={note.length == 0}
               type="submit"
@@ -67,9 +68,9 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
             >
               Save Note
             </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   )
 }
