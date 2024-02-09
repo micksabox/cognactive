@@ -12,14 +12,14 @@ export type RegimenActivities = {
 
 export interface ISupplement {
   id?: number
-  date: string
+  date: string // format: yyyy-mm-dd
   name: keyof RegimenActivities
   dosage: string
 }
 
 export interface ISymptom {
   id?: number
-  date: string
+  date: string // format: yyyy-mm-dd
   type: string
   severity: number
   custom: number
@@ -32,11 +32,19 @@ export interface IBreakthrough {
   description: string
 }
 
+export interface INote {
+  id?: number
+  content: string
+  date: string // format: yyyy-mm-dd
+  createdAt: Date
+}
+
 // Define the database
 class NACTrackDB extends Dexie {
   supplements: Dexie.Table<ISupplement, number>
   symptoms: Dexie.Table<ISymptom, number>
   breakthroughs: Dexie.Table<IBreakthrough, number>
+  notes: Dexie.Table<INote, number>
 
   constructor() {
     super('NACTrackDB')
@@ -82,6 +90,10 @@ class NACTrackDB extends Dexie {
       symptomCounts: null,
     })
 
+    this.version(10).stores({
+      notes: '++id, date, createdAt',
+    })
+
     /*
     // Version 3 setup with upgrade path from version 2
     this.version(3).stores({
@@ -95,6 +107,7 @@ class NACTrackDB extends Dexie {
     this.supplements = this.table('supplements')
     this.symptoms = this.table('symptoms')
     this.breakthroughs = this.table('breakthroughs')
+    this.notes = this.table('notes')
   }
 
   // Function to add a supplement to the database
@@ -106,11 +119,16 @@ class NACTrackDB extends Dexie {
     return await this.supplements.add(supplement)
   }
 
+  addNote = async (note: Omit<INote, 'id'>): Promise<number | void> => {
+    return await this.notes.add(note)
+  }
+
   // Function to reset all data in all tables
   resetAllData = async (): Promise<void> => {
     await this.supplements.clear()
     await this.symptoms.clear()
     await this.breakthroughs.clear()
+    await this.notes.clear()
   }
 }
 
