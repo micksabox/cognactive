@@ -30,7 +30,7 @@ export const Hero = () => {
                     </Link>
                   </Button>
                   <Button size={'lg'} variant={'ghost'} className="text-white" asChild>
-                    <a href="/files/NAC_Protocol_Printable.pdf">
+                    <a href="/files/NAC_Protocol.pdf">
                       <ScrollIcon className="mr-2 inline-block w-4" /> Read NAC protocol whitepaper
                     </a>
                   </Button>
