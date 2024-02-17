@@ -2,8 +2,8 @@ import { ScanLine, Trash2, VideoIcon, VideoOff } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { Button } from 'src/components/ui/button'
-import { useFetcher } from '@remix-run/react'
-import { ActionFunctionArgs, json } from '@remix-run/node'
+import { useFetcher, useLoaderData } from '@remix-run/react'
+import { ActionFunctionArgs, LoaderFunctionArgs, json } from '@remix-run/node'
 import { invariantResponse } from 'src/utils/misc'
 import { openai } from 'src/lib/openai.server'
 import { clsx } from 'clsx'
@@ -22,6 +22,13 @@ const videoConstraints = {
     // Front-facing camera
     exact: 'environment',
   },
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url)
+  const entrypoint = url.searchParams.get('entry')
+
+  return json({ entrypoint })
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -99,6 +106,8 @@ const CameraCapture: React.FC = () => {
 
   const captureFetcher = useFetcher<typeof action>()
 
+  const loaderData = useLoaderData<typeof loader>()
+
   const isScanning = captureFetcher.state !== 'idle'
 
   const capture = useCallback(() => {
@@ -156,7 +165,7 @@ const CameraCapture: React.FC = () => {
             }}
             className="w-full"
           >
-            <VideoIcon className="mr-2" /> Activate INGREAD
+            <VideoIcon className="mr-2" /> Start Ingredient Scanner
           </Button>
         </div>
       )}
@@ -220,7 +229,7 @@ const CameraCapture: React.FC = () => {
           </>
         )}
         {!isScanning && !captureFetcher.data && (
-          <p>Capture a photo of food ingredients and check with NAC protocol recommendations (coming soon).</p>
+          <p>Quickly check for {loaderData.entrypoint || 'NAC Protocol'} with the snap of a photo.</p>
         )}
         {!isScanning && isCaptureEnable && captureFetcher.data?.ingredients && (
           <div className="prose">
@@ -234,7 +243,7 @@ const CameraCapture: React.FC = () => {
                   <tr key={ing}>
                     <td>
                       <small>
-                        {ing.includes('yeast') && '😱'}
+                        {/yeast|citric acid/i.test(ing) && '😱'}
                         {ing}
                       </small>
                     </td>

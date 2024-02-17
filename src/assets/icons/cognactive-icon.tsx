@@ -2,7 +2,7 @@ interface IconProps {
   biofilmVisibility?: 'visible' | 'hidden'
 }
 
-export default function Icon(props: IconProps) {
+export default function CognactiveIcon(props: IconProps) {
   return (
     <svg
       className={'biofilm-' + props.biofilmVisibility}

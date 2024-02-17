@@ -1,5 +1,6 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
 import { BotIcon, CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
+
 import { Button } from 'src/components/ui/button'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
@@ -10,6 +11,7 @@ import { DatePicker } from 'src/components/date-picker'
 import { toast } from 'react-hot-toast'
 import { Link } from '@remix-run/react'
 import ProgressIndicator from './progress-indicator'
+import DailyNoteForm from './daily-note-form'
 
 interface DashboardProps {
   startDate: Date
@@ -90,13 +92,14 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         />
       </div>
 
-      <h3 className="my-4 text-2xl font-light">
+      <h3 className="my-4 flex text-2xl font-light">
         Daily Regimen{' '}
         {morningDone && nightDone && (
           <span>
             <ListChecksIcon className="inline-block text-green-700" />
           </span>
         )}
+        <DailyNoteForm dateKey={dateKey} />
       </h3>
       <div className="grid grid-cols-2 gap-2">
         <Button
