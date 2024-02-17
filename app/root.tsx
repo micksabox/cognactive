@@ -42,10 +42,11 @@ export default function Root() {
 
         {/* Twitter previews */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@cognactive" />
         <meta name="twitter:image:alt" content="cognactive" />
         <meta name="twitter:title" content="cognactive" />
         <meta name="twitter:description" content="Track NAC Protocol" />
-        <meta name="twitter:image:src" content="/og-image.jpeg" />
+        <meta name="twitter:image" content="/og-image.jpeg" />
 
         <meta
           name="viewport"
