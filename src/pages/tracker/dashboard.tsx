@@ -65,7 +65,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
     <div>
       {daysUntilTwoMonths > 0 ? (
         <div className="mt-2 flex items-center gap-1">
-          <Progress value={dayNumber} max={daysUntilTwoMonths + dayNumber} />
+          <Progress value={(dayNumber / 60) * 100} />
           <ArrowRight />
           <span className="text-xs">
             2 month
