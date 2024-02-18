@@ -1,4 +1,4 @@
-import Dexie from 'dexie'
+import Dexie, { Table } from 'dexie'
 import { formatDateKey } from 'src/lib/utils'
 
 export type RegimenActivities = {
@@ -8,13 +8,16 @@ export type RegimenActivities = {
   nightOreganoOil: boolean
   nightNac: boolean
   nightBlackSeedOil: boolean
+  [key: string]: any
 }
 
+// Represents a supplement activity
 export interface ISupplement {
   id?: number
   date: string // format: yyyy-mm-dd
-  name: keyof RegimenActivities
+  name: string
   dosage: string
+  dosageUnit: string
 }
 
 export interface ISymptom {
@@ -39,12 +42,28 @@ export interface INote {
   createdAt: Date
 }
 
+export interface IRegimen {
+  id?: number
+  // Name of supplement or activity
+  activityName: string
+  // Absolute value of dose / amount for activity
+  activityAmount: number
+  // Unit of measure (tbsp, grams, etc)
+  unitOfMeasure: string
+  label: string
+  // Long description of regimen activity as needed
+  description?: string
+  // Where in the day "morning", "night"
+  timeslot: 'morning' | 'night'
+}
+
 // Define the database
 class NACTrackDB extends Dexie {
   supplements: Dexie.Table<ISupplement, number>
   symptoms: Dexie.Table<ISymptom, number>
   breakthroughs: Dexie.Table<IBreakthrough, number>
   notes: Dexie.Table<INote, number>
+  regimen: Dexie.Table<IRegimen, number>
 
   constructor() {
     super('NACTrackDB')
@@ -94,6 +113,15 @@ class NACTrackDB extends Dexie {
       notes: '++id, date, createdAt',
     })
 
+    this.version(11)
+      .stores({
+        regimen: '++id, &activityName',
+      })
+      .upgrade(async (trans) => {
+        const regimenTable = trans.table<IRegimen, number>('regimen')
+        this.loadPhase1Activities(regimenTable)
+      })
+
     /*
     // Version 3 setup with upgrade path from version 2
     this.version(3).stores({
@@ -108,13 +136,30 @@ class NACTrackDB extends Dexie {
     this.symptoms = this.table('symptoms')
     this.breakthroughs = this.table('breakthroughs')
     this.notes = this.table('notes')
+    this.regimen = this.table('regimen')
   }
 
   // Function to add a supplement to the database
   addSupplement = async (supplement: Omit<ISupplement, 'id'>): Promise<number | void> => {
-    const existing = await this.supplements.where({ date: supplement.date, name: supplement.name }).first()
-    if (existing && existing.id) {
-      return await this.supplements.delete(existing.id)
+    const existing = await this.supplements.where({ date: supplement.date, name: supplement.name })
+
+    let limit = 3 // global limit
+
+    switch (supplement.name) {
+      case 'nac':
+        limit = 2
+        break
+      case 'nightNac':
+        limit = 1
+        break
+      case 'blackSeedOil':
+      case 'nightBlackSeedOil':
+        limit = 2
+        break
+    }
+
+    if (existing && (await existing.count()) >= limit) {
+      return await this.supplements.bulkDelete((await existing.toArray()).map((s) => s.id!))
     }
     return await this.supplements.add(supplement)
   }
@@ -129,6 +174,44 @@ class NACTrackDB extends Dexie {
     await this.symptoms.clear()
     await this.breakthroughs.clear()
     await this.notes.clear()
+    await this.regimen.clear()
+  }
+
+  loadPhase1Activities = async (regimenTable: Table<IRegimen, number>) => {
+    await regimenTable.bulkAdd([
+      {
+        label: 'Oregano Oil',
+        timeslot: 'morning',
+        activityName: 'oreganoOil',
+        activityAmount: 40,
+        unitOfMeasure: 'mg',
+        description: '40mg Carvacrol',
+      },
+      { label: 'NAC', timeslot: 'morning', activityName: 'nac', activityAmount: 600, unitOfMeasure: 'mg' },
+      {
+        label: 'Black Seed Oil',
+        timeslot: 'morning',
+        activityName: 'blackSeedOil',
+        activityAmount: 1,
+        unitOfMeasure: 'teaspoon',
+      },
+      {
+        label: 'Oregano Oil',
+        timeslot: 'night',
+        activityName: 'nightOreganoOil',
+        activityAmount: 40,
+        unitOfMeasure: 'mg',
+        description: '40mg Carvacrol',
+      },
+      { label: 'NAC', timeslot: 'night', activityName: 'nightNac', activityAmount: 600, unitOfMeasure: 'mg' },
+      {
+        label: 'Black Seed Oil',
+        timeslot: 'night',
+        activityName: 'nightBlackSeedOil',
+        activityAmount: 1,
+        unitOfMeasure: 'teaspoon',
+      },
+    ])
   }
 }
 
