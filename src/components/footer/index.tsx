@@ -1,6 +1,17 @@
+import { Link } from '@remix-run/react'
+import CognactiveIcon from 'src/assets/icons/cognactive-icon'
+
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-slate-200 p-4 text-center text-xs text-slate-500">
+    <footer className="w-full bg-foreground p-4 text-center text-xs text-slate-500">
+      <span className="inline-block w-16">
+        <CognactiveIcon darkMode />
+      </span>
+      <p className="my-2">
+        <Link className="underline underline-offset-auto" to={'/privacy'}>
+          Privacy Policy
+        </Link>
+      </p>
       <p>
         <span className="font-semibold">Medical Disclaimer:</span> This website is provided for educational and
         informational purposes only and does not constitute providing medical advice or professional services. Nothing

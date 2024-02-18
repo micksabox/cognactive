@@ -14,6 +14,14 @@ SVG path ids for shell paths:
   fill: white;
 }
 
+.dark [id^='layer-'] {
+  fill: grey;
+}
+
+.dark #mushroom {
+  fill: grey;
+}
+
 #cognactive-symbol circle,
 ellipse {
   fill: none;
@@ -92,5 +100,5 @@ ellipse {
 }
 
 #cognactive-symbol #mushroom {
-  fill: url("#mushroomGradient");
+  fill: url('#mushroomGradient');
 }

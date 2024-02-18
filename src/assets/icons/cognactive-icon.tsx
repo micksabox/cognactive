@@ -1,11 +1,14 @@
+import { cn } from 'src/lib/utils'
+
 interface IconProps {
+  darkMode?: boolean
   biofilmVisibility?: 'visible' | 'hidden'
 }
 
 export default function CognactiveIcon(props: IconProps) {
   return (
     <svg
-      className={'biofilm-' + props.biofilmVisibility}
+      className={cn('biofilm-' + props.biofilmVisibility, props.darkMode && 'dark')}
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       viewBox="0.00 0.00 589.00 589.00"
@@ -18,7 +21,7 @@ export default function CognactiveIcon(props: IconProps) {
       </defs>
       <path
         id="layer-outer-tl"
-        fill="#1f3643"
+        // fill="#1f3643"
         d="
   M 179.18 37.41
   Q 222.26 18.03 267.25 13.97
