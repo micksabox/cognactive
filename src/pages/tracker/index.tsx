@@ -12,6 +12,7 @@ import { getEnv } from 'src/lib/env'
 import { parse } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from 'src/components/ui/popover'
 import { PROTOCOL_START_DATE } from 'src/constants'
+import { Link } from '@remix-run/react'
 interface ProtocolTrackerProps {
   clientCachedStartDate: string | null
 }
@@ -114,9 +115,12 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
             <div className="mt-2 p-2 text-sm">
               By proceeding you agree to:
               <p className="font-semibold">Privacy Policy</p>
-              All personal event activity data (symptoms, supplements, breakthroughs) is stored locally in web browser
-              and not shared with any third-party.
-              <p className="font-semibold">Legal Disclaimer</p>
+              All regimen activity tracking data (dates, symptoms, supplements, breakthroughs) is stored locally in web
+              browser and not shared with any third-party.{' '}
+              <Link className="underline underline-offset-auto" to={'/privacy'}>
+                See Privacy Policy
+              </Link>
+              .<p className="font-semibold">Legal Disclaimer</p>
               The cognactive app helps track activities and events and is for personal use only. cognactive is not a
               medical app. Use this app at your own risk and liability.
             </div>
