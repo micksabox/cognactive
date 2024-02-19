@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { ArrowRight, BotIcon, CheckCircle2, Edit } from 'lucide-react'
+import { ArrowRight, BotIcon, CheckCircle2 } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
 import { Progress } from 'src/components/ui/progress'
@@ -109,10 +109,10 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         />
       </div>
 
-      <h3 className="my-4 flex justify-between text-2xl font-light">
+      <h3 className="flex justify-between text-2xl font-light">
         <span>
           Daily Regimen{' '}
-          <Button
+          {/* <Button
             onClick={() => {
               toast.success('Custom regimen editing coming soon!')
             }}
@@ -120,7 +120,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             variant={'outline'}
           >
             <Edit className="w-4" />
-          </Button>
+          </Button> */}
         </span>
         <DailyNoteForm dateKey={dateKey} />
       </h3>
