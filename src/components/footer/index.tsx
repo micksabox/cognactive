@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
       </span>
       <p className="my-2">
         <Link className="underline underline-offset-auto" to={'/privacy'}>
-          Privacy Policy
+          Data Usage & Privacy Policy
         </Link>
       </p>
       <p className="bottom-inset">
