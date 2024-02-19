@@ -16,7 +16,7 @@ export const Hero = () => {
             <div className="flex flex-col justify-center space-y-4 text-center">
               <div className="mb-12">
                 <div id="cognactive-symbol" className="defence-falling m-auto w-48">
-                  <CognactiveIcon />
+                  <CognactiveIcon className="fill-white" darkMode />
                 </div>
                 <h1 className="my-6 text-3xl font-bold tracking-tighter text-transparent text-white sm:text-5xl xl:text-6xl/none">
                   {t['hero-title']}

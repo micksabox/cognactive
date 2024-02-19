@@ -1,6 +1,7 @@
 import { cn } from 'src/lib/utils'
 
 interface IconProps {
+  className?: string
   darkMode?: boolean
   biofilmVisibility?: 'visible' | 'hidden'
 }
@@ -8,7 +9,7 @@ interface IconProps {
 export default function CognactiveIcon(props: IconProps) {
   return (
     <svg
-      className={cn('biofilm-' + props.biofilmVisibility, props.darkMode && 'dark')}
+      className={cn('biofilm-' + props.biofilmVisibility, props.darkMode && 'dark', props.className)}
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       viewBox="0.00 0.00 589.00 589.00"
@@ -21,7 +22,6 @@ export default function CognactiveIcon(props: IconProps) {
       </defs>
       <path
         id="layer-outer-tl"
-        // fill="#1f3643"
         d="
   M 179.18 37.41
   Q 222.26 18.03 267.25 13.97
@@ -44,7 +44,6 @@ export default function CognactiveIcon(props: IconProps) {
       />
       <path
         id="layer-outer-tr"
-        fill="#1f3643"
         d="
   M 423.93 90.02
   C 400.46 74.64 372.93 63.10 344.98 56.76
@@ -69,7 +68,6 @@ export default function CognactiveIcon(props: IconProps) {
       />
       <path
         id="layer-inner-tl"
-        fill="#1f3643"
         d="
   M 120.32 213.28
   C 113.93 226.56 109.50 241.54 106.83 256.11
@@ -95,7 +93,6 @@ export default function CognactiveIcon(props: IconProps) {
       />
       <path
         id="layer-inner-tr"
-        fill="#1f3643"
         d="
   M 376.16 120.67
   Q 350.25 107.45 319.37 103.12
@@ -116,7 +113,6 @@ export default function CognactiveIcon(props: IconProps) {
       />
       <path
         id="mushroom"
-        fill="#1f3643"
         d="
   M 249.32 340.56
   C 231.79 356.49 212.39 363.35 189.17 357.72
@@ -214,7 +210,6 @@ export default function CognactiveIcon(props: IconProps) {
       <circle fill="#ffffff" cx="292.83" cy="304.35" r="20.76" />
       <path
         id="layer-outer-bl"
-        fill="#1f3643"
         d="
   M 265.71 570.57
   C 219.74 566.71 174.70 550.97 137.27 525.09
@@ -235,7 +230,6 @@ export default function CognactiveIcon(props: IconProps) {
       />
       <path
         id="layer-inner-bl"
-        fill="#1f3643"
         d="
   M 225.35 471.00
   Q 247.21 479.50 268.19 482.75
@@ -260,7 +254,6 @@ export default function CognactiveIcon(props: IconProps) {
       />
       <path
         id="layer-inner-br"
-        fill="#1f3643"
         d="
   M 497.59 383.20
   Q 481.93 417.77 455.86 445.79
@@ -284,7 +277,6 @@ export default function CognactiveIcon(props: IconProps) {
       />
       <path
         id="layer-outer-br"
-        fill="#1f3643"
         d="
   M 569.48 335.50
   C 564.98 363.36 556.82 389.88 544.81 415.23
