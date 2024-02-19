@@ -186,28 +186,21 @@ export default function CognactiveIcon(props: IconProps) {
   A 20.76 20.76 0.0 0 0 313.59 304.35
   Z"
       />
+      <ellipse fill="none" cx="0.00" cy="0.00" transform="translate(295.46,191.33) rotate(7.3)" rx="24.50" ry="24.16" />
+      <circle fill="none" cx="365.61" cy="212.26" r="17.54" />
+      <circle fill="none" cx="225.37" cy="216.08" r="20.91" />
+      <circle fill="none" cx="318.93" cy="247.08" r="14.30" />
       <ellipse
-        fill="#ffffff"
-        cx="0.00"
-        cy="0.00"
-        transform="translate(295.46,191.33) rotate(7.3)"
-        rx="24.50"
-        ry="24.16"
-      />
-      <circle fill="#ffffff" cx="365.61" cy="212.26" r="17.54" />
-      <circle fill="#ffffff" cx="225.37" cy="216.08" r="20.91" />
-      <circle fill="#ffffff" cx="318.93" cy="247.08" r="14.30" />
-      <ellipse
-        fill="#ffffff"
+        fill="none"
         cx="0.00"
         cy="0.00"
         transform="translate(266.87,254.52) rotate(83.9)"
         rx="15.18"
         ry="14.85"
       />
-      <circle fill="#ffffff" cx="374.23" cy="288.58" r="34.92" />
-      <circle fill="#ffffff" cx="211.70" cy="293.86" r="30.96" />
-      <circle fill="#ffffff" cx="292.83" cy="304.35" r="20.76" />
+      <circle fill="none" cx="374.23" cy="288.58" r="34.92" />
+      <circle fill="none" cx="211.70" cy="293.86" r="30.96" />
+      <circle fill="none" cx="292.83" cy="304.35" r="20.76" />
       <path
         id="layer-outer-bl"
         d="
