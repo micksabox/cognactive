@@ -1,17 +1,18 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { BotIcon, CheckCircle, Circle, ListChecksIcon, Moon, Sun } from 'lucide-react'
+import { BotIcon, CheckCircle2 } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
-import { RegimenActivities } from './db'
-import { cn, formatDateKey } from 'src/lib/utils'
+import db, { IRegimen } from './db'
+import { formatDateKey } from 'src/lib/utils'
 import { useState, useEffect } from 'react'
 import { DatePicker } from 'src/components/date-picker'
 import { toast } from 'react-hot-toast'
 import { Link } from '@remix-run/react'
 import ProgressIndicator from './progress-indicator'
 import DailyNoteForm from './daily-note-form'
+import { useRegimen } from './use-regimen'
 
 interface DashboardProps {
   startDate: Date
@@ -21,7 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date())
 
   // On focus sets date to today
-  useEffect(() => {
+  useEffect(function resetToToday() {
     const handleFocus = () => {
       setCurrentDate(new Date())
     }
@@ -40,26 +41,32 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const twoMonthsLater = addMonths(start, 2)
   const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, today)
 
-  const { activities, addSupplementActivity } = useTrackSupplement(dateKey)
+  const { supplements, addSupplementActivity } = useTrackSupplement(dateKey)
 
-  const saveActivityState = (activityName: keyof RegimenActivities, state: boolean) => {
+  const { morningActivities, nightActivities } = useRegimen()
+
+  useEffect(
+    function loadPhase1Activities() {
+      // Phase 1 activities may not be loaded for new installations
+      if (morningActivities?.length == 0 && nightActivities?.length == 0) {
+        db.loadPhase1Activities(db.regimen).then(() => {
+          // Phase 1 activities loaded
+        })
+      }
+    },
+    [morningActivities, nightActivities],
+  )
+
+  const saveActivity = (regimenActivity: IRegimen) => {
     addSupplementActivity({
       date: dateKey,
-      dosage: '', // TODO: Implement
-      name: activityName,
+      dosage: regimenActivity.activityAmount.toString(),
+      dosageUnit: regimenActivity.unitOfMeasure,
+      name: regimenActivity.activityName,
     }).then((maybeId) => {
-      console.log(activityName, state, maybeId)
+      console.log(regimenActivity, maybeId)
     })
   }
-
-  const todaysActivities = activities
-  const morningDone =
-    todaysActivities && todaysActivities.oreganoOil && todaysActivities.nac && todaysActivities.blackSeedOil
-  const nightDone =
-    todaysActivities &&
-    todaysActivities.nightOreganoOil &&
-    todaysActivities.nightNac &&
-    todaysActivities.nightBlackSeedOil
 
   return (
     <div>
@@ -92,97 +99,65 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         />
       </div>
 
-      <h3 className="my-4 flex text-2xl font-light">
-        Daily Regimen{' '}
-        {morningDone && nightDone && (
-          <span>
-            <ListChecksIcon className="inline-block text-green-700" />
-          </span>
-        )}
+      <h3 className="my-2 flex justify-between text-2xl font-light">
+        <span>
+          Daily Regimen{' '}
+          {/* <Button
+            onClick={() => {
+              toast.success('Custom regimen editing coming soon!')
+            }}
+            size={'icon'}
+            variant={'outline'}
+          >
+            <Edit className="w-4" />
+          </Button> */}
+        </span>
         <DailyNoteForm dateKey={dateKey} />
       </h3>
-      <div className="grid grid-cols-2 gap-2">
-        <Button
-          onClick={() => {
-            saveActivityState('oreganoOil', true)
-            saveActivityState('nac', true)
-            saveActivityState('blackSeedOil', true)
-          }}
-          className={cn(morningDone && 'bg-gradient-to-r from-blue-300 to-green-800', 'flex justify-between')}
-        >
-          {morningDone ? <Sun className="w-4 text-yellow-300" /> : <Circle className="w-4" />}
-          Morning
-        </Button>
-        <Button
-          onClick={() => {
-            saveActivityState('nightOreganoOil', true)
-            saveActivityState('nightNac', true)
-            saveActivityState('nightBlackSeedOil', true)
-          }}
-          className={cn(
-            nightDone && 'bg-gradient-to-r from-indigo-950 to-blue-900',
-            'flex justify-between transition-colors',
-          )}
-        >
-          {nightDone ? <Moon className="w-4 text-blue-400" /> : <Circle className="w-4" />}
-          Nightime
-        </Button>
-        <Button
-          onClick={() => saveActivityState('oreganoOil', !todaysActivities.oreganoOil)}
-          variant={'outline'}
-          className="flex justify-between border p-2"
-        >
-          {todaysActivities.oreganoOil ? <CheckCircle className="w-4 text-green-600" /> : <Circle className="w-4" />}
-          Oregano Oil
-        </Button>
-        <Button
-          onClick={() => saveActivityState('nightOreganoOil', !todaysActivities.nightOreganoOil)}
-          variant={'outline'}
-          className="flex justify-between border p-2"
-        >
-          {todaysActivities.nightOreganoOil ? (
-            <CheckCircle className="w-4 text-green-600" />
-          ) : (
-            <Circle className="w-4" />
-          )}
-          Oregano Oil
-        </Button>
-        <Button
-          onClick={() => saveActivityState('nac', !todaysActivities.nac)}
-          variant={'outline'}
-          className="flex justify-between border p-2"
-        >
-          {todaysActivities.nac ? <CheckCircle className="w-4 text-green-600" /> : <Circle className="w-4" />}
-          NAC
-        </Button>
-        <Button
-          onClick={() => saveActivityState('nightNac', !todaysActivities.nightNac)}
-          variant={'outline'}
-          className="flex justify-between border p-2"
-        >
-          {todaysActivities.nightNac ? <CheckCircle className="w-4 text-green-600" /> : <Circle className="w-4" />}
-          NAC
-        </Button>
-        <Button
-          onClick={() => saveActivityState('blackSeedOil', !todaysActivities.blackSeedOil)}
-          variant={'outline'}
-          className="flex justify-between border p-2"
-        >
-          {todaysActivities.blackSeedOil ? <CheckCircle className="w-4 text-green-600" /> : <Circle className="w-4" />}
-          Black Seed Oil
-        </Button>
-        <Button
-          onClick={() => saveActivityState('nightBlackSeedOil', !todaysActivities.nightBlackSeedOil)}
-          variant={'outline'}
-          className="flex justify-between border p-2"
-        >
-          {todaysActivities.nightBlackSeedOil ? (
-            <CheckCircle className="w-4 text-green-600" />
-          ) : (
-            <Circle className="w-4" />
-          )}
-          Black Seed Oil
-        </Button>
+      <div id="regimen" className="flex gap-2">
+        <div className="w-full flex-1">
+          <h3 className="text-right text-sm uppercase tracking-widest">Morning</h3>
+          {morningActivities?.map((ma) => (
+            <Button
+              onClick={() => saveActivity(ma)}
+              variant={'outline'}
+              size={'sm'}
+              className="mt-1 flex w-full justify-between text-xs"
+              key={ma.id}
+            >
+              <span>
+                {supplements
+                  ?.filter((s) => s.name == ma.activityName)
+                  .map((sa) => (
+                    <CheckCircle2 className="inline-block w-4" key={sa.id} />
+                  ))}
+              </span>
+              {ma.label}
+            </Button>
+          ))}
+        </div>
+        <div className="w-full flex-1">
+          <h3 className="text-right text-sm uppercase tracking-widest">Night</h3>
+
+          {nightActivities?.map((ma) => (
+            <Button
+              onClick={() => saveActivity(ma)}
+              variant={'outline'}
+              size={'sm'}
+              className="mt-1 flex w-full justify-between text-xs"
+              key={ma.id}
+            >
+              <span>
+                {supplements
+                  ?.filter((s) => s.name == ma.activityName)
+                  .map((sa) => (
+                    <CheckCircle2 className="inline-block w-4" key={sa.id} />
+                  ))}
+              </span>
+              {ma.label}
+            </Button>
+          ))}
+        </div>
       </div>
       <DieOffSymptoms date={currentDate} />
       <div className="h-8">{/* Padding for bottom */}</div>

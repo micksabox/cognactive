@@ -10,23 +10,6 @@ SVG path ids for shell paths:
 - layer-inner-tr
 */
 
-#cognactive-symbol path {
-  fill: white;
-}
-
-.dark [id^='layer-'] {
-  fill: grey;
-}
-
-.dark #mushroom {
-  fill: grey;
-}
-
-#cognactive-symbol circle,
-ellipse {
-  fill: none;
-}
-
 .biofilm-hidden [id^='layer-'] {
   opacity: 0;
 }
