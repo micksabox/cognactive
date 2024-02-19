@@ -5,7 +5,7 @@ import { Button } from 'src/components/ui/button'
 import { Progress } from 'src/components/ui/progress'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
-import { IRegimen } from './db'
+import db, { IRegimen } from './db'
 import { formatDateKey } from 'src/lib/utils'
 import { useState, useEffect } from 'react'
 import { DatePicker } from 'src/components/date-picker'
@@ -22,7 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date())
 
   // On focus sets date to today
-  useEffect(() => {
+  useEffect(function resetToToday() {
     const handleFocus = () => {
       setCurrentDate(new Date())
     }
@@ -41,9 +41,21 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const twoMonthsLater = addMonths(start, 2)
   const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, today)
 
-  const { supplements, activities, addSupplementActivity } = useTrackSupplement(dateKey)
+  const { supplements, addSupplementActivity } = useTrackSupplement(dateKey)
 
   const { morningActivities, nightActivities } = useRegimen()
+
+  useEffect(
+    function loadPhase1Activities() {
+      // Phase 1 activities may not be loaded for new installations
+      if (morningActivities?.length == 0 && nightActivities?.length == 0) {
+        db.loadPhase1Activities(db.regimen).then(() => {
+          // Phase 1 activities loaded
+        })
+      }
+    },
+    [morningActivities, nightActivities],
+  )
 
   const saveActivity = (regimenActivity: IRegimen) => {
     addSupplementActivity({
@@ -55,15 +67,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
       console.log(regimenActivity, maybeId)
     })
   }
-
-  const todaysActivities = activities
-  const morningDone =
-    todaysActivities && todaysActivities.oreganoOil && todaysActivities.nac && todaysActivities.blackSeedOil
-  const nightDone =
-    todaysActivities &&
-    todaysActivities.nightOreganoOil &&
-    todaysActivities.nightNac &&
-    todaysActivities.nightBlackSeedOil
 
   return (
     <div>
@@ -109,7 +112,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         />
       </div>
 
-      <h3 className="flex justify-between text-2xl font-light">
+      <h3 className="my-2 flex justify-between text-2xl font-light">
         <span>
           Daily Regimen{' '}
           {/* <Button
@@ -124,7 +127,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         </span>
         <DailyNoteForm dateKey={dateKey} />
       </h3>
-      <div className="flex gap-2">
+      <div id="regimen" className="flex gap-2">
         <div className="w-full flex-1">
           <h3 className="text-right text-sm uppercase tracking-widest">Morning</h3>
           {morningActivities?.map((ma) => (
