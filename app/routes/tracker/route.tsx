@@ -1,9 +1,10 @@
 import { useLoaderData } from '@remix-run/react'
 import { PROTOCOL_PHASE, PROTOCOL_PHASE_2_CYCLE_START, PROTOCOL_START_DATE } from 'src/constants'
 import ProtocolTracker from 'src/pages/tracker/index'
+import { useLocalStorage } from '@uidotdev/usehooks'
 
 import { meta as RootMeta } from '../_index'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ProtocolTrackerStateContext } from 'src/pages/tracker/use-protocol-tracker-state'
 
 export const meta = RootMeta
@@ -14,7 +15,7 @@ export const clientLoader = async () => {
   const phase2CycleStart = localStorage.getItem(PROTOCOL_PHASE_2_CYCLE_START)
 
   return {
-    startDate: startDate ? startDate.replace(/"/g, '') : null,
+    startDate: startDate,
     currentPhase: currentPhase ?? '1',
     phase2CycleStart: phase2CycleStart,
   }
@@ -23,26 +24,22 @@ export const clientLoader = async () => {
 const TrackerComponent: React.FC = () => {
   const clientData = useLoaderData<typeof clientLoader>()
 
-  const [currentPhase, setCurrentPhase] = useState<string | null>(clientData.currentPhase)
-  const [phase2CycleStart, setPhase2CycleStart] = useState<string | null>(clientData.phase2CycleStart)
-
-  useEffect(function handleStorageChange() {
-    const handleStorageChange = (event: StorageEvent) => {
-      console.log('handleStorageChange', event)
-      if (event.key === PROTOCOL_PHASE) {
-        setCurrentPhase(event.newValue)
-      }
-      if (event.key === PROTOCOL_PHASE_2_CYCLE_START) {
-        setPhase2CycleStart(event.newValue)
-      }
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, [])
+  const [currentPhase, setCurrentPhase] = useLocalStorage<string | null>(PROTOCOL_PHASE, clientData.currentPhase)
+  const [phase2CycleStart, setPhase2CycleStart] = useLocalStorage<string | null>(
+    PROTOCOL_PHASE_2_CYCLE_START,
+    clientData.phase2CycleStart,
+  )
 
   return (
-    <ProtocolTrackerStateContext.Provider value={{ ...clientData, currentPhase, phase2CycleStart }}>
+    <ProtocolTrackerStateContext.Provider
+      value={{
+        startDate: clientData.startDate ? clientData.startDate.replace(/"/g, '') : null,
+        currentPhase: currentPhase ? currentPhase.replace(/"/g, '') : '1',
+        phase2CycleStart: phase2CycleStart ? phase2CycleStart.replace(/"/g, '') : null,
+        setCurrentPhase,
+        setPhase2CycleStart,
+      }}
+    >
       <ProtocolTracker clientCachedStartDate={clientData.startDate} />
     </ProtocolTrackerStateContext.Provider>
   )

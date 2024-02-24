@@ -6,7 +6,6 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { Button } from 'src/components/ui/button'
 import { useProtocolTrackerState } from './use-protocol-tracker-state'
-import { PROTOCOL_PHASE, PROTOCOL_PHASE_2_CYCLE_START } from 'src/constants'
 import { toast } from 'react-hot-toast'
 
 interface ProgressIndicatorProps {
@@ -97,8 +96,8 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
             <Button
               disabled={currentPhase == '1'}
               onClick={() => {
-                localStorage.setItem(PROTOCOL_PHASE, '1')
-                localStorage.removeItem(PROTOCOL_PHASE_2_CYCLE_START)
+                protocolTrackerState.setCurrentPhase('1')
+                protocolTrackerState.setPhase2CycleStart(null)
 
                 db.rollbackToPhase1().then(() => {
                   toast.success('Back to Phase 1')
@@ -113,8 +112,8 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
             <Button
               disabled={currentPhase == '2'}
               onClick={() => {
-                localStorage.setItem(PROTOCOL_PHASE, '2')
-                localStorage.setItem(PROTOCOL_PHASE_2_CYCLE_START, format(new Date(), 'yyyy-MM-dd'))
+                protocolTrackerState.setCurrentPhase('2')
+                protocolTrackerState.setPhase2CycleStart(format(new Date(), 'yyyy-MM-dd'))
 
                 db.setupPhase2().then(() => {
                   toast.success('Setup Phase 2')

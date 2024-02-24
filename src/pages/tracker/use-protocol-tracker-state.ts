@@ -4,6 +4,8 @@ interface ProtocolTrackerState {
   startDate: string | null
   currentPhase: string | null
   phase2CycleStart: string | null
+  setCurrentPhase: (cp: string | null) => void
+  setPhase2CycleStart: (p2c: string | null) => void
 }
 
 export const ProtocolTrackerStateContext = React.createContext<ProtocolTrackerState | undefined>(undefined)
