@@ -11,7 +11,7 @@ import { LayoutGrid, ShareIcon } from 'lucide-react'
 import { getEnv } from 'src/lib/env'
 import { parse } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from 'src/components/ui/popover'
-import { PROTOCOL_START_DATE } from 'src/constants'
+import { PROTOCOL_PHASE, PROTOCOL_PHASE_2_CYCLE_START, PROTOCOL_START_DATE } from 'src/constants'
 import { Link } from '@remix-run/react'
 interface ProtocolTrackerProps {
   clientCachedStartDate: string | null
@@ -73,6 +73,8 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
                       db.resetAllData().then(
                         () => {
                           localStorage.removeItem(PROTOCOL_START_DATE)
+                          localStorage.removeItem(PROTOCOL_PHASE)
+                          localStorage.removeItem(PROTOCOL_PHASE_2_CYCLE_START)
                           setStartDate(null)
                         },
                         (err) => {
