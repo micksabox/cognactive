@@ -33,5 +33,5 @@
       "@/*": ["./app/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "vite-env.d.ts"]
 }
