@@ -33,6 +33,8 @@ const TrackerComponent: React.FC = () => {
   return (
     <ProtocolTrackerStateContext.Provider
       value={{
+        // Some JSON parsing is happening in the useLocalStorage library.
+        // Replace the " characters with empty string.
         startDate: clientData.startDate ? clientData.startDate.replace(/"/g, '') : null,
         currentPhase: currentPhase ? currentPhase.replace(/"/g, '') : '1',
         phase2CycleStart: phase2CycleStart ? phase2CycleStart.replace(/"/g, '') : null,

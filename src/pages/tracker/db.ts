@@ -55,7 +55,7 @@ export interface IRegimen {
   description?: string
   // Where in the day "morning", "night"
   timeslot: 'morning' | 'night'
-  // Whether
+  // Whether to hide the activity in the tracker
   hidden?: boolean
 }
 
