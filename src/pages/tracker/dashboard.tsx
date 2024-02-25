@@ -115,8 +115,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Button
               onClick={() => saveActivity(ma)}
               variant={'outline'}
-              size={'sm'}
-              className="mt-1 flex w-full justify-between text-xs"
+              className="mt-2 flex w-full justify-between text-xs"
               key={ma.id}
             >
               <span>
@@ -137,8 +136,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Button
               onClick={() => saveActivity(ma)}
               variant={'outline'}
-              size={'sm'}
-              className="mt-1 flex w-full justify-between text-xs"
+              className="mt-2 flex w-full justify-between text-xs"
               key={ma.id}
             >
               <span>
