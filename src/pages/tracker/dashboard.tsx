@@ -1,8 +1,7 @@
-import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { ArrowRight, BotIcon, CheckCircle2 } from 'lucide-react'
+import { differenceInCalendarDays, isSameDay, startOfDay } from 'date-fns'
+import { BotIcon, CheckCircle2 } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
-import { Progress } from 'src/components/ui/progress'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
 import db, { IRegimen } from './db'
@@ -11,6 +10,7 @@ import { useState, useEffect } from 'react'
 import { DatePicker } from 'src/components/date-picker'
 import { toast } from 'react-hot-toast'
 import { Link } from '@remix-run/react'
+import ProgressIndicator from './progress-indicator'
 import DailyNoteForm from './daily-note-form'
 import { useRegimen } from './use-regimen'
 
@@ -38,8 +38,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const start = startDate
   const dateKey = formatDateKey(today)
   const dayNumber = differenceInCalendarDays(today, start) + 1
-  const twoMonthsLater = addMonths(start, 2)
-  const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, today)
 
   const { supplements, addSupplementActivity } = useTrackSupplement(dateKey)
 
@@ -70,20 +68,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
 
   return (
     <div>
-      {daysUntilTwoMonths > 0 ? (
-        <div className="mt-2 flex items-center gap-1">
-          <Progress value={(dayNumber / 60) * 100} />
-          <ArrowRight />
-          <span className="text-xs">
-            2 month
-            <br />
-            milestone
-          </span>
-        </div>
-      ) : (
-        <p>2 months have passed since protocol started.</p>
-      )}
-
+      <ProgressIndicator startDate={startDate} currentDate={currentDate} />
       <div className="mt-2 flex items-center">
         <span className="w-32 text-2xl font-bold">Day {dayNumber} </span>
         <DatePicker
@@ -115,15 +100,9 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
       <h3 className="my-2 flex justify-between text-2xl font-light">
         <span>
           Daily Regimen{' '}
-          {/* <Button
-            onClick={() => {
-              toast.success('Custom regimen editing coming soon!')
-            }}
-            size={'icon'}
-            variant={'outline'}
-          >
-            <Edit className="w-4" />
-          </Button> */}
+          <Button asChild size={'sm'} variant={'outline'}>
+            <Link to={'/tracker-regimen'}>Edit</Link>
+          </Button>
         </span>
         <DailyNoteForm dateKey={dateKey} />
       </h3>
@@ -134,8 +113,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Button
               onClick={() => saveActivity(ma)}
               variant={'outline'}
-              size={'sm'}
-              className="mt-1 flex w-full justify-between text-xs"
+              className="mt-2 flex w-full justify-between text-xs"
               key={ma.id}
             >
               <span>
@@ -156,8 +134,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Button
               onClick={() => saveActivity(ma)}
               variant={'outline'}
-              size={'sm'}
-              className="mt-1 flex w-full justify-between text-xs"
+              className="mt-2 flex w-full justify-between text-xs"
               key={ma.id}
             >
               <span>

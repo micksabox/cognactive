@@ -55,6 +55,8 @@ export interface IRegimen {
   description?: string
   // Where in the day "morning", "night"
   timeslot: 'morning' | 'night'
+  // Whether to hide the activity in the tracker
+  hidden?: boolean
 }
 
 // Define the database
@@ -141,11 +143,15 @@ class NACTrackDB extends Dexie {
 
   // Function to add a supplement to the database
   addSupplement = async (supplement: Omit<ISupplement, 'id'>): Promise<number | void> => {
-    const existing = await this.supplements.where({ date: supplement.date, name: supplement.name })
+    const existing = this.supplements.where({ date: supplement.date, name: supplement.name })
 
-    let limit = 3 // global limit
+    let limit = 1 // global limit
 
     switch (supplement.name) {
+      case 'oreganoOil':
+      case 'nightOreganoOil':
+        limit = 3
+        break
       case 'nac':
         limit = 2
         break
@@ -212,6 +218,103 @@ class NACTrackDB extends Dexie {
         unitOfMeasure: 'teaspoon',
       },
     ])
+  }
+
+  loadPhase2Activities = async () => {
+    return this.regimen.bulkAdd([
+      {
+        label: 'Niacin',
+        timeslot: 'morning',
+        activityName: 'morningNiacin',
+        description: 'nicotinic acid',
+        activityAmount: 500,
+        unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
+      },
+      {
+        label: 'Pom Seed Extract',
+        timeslot: 'morning',
+        activityName: 'morningPomegranate',
+        description: '40% Ellagic Acid',
+        activityAmount: 250,
+        unitOfMeasure: 'mg',
+      },
+      {
+        label: 'Pterostilbene',
+        timeslot: 'morning',
+        activityName: 'morningPterostilbene',
+        activityAmount: 100,
+        unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
+      },
+      {
+        label: 'Niacin',
+        timeslot: 'night',
+        activityName: 'nightNiacin',
+        description: 'nicotinic acid',
+        activityAmount: 500,
+        unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
+      },
+      {
+        label: 'Pom Seed Extract',
+        timeslot: 'night',
+        activityName: 'nightPomegranate',
+        description: '40% Ellagic Acid',
+        activityAmount: 250,
+        unitOfMeasure: 'mg',
+      },
+      {
+        label: 'Pterostilbene',
+        timeslot: 'night',
+        activityName: 'nightPterostilbene',
+        activityAmount: 100,
+        unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
+      },
+    ])
+  }
+
+  setupPhase2 = async () => {
+    const phase1Activities = this.regimen.where('activityName').anyOf(['oreganoOil', 'nightOreganoOil', 'nightNac'])
+
+    await phase1Activities.modify({ hidden: true })
+
+    try {
+      await this.loadPhase2Activities()
+    } catch (e) {
+      // Empty. They may have already been added
+      const phase2Activities = this.regimen
+        .where('activityName')
+        .anyOf([
+          'nightPterostilbene',
+          'nightPomegranate',
+          'nightNiacin',
+          'morningPterostilbene',
+          'morningPomegranate',
+          'morningNiacin',
+        ])
+      await phase2Activities.modify({ hidden: false })
+    }
+  }
+
+  rollbackToPhase1 = async () => {
+    const phase1Activities = this.regimen.where('activityName').anyOf(['oreganoOil', 'nightOreganoOil', 'nightNac'])
+
+    await phase1Activities.modify({ hidden: false })
+
+    const phase2Activities = this.regimen
+      .where('activityName')
+      .anyOf([
+        'nightPterostilbene',
+        'nightPomegranate',
+        'nightNiacin',
+        'morningPterostilbene',
+        'morningPomegranate',
+        'morningNiacin',
+      ])
+
+    await phase2Activities.modify({ hidden: true })
   }
 }
 
