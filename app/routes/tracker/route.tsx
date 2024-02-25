@@ -30,19 +30,21 @@ const TrackerComponent: React.FC = () => {
     clientData.phase2CycleStart,
   )
 
+  // Some JSON parsing is happening in the useLocalStorage library.
+  // Replace the " characters with empty string.
+  const savedStartDate = clientData.startDate ? clientData.startDate.replace(/"/g, '') : null
+
   return (
     <ProtocolTrackerStateContext.Provider
       value={{
-        // Some JSON parsing is happening in the useLocalStorage library.
-        // Replace the " characters with empty string.
-        startDate: clientData.startDate ? clientData.startDate.replace(/"/g, '') : null,
+        startDate: savedStartDate,
         currentPhase: currentPhase ? currentPhase.replace(/"/g, '') : '1',
         phase2CycleStart: phase2CycleStart ? phase2CycleStart.replace(/"/g, '') : null,
         setCurrentPhase,
         setPhase2CycleStart,
       }}
     >
-      <ProtocolTracker clientCachedStartDate={clientData.startDate} />
+      <ProtocolTracker clientCachedStartDate={savedStartDate} />
     </ProtocolTrackerStateContext.Provider>
   )
 }
