@@ -6,7 +6,8 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { Button } from 'src/components/ui/button'
 import { useProtocolTrackerState } from './use-protocol-tracker-state'
-import { toast } from 'react-hot-toast'
+import { formatDateKey } from 'src/lib/utils'
+import { useNavigate } from '@remix-run/react'
 
 interface ProgressIndicatorProps {
   startDate: Date
@@ -32,12 +33,9 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
 
   // Phase 2 won't be considered started until all of the elements are taken
   const daysSinceResumingPhase2 = phase2CycleStart ? differenceInCalendarDays(phase2CycleStart, currentDate) : 0
-  // Find the day that the user first took only black seed oil, after starting phase 2
-  const daysSincePhase2Break = 7 // todo
-
-  console.log(protocolTrackerState, daysSinceResumingPhase2)
-
   const currentPhase = protocolTrackerState.currentPhase
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -71,59 +69,48 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
           </>
         )}
         {currentPhase === '2' && (
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-20 self-start font-semibold">Phase 2</span>
+          <div className="flex items-start gap-2">
+            <p>
+              <span className="inline-block w-20 self-start font-semibold">Phase 2</span>
+            </p>
             <div className="grid flex-grow grid-cols-3 gap-2">
+              {phase2CycleStart && <p className="col-span-3 text-xs">started on {formatDateKey(phase2CycleStart)}</p>}
               <div className="col-span-2">
-                <Progress className="w-full" value={daysSinceResumingPhase2} max={21} />
+                {/* Handle multiple cycles by modulo calc days by 28 and stop at 3 weeks (21 days) */}
+                <Progress className="w-full" value={daysSinceResumingPhase2 % 28} max={21} />
                 <p className="text-center text-xs">3 weeks on</p>
               </div>
               <div className="col-span-1">
-                <Progress className="w-full" value={daysSincePhase2Break - 21} max={7} />
+                {/* Show the final week by modulo calc by 28 and subtract 3 weeks */}
+                <Progress className="w-full" value={(daysSinceResumingPhase2 % 28) - 21} max={7} />
                 <p className="text-center text-xs">1 week off</p>
               </div>
             </div>
           </div>
         )}
       </div>
-      {daysUntilTwoMonths <= 5 && (
+      {daysUntilTwoMonths <= 5 && currentPhase == '1' && (
         <Alert variant={'default'} className="my-2">
-          <AlertTitle>Phase 2 (Optional)</AlertTitle>
+          <AlertTitle>
+            Phase 2 <span className="text-xs text-gray-500">Optional</span>
+          </AlertTitle>
           <AlertDescription>
-            Once past the 2 month milestone, choose to continue in phase 1 or proceed to phase 2 of the NAC protocol.
-            You can rollback to phase 1 if needed.
+            Once past the 2 month milestone, continue phase 1 as needed or prepare for phase 2 of the NAC protocol.
             <br />
             <Button
-              disabled={currentPhase == '1'}
-              onClick={() => {
-                protocolTrackerState.setCurrentPhase('1')
-                protocolTrackerState.setPhase2CycleStart(null)
-
-                db.rollbackToPhase1().then(() => {
-                  toast.success('Back to Phase 1')
-                })
-              }}
-              className="m-2"
-              variant={'outline'}
-              size={'sm'}
-            >
-              Rollback to Phase 1
-            </Button>
-            <Button
-              disabled={currentPhase == '2'}
               onClick={() => {
                 protocolTrackerState.setCurrentPhase('2')
                 protocolTrackerState.setPhase2CycleStart(format(new Date(), 'yyyy-MM-dd'))
 
                 db.setupPhase2().then(() => {
-                  toast.success('Setup Phase 2')
+                  navigate('/tracker-regimen?startPhase2=true')
                 })
               }}
               className="mt-2"
               variant={'cyan'}
               size={'sm'}
             >
-              Activate Phase 2
+              Setup Phase 2
             </Button>
           </AlertDescription>
         </Alert>
