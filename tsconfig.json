@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
+    "types": ["@remix-run/node", "node", "vite/client"],
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "module": "ESNext",
     "useDefineForClassFields": true,
     "target": "ESNext",
-    "lib": ["esnext", "dom"],
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "allowJs": true,
     "moduleResolution": "Bundler",
     "strict": true,
@@ -12,6 +15,7 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+
     "skipLibCheck": true,
     "preserveConstEnums": true,
     "sourceMap": true,
@@ -20,6 +24,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "rootDir": ".",
     "jsx": "react-jsx",
@@ -28,5 +33,5 @@
       "@/*": ["./app/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "vite-env.d.ts"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }
