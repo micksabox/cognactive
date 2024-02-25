@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, addMonths, parse, format } from 'date-fns'
-import { ArrowRight, Goal } from 'lucide-react'
+import { ArrowRight, Goal, TimerIcon } from 'lucide-react'
 import { Progress } from 'src/components/ui/progress'
 import db from './db'
 import { useLiveQuery } from 'dexie-react-hooks'
@@ -8,6 +8,8 @@ import { Button } from 'src/components/ui/button'
 import { useProtocolTrackerState } from './use-protocol-tracker-state'
 import { formatDateKey } from 'src/lib/utils'
 import { useNavigate } from '@remix-run/react'
+import { useState } from 'react'
+import { DatePicker } from 'src/components/date-picker'
 
 interface ProgressIndicatorProps {
   startDate: Date
@@ -41,6 +43,8 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
   const phase2EligibleTimerDaysThreshold = 50
 
   const navigate = useNavigate()
+
+  const [editingPhase2CycleDate, setEditingPhase2CycleDate] = useState<boolean>(false)
 
   return (
     <>
@@ -85,7 +89,21 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
               <span className="inline-block w-20 self-start font-semibold">Phase 2</span>
             </p>
             <div className="grid flex-grow grid-cols-3 gap-2">
-              {phase2CycleStart && <p className="col-span-3 text-xs">started on {formatDateKey(phase2CycleStart)}</p>}
+              {phase2CycleStart && (
+                <p className="col-span-3 text-xs">
+                  started on {formatDateKey(phase2CycleStart)}{' '}
+                  <a
+                    role="button"
+                    className="text-blue-500"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setEditingPhase2CycleDate(true)
+                    }}
+                  >
+                    Edit
+                  </a>
+                </p>
+              )}
               <div className="col-span-2">
                 {/* Handle multiple cycles by modulo calc days by 28 and stop at 3 weeks (21 days) */}
                 <Progress
@@ -93,12 +111,30 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
                   value={((daysSinceResumingPhase2 % fourWeeksInDays) / threeWeeksInDays) * 100}
                 />
                 <p className="text-center text-xs">3 weeks on</p>
+                {editingPhase2CycleDate && phase2CycleStart && (
+                  <Alert>
+                    <TimerIcon className="w-6" />
+                    <AlertTitle>Phase 2 Start / Resume Date</AlertTitle>
+                    <AlertDescription>
+                      When did you start or resume phase 2? Setting this date will reset the timer.
+                    </AlertDescription>
+                    <DatePicker
+                      toDate={new Date()}
+                      onSetDate={(d) => {
+                        if (d) {
+                          protocolTrackerState.setPhase2CycleStart(formatDateKey(d))
+                          setEditingPhase2CycleDate(false)
+                        }
+                      }}
+                    />
+                  </Alert>
+                )}
               </div>
               <div className="col-span-1">
                 {/* Show the final week by modulo calc by 28 and subtract 3 weeks */}
                 <Progress
                   className="w-full"
-                  value={(((daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays) / threeWeeksInDays) * 100}
+                  value={(((daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays) / 7) * 100}
                 />
                 <p className="text-center text-xs">1 week off</p>
               </div>
