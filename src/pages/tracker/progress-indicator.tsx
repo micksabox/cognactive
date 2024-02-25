@@ -32,8 +32,14 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
     : null
 
   // Phase 2 won't be considered started until all of the elements are taken
-  const daysSinceResumingPhase2 = phase2CycleStart ? differenceInCalendarDays(phase2CycleStart, currentDate) : 0
+  const daysSinceResumingPhase2 = phase2CycleStart ? differenceInCalendarDays(currentDate, phase2CycleStart) : 0
   const currentPhase = protocolTrackerState.currentPhase
+
+  const fourWeeksInDays = 28
+  const threeWeeksInDays = 21
+
+  // After this amount of days, the phase 2 eligible timer is shown
+  const phase2EligibleTimerDaysThreshold = 50
 
   const navigate = useNavigate()
 
@@ -53,12 +59,18 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
                 milestone
               </span>
             </div>
-            {dayNumber > 50 && (
+            {dayNumber > phase2EligibleTimerDaysThreshold && (
               <div className="flex items-center gap-2">
                 <span className="inline-block w-20 self-start font-semibold">Phase 2 Eligible</span>
                 <div className="flex-grow flex-col">
                   <div className="flex items-center gap-2">
-                    <Progress className="flex-grow" value={daysSinceLastDieoff} max={21} />
+                    {daysSinceLastDieoff && (
+                      <Progress
+                        className="flex-grow"
+                        value={(daysSinceLastDieoff / threeWeeksInDays) * 100}
+                        max={threeWeeksInDays}
+                      />
+                    )}
                     <Goal className="w-8" />
                     <span className="text-xs">3 weeks of no die-off</span>
                   </div>
@@ -77,19 +89,25 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
               {phase2CycleStart && <p className="col-span-3 text-xs">started on {formatDateKey(phase2CycleStart)}</p>}
               <div className="col-span-2">
                 {/* Handle multiple cycles by modulo calc days by 28 and stop at 3 weeks (21 days) */}
-                <Progress className="w-full" value={daysSinceResumingPhase2 % 28} max={21} />
+                <Progress
+                  className="w-full"
+                  value={((daysSinceResumingPhase2 % fourWeeksInDays) / threeWeeksInDays) * 100}
+                />
                 <p className="text-center text-xs">3 weeks on</p>
               </div>
               <div className="col-span-1">
                 {/* Show the final week by modulo calc by 28 and subtract 3 weeks */}
-                <Progress className="w-full" value={(daysSinceResumingPhase2 % 28) - 21} max={7} />
+                <Progress
+                  className="w-full"
+                  value={(((daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays) / threeWeeksInDays) * 100}
+                />
                 <p className="text-center text-xs">1 week off</p>
               </div>
             </div>
           </div>
         )}
       </div>
-      {daysUntilTwoMonths <= 5 && currentPhase == '1' && (
+      {daysUntilTwoMonths <= 0 && currentPhase == '1' && (
         <Alert variant={'default'} className="my-2">
           <AlertTitle>
             Phase 2 <span className="text-xs text-gray-500">Optional</span>
@@ -114,6 +132,9 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
             </Button>
           </AlertDescription>
         </Alert>
+      )}
+      {currentPhase == '2' && (daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays > 0 && (
+        <p className="my-4 text-xl font-bold text-purple-950">Just take Black Seed Oil on your week off.</p>
       )}
     </>
   )
