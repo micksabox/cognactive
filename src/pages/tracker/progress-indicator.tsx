@@ -12,7 +12,6 @@ import { useNavigate } from '@remix-run/react'
 interface ProgressIndicatorProps {
   startDate: Date
   currentDate: Date
-  completed: boolean
 }
 
 const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, currentDate }) => {

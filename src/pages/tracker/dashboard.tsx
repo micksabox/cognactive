@@ -1,4 +1,4 @@
-import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
+import { differenceInCalendarDays, isSameDay, startOfDay } from 'date-fns'
 import { BotIcon, CheckCircle2 } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
@@ -38,8 +38,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const start = startDate
   const dateKey = formatDateKey(today)
   const dayNumber = differenceInCalendarDays(today, start) + 1
-  const twoMonthsLater = addMonths(start, 2)
-  const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, today)
 
   const { supplements, addSupplementActivity } = useTrackSupplement(dateKey)
 
@@ -70,7 +68,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
 
   return (
     <div>
-      <ProgressIndicator completed={false} startDate={startDate} currentDate={currentDate} />
+      <ProgressIndicator startDate={startDate} currentDate={currentDate} />
       <div className="mt-2 flex items-center">
         <span className="w-32 text-2xl font-bold">Day {dayNumber} </span>
         <DatePicker
