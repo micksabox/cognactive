@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
-import { BotIcon, CheckCircle2 } from 'lucide-react'
+import { BotIcon, CheckCircle2, Edit } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
 import DieOffSymptoms from './die-off-symptoms'
@@ -102,15 +102,11 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
       <h3 className="my-2 flex justify-between text-2xl font-light">
         <span>
           Daily Regimen{' '}
-          {/* <Button
-            onClick={() => {
-              toast.success('Custom regimen editing coming soon!')
-            }}
-            size={'icon'}
-            variant={'outline'}
-          >
-            <Edit className="w-4" />
-          </Button> */}
+          <Button asChild size={'icon'} variant={'outline'}>
+            <Link to={'/tracker-regimen'}>
+              <Edit className="w-4" />
+            </Link>
+          </Button>
         </span>
         <DailyNoteForm dateKey={dateKey} />
       </h3>
