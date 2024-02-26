@@ -142,7 +142,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
           </div>
         )}
       </div>
-      {daysUntilTwoMonths <= 0 && currentPhase == '1' && (
+      {daysUntilTwoMonths <= 0 && (currentPhase == '1' || currentPhase == null) && (
         <Alert variant={'default'} className="my-2">
           <AlertTitle>
             Phase 2 <span className="text-xs text-gray-500">Optional</span>
