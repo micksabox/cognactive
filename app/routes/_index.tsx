@@ -9,7 +9,7 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'og:image',
-      content: 'https://cognactive.net/og-image.jpeg',
+      content: 'https://cognactive.net/opengraph-root.jpeg',
     },
     {
       property: 'og:title',
