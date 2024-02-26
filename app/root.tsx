@@ -44,6 +44,8 @@ export default function Root() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@cognactive" />
         <meta name="twitter:creator" content="@micksabox" />
+        <meta property="twitter:domain" content="cognactive.net" />
+        <meta property="twitter:url" content="https://cognactive.net" />
         <meta name="twitter:image:alt" content="cognactive" />
         <meta name="twitter:title" content="cognactive" />
         <meta name="twitter:description" content="Track NAC Protocol" />
