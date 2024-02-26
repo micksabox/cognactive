@@ -21,7 +21,7 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'og:url',
-      content: 'https://cognactive.net/',
+      content: 'https://cognactive.net',
     },
     {
       property: 'og:description',

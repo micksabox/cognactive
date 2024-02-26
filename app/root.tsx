@@ -43,6 +43,7 @@ export default function Root() {
         {/* Twitter previews */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@cognactive" />
+        <meta name="twitter:creator" content="@micksabox" />
         <meta name="twitter:image:alt" content="cognactive" />
         <meta name="twitter:title" content="cognactive" />
         <meta name="twitter:description" content="Track NAC Protocol" />
