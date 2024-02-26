@@ -46,7 +46,7 @@ export default function Root() {
         <meta name="twitter:image:alt" content="cognactive" />
         <meta name="twitter:title" content="cognactive" />
         <meta name="twitter:description" content="Track NAC Protocol" />
-        <meta name="twitter:image" content="/og-image.jpeg" />
+        <meta name="twitter:image" content="https://cognactive.net/og-image.jpeg" />
 
         <meta
           name="viewport"
