@@ -12,6 +12,10 @@ export const meta: MetaFunction = () => {
       content: 'https://cognactive.net/opengraph-root.jpeg',
     },
     {
+      property: 'og:image:url',
+      content: 'https://cognactive.net/opengraph-root.jpeg',
+    },
+    {
       property: 'og:title',
       content: 'cognactive',
     },
