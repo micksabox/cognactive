@@ -6,3 +6,6 @@ export const PROTOCOL_PHASE = 'protocol_current_phase'
 export const PROTOCOL_PHASE_2_CYCLE_START = 'protocol_phase_2_cycle_restart'
 // The baseUrl for the Github code repository
 export const GITHUB_REPO_BASE = 'https://github.com/micksabox/cognactive'
+// The hostname where the site is served
+export const DOMAIN = 'cognactive.net'
+export const HOSTNAME = `https://${DOMAIN}`

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { MetaFunction } from '@remix-run/node'
 import { Hero } from 'src/components/hero'
+import { HOSTNAME } from 'src/constants'
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,11 +10,11 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'og:image',
-      content: 'https://cognactive.net/opengraph-root.jpeg',
+      content: `${HOSTNAME}/opengraph-root.jpeg`,
     },
     {
       property: 'og:image:url',
-      content: 'https://cognactive.net/opengraph-root.jpeg',
+      content: `${HOSTNAME}/opengraph-root.jpeg`,
     },
     {
       property: 'og:title',
@@ -25,7 +26,7 @@ export const meta: MetaFunction = () => {
     },
     {
       property: 'og:url',
-      content: 'https://cognactive.net',
+      content: `${HOSTNAME}`,
     },
     {
       property: 'og:description',
