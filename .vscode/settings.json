@@ -8,5 +8,11 @@
   "git.ignoreLimitWarning": true,
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "tw"
+  ]
 }
