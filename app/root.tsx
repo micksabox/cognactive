@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast'
 import { Header } from 'src/components/header'
 import ErrorPage from 'src/components/error-page'
 import Footer from 'src/components/footer'
+import { DOMAIN, HOSTNAME } from 'src/constants'
 
 export default function Root() {
   return (
@@ -37,10 +38,13 @@ export default function Root() {
         {/* Twitter previews */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@cognactive" />
+        <meta name="twitter:creator" content="@micksabox" />
+        <meta property="twitter:domain" content={DOMAIN} />
+        <meta property="twitter:url" content={HOSTNAME} />
         <meta name="twitter:image:alt" content="cognactive" />
         <meta name="twitter:title" content="cognactive" />
         <meta name="twitter:description" content="Track NAC Protocol" />
-        <meta name="twitter:image" content="/og-image.jpeg" />
+        <meta name="twitter:image" content={`${HOSTNAME}/opengraph-root.jpeg`} />
 
         <meta
           name="viewport"

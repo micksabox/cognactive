@@ -55,7 +55,7 @@ export interface IRegimen {
   description?: string
   // Where in the day "morning", "night"
   timeslot: 'morning' | 'night'
-  // Whether
+  // Whether to hide the activity in the tracker
   hidden?: boolean
 }
 
@@ -229,6 +229,7 @@ class NACTrackDB extends Dexie {
         description: 'nicotinic acid',
         activityAmount: 500,
         unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
       },
       {
         label: 'Pom Seed Extract',
@@ -244,6 +245,7 @@ class NACTrackDB extends Dexie {
         activityName: 'morningPterostilbene',
         activityAmount: 100,
         unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
       },
       {
         label: 'Niacin',
@@ -252,6 +254,7 @@ class NACTrackDB extends Dexie {
         description: 'nicotinic acid',
         activityAmount: 500,
         unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
       },
       {
         label: 'Pom Seed Extract',
@@ -267,6 +270,7 @@ class NACTrackDB extends Dexie {
         activityName: 'nightPterostilbene',
         activityAmount: 100,
         unitOfMeasure: 'mg',
+        hidden: true, // Default to hidden
       },
     ])
   }

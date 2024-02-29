@@ -1,4 +1,4 @@
-import { differenceInCalendarDays, addMonths, isSameDay, startOfDay } from 'date-fns'
+import { differenceInCalendarDays, isSameDay, startOfDay } from 'date-fns'
 import { BotIcon, CheckCircle2 } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
@@ -38,8 +38,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const start = startDate
   const dateKey = formatDateKey(today)
   const dayNumber = differenceInCalendarDays(today, start) + 1
-  const twoMonthsLater = addMonths(start, 2)
-  const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, today)
 
   const { supplements, addSupplementActivity } = useTrackSupplement(dateKey)
 
@@ -70,7 +68,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
 
   return (
     <div>
-      <ProgressIndicator completed={false} startDate={startDate} currentDate={currentDate} />
+      <ProgressIndicator startDate={startDate} currentDate={currentDate} />
       <div className="mt-2 flex items-center">
         <span className="w-32 text-2xl font-bold">Day {dayNumber} </span>
         <DatePicker
@@ -102,15 +100,9 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
       <h3 className="my-2 flex justify-between text-2xl font-light">
         <span>
           Daily Regimen{' '}
-          {/* <Button
-            onClick={() => {
-              toast.success('Custom regimen editing coming soon!')
-            }}
-            size={'icon'}
-            variant={'outline'}
-          >
-            <Edit className="w-4" />
-          </Button> */}
+          <Button asChild size={'sm'} variant={'outline'}>
+            <Link to={'/tracker-regimen'}>Edit</Link>
+          </Button>
         </span>
         <DailyNoteForm dateKey={dateKey} />
       </h3>
@@ -121,8 +113,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Button
               onClick={() => saveActivity(ma)}
               variant={'outline'}
-              size={'sm'}
-              className="mt-1 flex w-full justify-between text-xs"
+              className="mt-2 flex w-full justify-between text-xs"
               key={ma.id}
             >
               <span>
@@ -143,8 +134,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Button
               onClick={() => saveActivity(ma)}
               variant={'outline'}
-              size={'sm'}
-              className="mt-1 flex w-full justify-between text-xs"
+              className="mt-2 flex w-full justify-between text-xs"
               key={ma.id}
             >
               <span>

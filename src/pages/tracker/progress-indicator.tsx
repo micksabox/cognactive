@@ -1,17 +1,19 @@
 import { differenceInCalendarDays, addMonths, parse, format } from 'date-fns'
-import { ArrowRight, Goal } from 'lucide-react'
+import { ArrowRight, Goal, TimerIcon } from 'lucide-react'
 import { Progress } from 'src/components/ui/progress'
 import db from './db'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { Button } from 'src/components/ui/button'
 import { useProtocolTrackerState } from './use-protocol-tracker-state'
-import { toast } from 'react-hot-toast'
+import { formatDateKey } from 'src/lib/utils'
+import { useNavigate } from '@remix-run/react'
+import { useState } from 'react'
+import { DatePicker } from 'src/components/date-picker'
 
 interface ProgressIndicatorProps {
   startDate: Date
   currentDate: Date
-  completed: boolean
 }
 
 const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, currentDate }) => {
@@ -31,13 +33,18 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
     : null
 
   // Phase 2 won't be considered started until all of the elements are taken
-  const daysSinceResumingPhase2 = phase2CycleStart ? differenceInCalendarDays(phase2CycleStart, currentDate) : 0
-  // Find the day that the user first took only black seed oil, after starting phase 2
-  const daysSincePhase2Break = 7 // todo
-
-  console.log(protocolTrackerState, daysSinceResumingPhase2)
-
+  const daysSinceResumingPhase2 = phase2CycleStart ? differenceInCalendarDays(currentDate, phase2CycleStart) : 0
   const currentPhase = protocolTrackerState.currentPhase
+
+  const fourWeeksInDays = 28
+  const threeWeeksInDays = 21
+
+  // After this amount of days, the phase 2 eligible timer is shown
+  const phase2EligibleTimerDaysThreshold = 50
+
+  const navigate = useNavigate()
+
+  const [editingPhase2CycleDate, setEditingPhase2CycleDate] = useState<boolean>(false)
 
   return (
     <>
@@ -55,12 +62,18 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
                 milestone
               </span>
             </div>
-            {dayNumber > 50 && (
+            {dayNumber > phase2EligibleTimerDaysThreshold && (
               <div className="flex items-center gap-2">
                 <span className="inline-block w-20 self-start font-semibold">Phase 2 Eligible</span>
                 <div className="flex-grow flex-col">
                   <div className="flex items-center gap-2">
-                    <Progress className="flex-grow" value={daysSinceLastDieoff} max={21} />
+                    {daysSinceLastDieoff && (
+                      <Progress
+                        className="flex-grow"
+                        value={(daysSinceLastDieoff / threeWeeksInDays) * 100}
+                        max={threeWeeksInDays}
+                      />
+                    )}
                     <Goal className="w-8" />
                     <span className="text-xs">3 weeks of no die-off</span>
                   </div>
@@ -71,62 +84,92 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
           </>
         )}
         {currentPhase === '2' && (
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-20 self-start font-semibold">Phase 2</span>
+          <div className="flex items-start gap-2">
+            <p>
+              <span className="inline-block w-20 self-start font-semibold">Phase 2</span>
+            </p>
             <div className="grid flex-grow grid-cols-3 gap-2">
+              {phase2CycleStart && (
+                <p className="col-span-3 text-xs">
+                  started on {formatDateKey(phase2CycleStart)}{' '}
+                  <a
+                    role="button"
+                    className="text-blue-500"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setEditingPhase2CycleDate(true)
+                    }}
+                  >
+                    Edit
+                  </a>
+                </p>
+              )}
               <div className="col-span-2">
-                <Progress className="w-full" value={daysSinceResumingPhase2} max={21} />
+                {/* Handle multiple cycles by modulo calc days by 28 and stop at 3 weeks (21 days) */}
+                <Progress
+                  className="w-full"
+                  value={((daysSinceResumingPhase2 % fourWeeksInDays) / threeWeeksInDays) * 100}
+                />
                 <p className="text-center text-xs">3 weeks on</p>
+                {editingPhase2CycleDate && phase2CycleStart && (
+                  <Alert>
+                    <TimerIcon className="w-6" />
+                    <AlertTitle>Phase 2 Start / Resume Date</AlertTitle>
+                    <AlertDescription>
+                      When did you start or resume phase 2? Setting this date will reset the timer.
+                    </AlertDescription>
+                    <DatePicker
+                      toDate={new Date()}
+                      onSetDate={(d) => {
+                        if (d) {
+                          protocolTrackerState.setPhase2CycleStart(formatDateKey(d))
+                          setEditingPhase2CycleDate(false)
+                        }
+                      }}
+                    />
+                  </Alert>
+                )}
               </div>
               <div className="col-span-1">
-                <Progress className="w-full" value={daysSincePhase2Break - 21} max={7} />
+                {/* Show the final week by modulo calc by 28 and subtract 3 weeks */}
+                <Progress
+                  className="w-full"
+                  value={(((daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays) / 7) * 100}
+                />
                 <p className="text-center text-xs">1 week off</p>
               </div>
             </div>
           </div>
         )}
       </div>
-      {daysUntilTwoMonths <= 5 && (
+      {daysUntilTwoMonths <= 0 && (currentPhase == '1' || currentPhase == null) && (
         <Alert variant={'default'} className="my-2">
-          <AlertTitle>Phase 2 (Optional)</AlertTitle>
+          <AlertTitle>
+            Phase 2 <span className="text-xs text-gray-500">Optional</span>
+          </AlertTitle>
           <AlertDescription>
-            Once past the 2 month milestone, choose to continue in phase 1 or proceed to phase 2 of the NAC protocol.
-            You can rollback to phase 1 if needed.
+            Once past the 2 month milestone, continue phase 1 as needed or prepare for phase 2 of the NAC protocol.
             <br />
             <Button
-              disabled={currentPhase == '1'}
-              onClick={() => {
-                protocolTrackerState.setCurrentPhase('1')
-                protocolTrackerState.setPhase2CycleStart(null)
-
-                db.rollbackToPhase1().then(() => {
-                  toast.success('Back to Phase 1')
-                })
-              }}
-              className="m-2"
-              variant={'outline'}
-              size={'sm'}
-            >
-              Rollback to Phase 1
-            </Button>
-            <Button
-              disabled={currentPhase == '2'}
               onClick={() => {
                 protocolTrackerState.setCurrentPhase('2')
                 protocolTrackerState.setPhase2CycleStart(format(new Date(), 'yyyy-MM-dd'))
 
                 db.setupPhase2().then(() => {
-                  toast.success('Setup Phase 2')
+                  navigate('/tracker-regimen?startPhase2=true')
                 })
               }}
               className="mt-2"
               variant={'cyan'}
               size={'sm'}
             >
-              Activate Phase 2
+              Setup Phase 2
             </Button>
           </AlertDescription>
         </Alert>
+      )}
+      {currentPhase == '2' && (daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays > 0 && (
+        <p className="my-4 text-xl font-bold text-purple-950">Just take Black Seed Oil on your week off.</p>
       )}
     </>
   )
