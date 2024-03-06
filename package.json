@@ -65,7 +65,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
-    "@remix-run/dev": "^2.7.2",
+    "@remix-run/dev": "^2.8.0",
     "@tanstack/react-query-devtools": "^4.29.1",
     "@types/js-yaml": "^4.0.9",
     "@types/loadable__component": "^5.13.4",
