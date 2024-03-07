@@ -1,12 +1,28 @@
 import { Link } from '@remix-run/react'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
+import { ArrowUpRightSquare, Github } from 'lucide-react'
+import { GITHUB_REPO_BASE, TELEGRAM_CHAT_LINK } from 'src/constants'
+import { Button } from '../ui/button'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-foreground p-4 text-center text-xs text-slate-500">
-      <span className="inline-block w-16">
-        <CognactiveIcon className="fill-slate-500" darkMode />
-      </span>
+    <footer className="w-full bg-foreground p-4 text-xs text-slate-500">
+      <div className="flex items-center gap-4">
+        <span className="inline-block w-16">
+          <CognactiveIcon className="fill-slate-500" darkMode />
+        </span>
+        <Button size={'sm'} asChild>
+          <Link to={TELEGRAM_CHAT_LINK}>
+            Chat NAC <ArrowUpRightSquare className="ml-2 inline-block w-4" />
+          </Link>
+        </Button>
+        <Button size={'sm'} asChild>
+          <a href={GITHUB_REPO_BASE} target="_blank" rel="noreferrer">
+            View Code &nbsp;
+            <Github className="w-4" />
+          </a>
+        </Button>
+      </div>
       <p className="my-2">
         <Link className="underline underline-offset-auto" to={'/privacy'}>
           Data Usage & Privacy Policy
