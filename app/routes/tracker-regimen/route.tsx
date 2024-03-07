@@ -4,6 +4,7 @@ import { DataTable } from './data-table'
 import { columns } from './columns'
 import { ChevronLeft } from 'lucide-react'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
+import { useLiveQuery } from 'dexie-react-hooks'
 
 export const loader = async ({ request }: { request: Request }) => {
   const url = new URL(request.url)
@@ -31,6 +32,8 @@ export function HydrateFallback() {
 const Regimen: React.FC = () => {
   const loaderData = useLoaderData<typeof clientLoader>()
 
+  const regimenActivities = useLiveQuery(() => db.regimen.orderBy('id').toArray(), [])
+
   return (
     <div className="max-w-md p-2 md:container">
       <p>
@@ -51,7 +54,7 @@ const Regimen: React.FC = () => {
         </Alert>
       )}
       <div className="my-2">
-        <DataTable data={loaderData.regimenActivities} columns={columns} />
+        <DataTable data={regimenActivities || loaderData.regimenActivities} columns={columns} />
       </div>
     </div>
   )

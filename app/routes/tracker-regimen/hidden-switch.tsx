@@ -5,11 +5,6 @@ import { useCallback } from 'react'
 // Define the toggleHidden function
 const toggleHidden = async (regimenId: number, hidden: boolean) => {
   await db.regimen.update(regimenId, { hidden: !hidden })
-  // Reload the page to reflect the changes in the hidden status
-  // Since the data is loaded in client loader and would need some way to re-trigger from this component
-  if (typeof window !== 'undefined') {
-    window.location.reload()
-  }
 }
 
 // Define the HiddenSwitch component
