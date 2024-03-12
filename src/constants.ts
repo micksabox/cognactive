@@ -9,3 +9,5 @@ export const GITHUB_REPO_BASE = 'https://github.com/micksabox/cognactive'
 // The hostname where the site is served
 export const DOMAIN = 'cognactive.net'
 export const HOSTNAME = `https://${DOMAIN}`
+// Link to community chat
+export const TELEGRAM_CHAT_LINK = 'https://t.me/NACProtocol101'

@@ -1,9 +1,10 @@
 import db from 'src/pages/tracker/db'
-import { ClientLoaderFunctionArgs, Link, json, useLoaderData } from '@remix-run/react'
+import { ClientLoaderFunctionArgs, json, useLoaderData } from '@remix-run/react'
 import { DataTable } from './data-table'
 import { columns } from './columns'
-import { ChevronLeft } from 'lucide-react'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
+import { useLiveQuery } from 'dexie-react-hooks'
+import ContentHeader from 'src/components/content-header.tsx'
 
 export const loader = async ({ request }: { request: Request }) => {
   const url = new URL(request.url)
@@ -31,14 +32,11 @@ export function HydrateFallback() {
 const Regimen: React.FC = () => {
   const loaderData = useLoaderData<typeof clientLoader>()
 
+  const regimenActivities = useLiveQuery(() => db.regimen.orderBy('id').toArray(), [])
+
   return (
     <div className="max-w-md p-2 md:container">
-      <p>
-        <Link className="text-gray-400" to={'/tracker'}>
-          <ChevronLeft className="inline-block w-4" /> Return to Tracker
-        </Link>
-      </p>
-      <h1 className="text-2xl">Regimen List</h1>
+      <ContentHeader title="Regimen List" linkTo="/tracker" linkText="Tracker" />
       {loaderData.startedPhase2 && (
         <Alert className="mt-2">
           <AlertTitle>Phase 2</AlertTitle>
@@ -51,7 +49,7 @@ const Regimen: React.FC = () => {
         </Alert>
       )}
       <div className="my-2">
-        <DataTable data={loaderData.regimenActivities} columns={columns} />
+        <DataTable data={regimenActivities || loaderData.regimenActivities} columns={columns} />
       </div>
     </div>
   )
