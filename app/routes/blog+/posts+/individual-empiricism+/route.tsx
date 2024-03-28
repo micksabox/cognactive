@@ -5,10 +5,10 @@ import { redirectToImageGenerator, openGraphImageMeta } from 'src/utils/misc'
 
 export const meta: MetaFunction = () => {
   const title = 'Individual Health Empiricism'
-  const subtitle = 'Framework for Thinking about Self-Experimentation'
+  const subtitle = 'Evaluation Framework for Self-Debugging'
   const body =
     'Unveiling the power of self-experimentation in the quest for personal health breakthroughs, using my NAC protocol journey as example.'
-  const imageUrl = redirectToImageGenerator({ title, subtitle, body })
+  const imageUrl = redirectToImageGenerator({ title, subtitle })
 
   return [
     { name: 'title', content: title },
