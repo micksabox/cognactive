@@ -60,7 +60,6 @@ src
 ## TODO
 
 - [ ] Re-implement i8ln [How to internationalize a Remix application](https://locize.com/blog/remix-i18n/)
-- [ ] Setup for hosting in Vercel and test in feature branch
 
 ## License
 
@@ -69,3 +68,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - The template for this project initialization used [Vite-React-TS-Tailwind-Starter](https://github.com/Quilljou/vite-react-ts-tailwind-starter).
+
+- nactivism research community
