@@ -169,14 +169,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
         </Alert>
       )}
       {currentPhase == '2' && (daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays > 0 && (
-        <div>
-          <img
-            src="/files/images/pomegranate-week.png"
-            alt="Pomegranate"
-            className="w-full rounded-md border-2 border-red-600"
-          />
-          <p className="my-4 text-xl font-bold text-purple-950">BSO only on week off.</p>
-        </div>
+        <p className="my-4 text-xl font-bold text-purple-950">BSO only on week off.</p>
       )}
     </>
   )
