@@ -16,7 +16,7 @@ destination = "/data"
 release_command = "npm run start"
 
 [[services]]
-internal_port = 8_080
+internal_port = 8_081
 processes = [ "app" ]
 protocol = "tcp"
 script_checks = [ ]
