@@ -9,9 +9,9 @@ allowed_public_ports = [ ]
 auto_rollback = true
 
 [[statics]]
-  guest_path = "/public"
-  url_prefix = "/public"
-  
+  guest_path = "/public/build"
+  url_prefix = "/build"
+
 [mounts]
 source = "data"
 destination = "/data"
