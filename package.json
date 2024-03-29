@@ -7,7 +7,7 @@
     "prepare": "husky install",
     "dev": "NODE_ENV=development remix dev --manual",
     "build": "remix build",
-    "start": "remix-serve ./build/server/index.js",
+    "start": "remix-serve /myapp/server/build/index.js",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
     "lint": "eslint --quiet src --ext .ts,.tsx && stylelint src/**/*.less",
