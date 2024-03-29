@@ -8,6 +8,10 @@ processes = [ ]
 allowed_public_ports = [ ]
 auto_rollback = true
 
+[[statics]]
+  guest_path = "/public"
+  url_prefix = "/public"
+  
 [mounts]
 source = "data"
 destination = "/data"
