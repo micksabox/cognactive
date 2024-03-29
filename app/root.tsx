@@ -24,6 +24,8 @@ export default function Root() {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
+        <link rel="manifest" href="/manifest.json" />
+
         <Meta />
         <Links />
 
