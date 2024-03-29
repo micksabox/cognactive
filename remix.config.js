@@ -11,7 +11,9 @@ export default {
   serverPlatform: 'node',
   tailwind: true,
   postcss: true,
-  outDir: 'public/build',
+  // outDir: 'public/build',
+  // serverBuildPath: 'public/build',
+  // assetsBuildDirectory: 'build/client',
   watchPaths: ['./tailwind.config.js', './src/**/*'],
   routes: async (defineRoutes) => {
     return flatRoutes('routes', defineRoutes, {

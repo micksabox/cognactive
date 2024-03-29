@@ -26,7 +26,6 @@ export default defineConfig(async () => {
       rollupOptions: {
         external: [/node:.*/, 'stream', 'crypto', 'fsevents'],
       },
-      outDir: 'server-build',
     },
     plugins: [
       remix({
