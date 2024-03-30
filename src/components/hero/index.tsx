@@ -56,21 +56,24 @@ export const Hero = () => {
                   <Button className="font-semiboldn bg-cyan py-6 text-lg" size={'lg'} asChild>
                     <Link to="/tracker">
                       <ListTodo className="mr-2" />
-                      Launch Tracker
+                      Regimen Tracker
                       {/* {t('get-started')} */}
                     </Link>
                   </Button>
                   <Button className="font-semiboldn py-6 text-lg" size={'lg'} asChild>
                     <Link to="/ingread">
                       <Scan className="mr-2" />
-                      Launch Ingredient Scanner
+                      Ingredient Scanner
                     </Link>
                   </Button>
-                  <Button size={'lg'} variant={'ghost'} className="border border-white text-white shadow-md" asChild>
-                    <a href="/files/NAC_Protocol.pdf">
-                      <ScrollIcon className="mr-2 inline-block w-4" /> Read NAC protocol whitepaper
-                    </a>
-                  </Button>
+                  <div>
+                    <p className="my-2">What is the NAC protocol?</p>
+                    <Button size={'lg'} variant={'ghost'} className="border border-white text-white shadow-md" asChild>
+                      <a href="/files/NAC_Protocol.pdf">
+                        <ScrollIcon className="mr-2 inline-block w-4" /> Read NAC protocol whitepaper
+                      </a>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
