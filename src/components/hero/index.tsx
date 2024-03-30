@@ -8,6 +8,35 @@ import { Link } from '@remix-run/react'
 import t from 'src/i18n/locales/en/translation.json'
 import { GITHUB_REPO_BASE } from 'src/constants'
 
+interface FeatureProps {
+  icon: React.ElementType
+  title: string
+  description: string
+  link?: string
+  linkText?: string
+}
+
+const HeroFeature: React.FC<FeatureProps> = ({ icon: Icon, title, description, link, linkText }) => {
+  return (
+    <div className="flex flex-col items-start space-y-2 rounded-lg p-4">
+      <div className="flex items-center gap-2">
+        <div className="rounded-full bg-black p-2 text-white">
+          <Icon size={16} />
+        </div>
+        <h2 className="text-2xl font-bold text-white">{title}</h2>
+      </div>
+      <p className="text-white">
+        {description}{' '}
+        {link && (
+          <Link className="underline underline-offset-auto" to={link}>
+            {linkText}
+          </Link>
+        )}
+      </p>
+    </div>
+  )
+}
+
 export const Hero = () => {
   return (
     <div className="flex bg-gradient-to-b from-slate-600 to-slate-900">
@@ -40,38 +69,23 @@ export const Hero = () => {
             </div>
             <div id="hero-features" className="mx-auto w-full max-w-full space-y-4">
               <div className="grid grid-cols-1 gap-2">
-                <div className="flex flex-col items-start space-y-2 rounded-lg p-4">
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-full bg-black p-2 text-white">
-                      <ActivitySquare size={16} />
-                    </div>
-                    <h2 className="text-2xl font-bold text-white">{t['tracking']}</h2>
-                  </div>
-                  <p className="text-white">{t['tracking-desc']}</p>
-                </div>
-                <div className="flex flex-col items-start space-y-2 rounded-lg p-4">
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-full bg-black p-2 text-white">
-                      <LayoutGridIcon size={16} />
-                    </div>
-                    <h2 className="text-2xl font-bold text-white">{t['hero-appexperience']}</h2>
-                  </div>
-                  <p className="text-white">{t['hero-appexperience-desc']}</p>
-                </div>
-                <div className="flex flex-col items-start space-y-2 rounded-lg p-4">
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-full bg-black p-2 text-white">
-                      <HeartHandshakeIcon size={16} />
-                    </div>
-                    <h2 className="text-2xl font-bold text-white">{t['hero-opensource']}</h2>
-                  </div>
-                  <p className="text-white">
-                    {t['hero-opensource-desc']}{' '}
-                    <Link className="underline underline-offset-auto" to={GITHUB_REPO_BASE}>
-                      Source code available here.
-                    </Link>{' '}
-                  </p>
-                </div>
+                <HeroFeature
+                  icon={() => <ActivitySquare size={16} />}
+                  title={t['tracking']}
+                  description={t['tracking-desc']}
+                />
+                <HeroFeature
+                  icon={() => <LayoutGridIcon size={16} />}
+                  title={t['hero-appexperience']}
+                  description={t['hero-appexperience-desc']}
+                />
+                <HeroFeature
+                  icon={() => <HeartHandshakeIcon size={16} />}
+                  title={t['hero-opensource']}
+                  description={t['hero-opensource-desc']}
+                  link={GITHUB_REPO_BASE}
+                  linkText="Source code available here."
+                />
               </div>
             </div>
           </div>
