@@ -92,7 +92,7 @@ export default function Root() {
         />
         <meta name="theme-color" content="#319197" />
       </head>
-      <body>
+      <body className="bg-black">
         <div className="h-min-screen">
           <Header className="fixed top-0 z-10 h-16" />
           <div className="mt-16">
