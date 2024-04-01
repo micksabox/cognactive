@@ -12,6 +12,8 @@ export const meta: MetaFunction = () => {
 
   return [
     { name: 'title', content: title },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: subtitle + '|' + body },
     { property: 'og:title', content: title },
     { property: 'og:description', content: body },
     ...openGraphImageMeta(imageUrl),
