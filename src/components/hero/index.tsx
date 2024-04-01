@@ -53,17 +53,23 @@ export const Hero = () => {
                 </h1>
                 <p className="mb-4">Open source tools and tech for the anti-fungal NAC protocol.</p>
                 <div className="mx-auto flex max-w-sm flex-col gap-2">
-                  <Button className="font-semiboldn bg-cyan py-6 text-lg" size={'lg'} asChild>
+                  <Button className="bg-cyan py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/tracker">
                       <ListTodo className="mr-2" />
                       Regimen Tracker
                       {/* {t('get-started')} */}
                     </Link>
                   </Button>
-                  <Button className="font-semiboldn py-6 text-lg" size={'lg'} asChild>
+                  <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/ingread">
                       <Scan className="mr-2" />
                       Ingredient Scanner
+                    </Link>
+                  </Button>
+                  <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
+                    <Link to="/memery/platos-cave">
+                      <ScrollIcon className="mr-2" />
+                      Memery Stream <span className="ml-2 rounded-sm bg-cyan p-1 text-xs">NEW</span>
                     </Link>
                   </Button>
                   <div>
