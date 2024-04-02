@@ -3,7 +3,7 @@
 Web application to track NAC protocol events.
 
 - regimen
-- symptoms
+- myco die-off experiences
 
 ## Local Development
 
@@ -51,11 +51,6 @@ src
 ├── types       # Typescript types
 └── vite-env.d.ts
 ```
-
-## Roadmap
-
-- [ ] Track breakthroughs
-- [x] Symptom stats
 
 ## TODO
 
