@@ -4,6 +4,7 @@ import { LoaderFunctionArgs } from '@remix-run/node'
 import React from 'react'
 
 import fs from 'fs'
+import { OPEN_GRAPH_IMAGE_HEIGHT, OPEN_GRAPH_IMAGE_WIDTH } from 'src/utils/misc'
 
 export function getLogoBase64() {
   const logoPath = new URL('../public/logo.png', import.meta.url).pathname
@@ -15,21 +16,26 @@ export function getLogoBase64() {
 // Used code from https://www.jacobparis.com/content/remix-og
 
 export async function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url)
+  const searchParams = url.searchParams
+
+  const title = searchParams.get('title') || 'NAC Protocol'
+  const subtitle =
+    searchParams.get('subtitle') || 'Natural stack to cleanse fungal pathogens and modulate immune health'
+  const body = searchParams.get('body') || 'Simple yet powerful anti-fungal cleanse.'
+
   const jsx = (
     <div tw="flex flex-col p-8 w-full h-full bg-white border border-black">
-      <h1 tw="flex text-7xl">What is NAC Protocol?</h1>
+      <h1 tw="flex text-7xl">{title}</h1>
       <img tw="absolute right-4 bottom-4" src={getLogoBase64()} width={100} height={100} />
-      <h2 tw="text-5xl text-slate-700">Natural supplement stack to boost immune and cognitive health</h2>
-      <p tw="text-3xl">Simple yet powerful anti-fungal cleanse</p>
-      <p tw="text-3xl">- Black seed oil</p>
-      <p tw="text-3xl">- Oregano oil</p>
-      <p tw="text-3xl">- NAC (amino acid)</p>
+      <h2 tw="text-5xl text-slate-700">{subtitle}</h2>
+      <p tw="text-3xl">{body}</p>
     </div>
   )
   // From satori docs example
   const svg = await satori(jsx, {
-    width: 1200,
-    height: 600,
+    width: OPEN_GRAPH_IMAGE_WIDTH,
+    height: OPEN_GRAPH_IMAGE_HEIGHT,
     fonts: await getFont('Inter'),
   })
   const resvg = new Resvg(svg)

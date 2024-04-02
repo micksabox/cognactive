@@ -94,7 +94,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
         </>
       ) : (
         <div className="pb-8">
-          <p className="text-xl">Track daily activities and die-off symptoms for the NAC protocol.</p>
+          <p className="text-xl">Track daily activities and myco die-off experiences for the NAC protocol.</p>
 
           <br />
           <p className="font-semibold text-slate-500">Protocol Start Date</p>
@@ -117,7 +117,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
             <div className="mt-2 p-2 text-sm">
               By proceeding you agree to:
               <p className="font-semibold">Privacy Policy</p>
-              All regimen activity tracking data (dates, symptoms, supplements, breakthroughs) is stored locally in web
+              All regimen activity tracking data (tracking dates, experiences, supplements) is stored locally in web
               browser and not shared with any third-party.{' '}
               <Link className="underline underline-offset-auto" to={'/privacy'}>
                 See Privacy Policy

@@ -2,7 +2,7 @@ import { ScanLine, Trash2, VideoIcon, VideoOff } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { Button } from 'src/components/ui/button'
-import { useFetcher, useLoaderData } from '@remix-run/react'
+import { useFetcher, useRouteError } from '@remix-run/react'
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from '@remix-run/node'
 import { invariantResponse } from 'src/utils/misc'
 import { openai } from 'src/lib/openai.server'
@@ -10,6 +10,7 @@ import { clsx } from 'clsx'
 import { toast } from 'react-hot-toast'
 import { load, Schema, Type } from 'js-yaml'
 import { z } from 'zod'
+import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 
 // OpenAI Vision API expects a 512x512 image at least
 // and is the cheapest option
@@ -106,7 +107,9 @@ const CameraCapture: React.FC = () => {
 
   const captureFetcher = useFetcher<typeof action>()
 
-  const loaderData = useLoaderData<typeof loader>()
+  const yeastIngredients = captureFetcher.data?.ingredients
+    ? captureFetcher.data.ingredients.filter((ingredient: string) => /yeast/i.test(ingredient))
+    : []
 
   const isScanning = captureFetcher.state !== 'idle'
 
@@ -146,7 +149,7 @@ const CameraCapture: React.FC = () => {
   }, [])
 
   return (
-    <div ref={rootDivRef}>
+    <div ref={rootDivRef} className="mx-auto md:max-w-xl">
       {!isCaptureEnable && (
         <div
           style={{ height: rootWidth }}
@@ -221,6 +224,14 @@ const CameraCapture: React.FC = () => {
           </div>
         </>
       )}
+
+      {!isScanning && isCaptureEnable && captureFetcher.data && yeastIngredients.length > 0 && (
+        <Alert variant={'destructive'}>
+          <AlertTitle>Yeast Ingredients Found</AlertTitle>
+          <AlertDescription>{yeastIngredients.length} ingredients with yeast found.</AlertDescription>
+        </Alert>
+      )}
+
       <div className="p-4 pt-0">
         {isScanning && (
           <>
@@ -228,9 +239,7 @@ const CameraCapture: React.FC = () => {
             <div className="mt-2 w-full animate-pulse bg-slate-400 p-3"></div>
           </>
         )}
-        {!isScanning && !captureFetcher.data && (
-          <p>Quickly check for {loaderData.entrypoint || 'NAC Protocol'} with the snap of a photo.</p>
-        )}
+        {!isScanning && !captureFetcher.data && <p>Quickly check ingredient lists for yeast.</p>}
         {!isScanning && isCaptureEnable && captureFetcher.data?.ingredients && (
           <div className="prose">
             <h3>
@@ -243,7 +252,7 @@ const CameraCapture: React.FC = () => {
                   <tr key={ing}>
                     <td>
                       <small>
-                        {/yeast|citric acid/i.test(ing) && '😱'}
+                        {/yeast/i.test(ing) && '😱'}
                         {ing}
                       </small>
                     </td>
@@ -254,6 +263,17 @@ const CameraCapture: React.FC = () => {
           </div>
         )}
       </div>
+    </div>
+  )
+}
+
+export const ErrorBoundary = () => {
+  const error = useRouteError()
+  console.error(error)
+  return (
+    <div className="error-container">
+      <h1>Oops!</h1>
+      <p>Sorry, an unexpected error has occurred.</p>
     </div>
   )
 }

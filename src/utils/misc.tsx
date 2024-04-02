@@ -1,5 +1,6 @@
 import { useFormAction, useNavigation } from '@remix-run/react'
 import { useSpinDelay } from 'spin-delay'
+import { HOSTNAME } from 'src/constants'
 
 /**
  
@@ -82,4 +83,65 @@ export function useDelayedIsPending({
     minDuration,
   })
   return delayedIsPending
+}
+
+/**
+ * Redirects to the image-generator route with optional query parameters.
+ * @param title The title to be displayed on the generated image.
+ * @param subtitle The subtitle to be displayed on the generated image.
+ * @param body The body text to be displayed on the generated image.
+ */
+export function redirectToImageGenerator({
+  title = '',
+  subtitle = '',
+  body = '',
+}: {
+  title?: string
+  subtitle?: string
+  body?: string
+}) {
+  const queryParams = new URLSearchParams()
+
+  if (title) queryParams.append('title', title)
+  if (subtitle) queryParams.append('subtitle', subtitle)
+  if (body) queryParams.append('body', body)
+
+  return `${HOSTNAME}/image-generator?${queryParams.toString()}`
+}
+
+export const OPEN_GRAPH_IMAGE_WIDTH = 1200
+export const OPEN_GRAPH_IMAGE_HEIGHT = 600
+
+/**
+ * Generates meta tags for setting the OpenGraph image in a Remix MetaFunction.
+ * @param imageUrl The URL of the image to be used for OpenGraph tags.
+ * @returns An array of objects representing meta tags.
+ */
+export function openGraphImageMeta(imageUrl: string): Array<{ property: string; content: string }> {
+  return [
+    {
+      property: 'og:image',
+      content: imageUrl,
+    },
+    {
+      property: 'og:image:url',
+      content: imageUrl,
+    },
+    {
+      property: 'og:image:width',
+      content: OPEN_GRAPH_IMAGE_WIDTH.toString(),
+    },
+    {
+      property: 'og:image:height',
+      content: OPEN_GRAPH_IMAGE_HEIGHT.toString(),
+    },
+    {
+      property: 'og:image',
+      content: imageUrl,
+    },
+    {
+      property: 'twitter:image',
+      content: imageUrl,
+    },
+  ]
 }

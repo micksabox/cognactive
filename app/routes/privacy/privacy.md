@@ -10,7 +10,7 @@ We do not collect any personally identifying information (PII) from users of our
 
 ## Data Collected:
 
-**Regimen Tracking Information:** We collect data related to important dates for regimen habit tracking activities (start date, phase transition dates), regimen activities like supplements, notes, and observed symptoms. This data is stored locally on your device using browser local storage technology and is not transmitted to or stored on any server owned or operated by us or third parties.
+**Regimen Tracking Information:** We collect data related to important dates for regimen habit tracking activities (start date, phase transition dates), regimen activities like supplements, notes, and observed experiences. This data is stored locally on your device using browser local storage technology and is not transmitted to or stored on any server owned or operated by us or third parties.
 
 **Camera Photos:** We relay photos for features related to computer vision assisted workflows, including but not limited to ingredient scanning. The photos are relayed from the Cognactive application through our servers and forwarded to computer vision API providers, including but not limited to OpenAI. At no point are these photos stored on our servers.
 

@@ -9,6 +9,8 @@ import path from 'path'
 
 installGlobals()
 
+const MODE = process.env.NODE_ENV
+
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
   // Must import @mdx-js/rollup like this. See
@@ -19,6 +21,12 @@ export default defineConfig(async () => {
 
   return {
     base: './',
+    build: {
+      cssMinify: MODE === 'production',
+      rollupOptions: {
+        external: [/node:.*/, 'stream', 'crypto', 'fsevents'],
+      },
+    },
     plugins: [
       mdx.default({
         remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
