@@ -38,7 +38,7 @@ const TrackerJournal: React.FC = () => {
       <div className="my-1">
         <ContentHeader title="Note Journal" linkTo="/tracker" linkText="Tracker" />
       </div>
-      <DailyNoteForm dateKey={formatDateKey(new Date())} />
+      <DailyNoteForm buttonClassName="my-2" dateKey={formatDateKey(new Date())} />
       {journalNotes?.length === 0 ? (
         <div>No notes found.</div>
       ) : (

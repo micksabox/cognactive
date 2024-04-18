@@ -17,17 +17,15 @@ import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from '@remix-run/react'
 
-export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
+export default function DailyNoteForm({ dateKey, buttonClassName }: { dateKey: string; buttonClassName?: string }) {
   const [note, setNote] = useState<string>('')
 
   const navigate = useNavigate()
 
-  //   const recentNotes = useLiveQuery(() => db.notes.orderBy('date').limit(3).toArray(), [dateKey])
-
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="ml-2" variant={'secondary'} size={'sm'}>
+        <Button className={buttonClassName} variant={'secondary'} size={'sm'}>
           <Edit3Icon className="mr-2 w-4" /> Add Note
         </Button>
       </SheetTrigger>
@@ -55,6 +53,7 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
           </div> */}
         </div>
         <SheetFooter>
+          <p className="p-2 text-center text-xs text-gray-500">Notes are only stored locally on your device</p>
           <SheetClose asChild>
             <Button
               disabled={note.length == 0}
