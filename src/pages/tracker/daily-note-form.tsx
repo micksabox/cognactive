@@ -15,9 +15,12 @@ import { Textarea } from 'src/components/ui/textarea'
 import db from './db'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { useNavigate } from '@remix-run/react'
 
 export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
   const [note, setNote] = useState<string>('')
+
+  const navigate = useNavigate()
 
   //   const recentNotes = useLiveQuery(() => db.notes.orderBy('date').limit(3).toArray(), [dateKey])
 
@@ -25,7 +28,7 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
     <Sheet>
       <SheetTrigger asChild>
         <Button className="ml-2" variant={'secondary'} size={'sm'}>
-          <Edit3Icon className="mr-2 w-4" /> Notes
+          <Edit3Icon className="mr-2 w-4" /> Add Note
         </Button>
       </SheetTrigger>
       <SheetContent side={'top'}>
@@ -64,6 +67,7 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
                   createdAt: new Date(),
                 })
                 setNote('')
+                navigate('/tracker-journal')
               }}
             >
               Save Note

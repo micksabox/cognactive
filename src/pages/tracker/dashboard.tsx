@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, isSameDay, startOfDay } from 'date-fns'
-import { BotIcon, CheckCircle2 } from 'lucide-react'
+import { BookIcon, BotIcon, CheckCircle2 } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
 import DieOffSymptoms from './die-off-symptoms'
@@ -104,7 +104,15 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Link to={'/tracker-regimen'}>Edit</Link>
           </Button>
         </span>
-        <DailyNoteForm dateKey={dateKey} />
+        <div className="flex gap-2">
+          <DailyNoteForm dateKey={dateKey} />
+          <Button variant={'secondary'} className="m-0" size={'sm'} asChild>
+            <Link to={`/tracker-journal`}>
+              {' '}
+              <BookIcon className="inline-block w-4" />
+            </Link>
+          </Button>
+        </div>
       </h3>
       <div id="regimen" className="flex gap-2">
         <div className="w-full flex-1">
