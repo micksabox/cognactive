@@ -14,6 +14,8 @@ FROM base as deps
 
 WORKDIR /myapp
 
+RUN npm install -g pnpm
+
 ADD package.json pnpm-lock.yaml .npmrc ./
 RUN pnpm install --include=dev
 
