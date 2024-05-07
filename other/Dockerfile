@@ -14,8 +14,8 @@ FROM base as deps
 
 WORKDIR /myapp
 
-ADD package.json package-lock.json .npmrc ./
-RUN npm install --include=dev
+ADD package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm install --include=dev
 
 # Setup production node_modules
 FROM base as production-deps
@@ -23,8 +23,8 @@ FROM base as production-deps
 WORKDIR /myapp
 
 COPY --from=deps /myapp/node_modules /myapp/node_modules
-ADD package.json package-lock.json .npmrc ./
-RUN npm prune --omit=dev
+ADD package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm prune --omit=dev
 
 # Build the app
 FROM base as build
@@ -41,9 +41,7 @@ COPY --from=deps /myapp/node_modules /myapp/node_modules
 
 ADD . .
 
-# TODO: Mount the secret and set it as an environment variable and 
-# run the build
-RUN npm run build
+RUN pnpm build
 
 RUN ls -la /myapp/public/build
 
@@ -84,4 +82,4 @@ COPY --from=build /myapp/package.json /myapp/package.json
 
 ADD . .
 
-CMD ["npm", "run", "start"]
+CMD ["pnpm", "start"]
