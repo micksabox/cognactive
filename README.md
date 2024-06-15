@@ -1,31 +1,66 @@
 # cognactive
 
-Web application to track NAC protocol events.
+## open source/access
 
-- regimen
+### Modern [Remix](https://remix.run) web app providing open-source software and AI utility for the open access NAC protocol. [What is the NAC protocol?](/public/files/NAC_Protocol.pdf)
+
+> Breaking the mold
+
+![1500x500-3](/docs/media/1500x500-3.jpeg)
+
+#cosmicdeathfungus
+
+## Regimen Tracker
+
+Multi-phase Tracking
+
+- Phase 1 (2+ months)
+- Phase 2 (a.k.a Maintenance)
+
+Presented intuitively as a slick mobile application, you will love taking cognactive with you on your journey.
+
+### Local Data Storage Policy
+
+These data entities are stored using a local browser-based IndexedDB. These are not sent anywhere and stay completely on your device.
+
 - myco die-off experiences
+- journal notes
+- important protocol phase transition dates
 
-## Local Development
+## Ingredient Scanner
 
-Clone this repository and run
+- Vision model [gpt-4] to parse ingredients from photos
+
+## Development
+
+Clone this repository. With Node installed on your terminal run this at the project root folder:
+
+### Install package dependencies
 
 ```sh
 npm install
-npm dev
 ```
 
-## Tech Stack
+### Start dev server
+
+```sh
+npm run dev
+```
+
+Navigate to `http://localhost:3000` to see cognactive.
+
+## NAC stack
+
+Built on the Typescript full stack web framework [Remix](https://remix.run).
 
 - [vite](https://vitejs.dev/)
 - [react](https://reactjs.org/)
 - [remix](https://remix.run)
 - [shadcn ui](https://ui.shadcn.com/)
-- [react-i18next](https://github.com/i18next/react-i18next)
 - [react-lucide](https://lucide.dev/)
 - [transmart](https://github.com/Quilljou/transmart)
 - [react-query](https://tanstack.com/query/latest/)
 - [tailwindcss](https://tailwindcss.com/)
-- [less](http://lesscss.org/)
 - [postcss](https://postcss.org/)
 - [eslint](https://eslint.org/)/[stylelint](https://stylelint.io/)
 - [prettier](https://prettier.io/)
@@ -38,23 +73,23 @@ npm dev
 
 ```sh
 src
-├── app.tsx     # App entry
-├── assets      # Assets for images, favicon etc
-├── components  # React components
-├── hooks       # React hooks
-├── i18n        # i18n files
-├── lib         # Utils、tools、services
-├── main.tsx    # File entry
-├── pages       # One .tsx per page
-├── router.tsx  # Routers
-├── styles      # Less files
-├── types       # Typescript types
-└── vite-env.d.ts
+├── app              # App entry and routes
+│   ├── routes       # Remix routes
+│   │   └── index.tsx  # Root route
+│   └── root.tsx     # Root component
+├── src
+│   ├── pages       # Top level React components
+│   ├── assets      # Assets for images, favicon etc
+│   ├── components  # Shared react components
+│   ├── lib         # macro library
+│   ├── utils       # macro utils
+├── public           # Public assets
+├── tests            # Integration and e2e test files (TODO)
 ```
 
 ## TODO
 
-- [ ] Re-implement i8ln [How to internationalize a Remix application](https://locize.com/blog/remix-i18n/)
+[Create a new issue](https://github.com/micksabox/cognactive/issues) to suggest actions or improvement ideas.
 
 ## License
 
@@ -64,4 +99,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - The template for this project initialization used [Vite-React-TS-Tailwind-Starter](https://github.com/Quilljou/vite-react-ts-tailwind-starter).
 
-- nactivism research community
+- nactivism research community: thanks for the feedback!
+- NAC protocol authors
+
+![logo](/public/apple-touch-icon-precomposed.png)
