@@ -27,7 +27,7 @@ const PrivacyDimensions: React.FC = () => {
         Read full privacy policy <ExternalLink className="ml-2 inline-block h-6 w-6" />
       </Link>
       <h2 className="py-4 text-2xl font-semibold">Protocol Regimen Tracking Utility</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
         {dimensions.map((dimension) => (
           <button
             key={dimension.id}
