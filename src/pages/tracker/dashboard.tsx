@@ -1,5 +1,5 @@
 import { differenceInCalendarDays, isSameDay, startOfDay } from 'date-fns'
-import { BookIcon, BotIcon, CheckCircle2 } from 'lucide-react'
+import { BookIcon, BotIcon, CheckCircle2, Moon, Sun } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
 import DieOffSymptoms from './die-off-symptoms'
@@ -93,7 +93,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         <ProgressIndicator startDate={startDate} currentDate={currentDate} />
       </TrackerTool>
       <TrackerTool>
-        <div className="mt-2 flex items-center">
+        <div className="flex items-center">
           <span className="w-32 text-2xl font-bold">Day {dayNumber} </span>
           <DatePicker
             currentDate={currentDate}
@@ -128,11 +128,31 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             <Link to={'/tracker-regimen'}>Customize</Link>
           </Button>
         }
-        title="Regimen"
+        title="Daily Regimen"
       >
+        <div className="grid grid-cols-2 gap-2">
+          <Button
+            onClick={() => {
+              morningActivities?.forEach((ma) => saveActivity(ma))
+            }}
+            className="flex justify-between bg-gradient-to-r from-blue-300 to-green-800"
+          >
+            <Sun className="w-4 text-yellow-300" />
+            Morning
+          </Button>
+          <Button
+            onClick={() => {
+              nightActivities?.forEach((ma) => saveActivity(ma))
+            }}
+            className="flex justify-between bg-gradient-to-r from-slate-900 to-blue-900"
+          >
+            <Moon className="w-4 text-blue-400" />
+            Night
+          </Button>
+        </div>
+
         <div id="regimen" className="flex gap-2">
           <div className="w-full flex-1">
-            <h3 className="text-right text-sm uppercase tracking-widest">Morning</h3>
             {morningActivities?.map((ma) => (
               <Button
                 onClick={() => saveActivity(ma)}
@@ -152,8 +172,6 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             ))}
           </div>
           <div className="w-full flex-1">
-            <h3 className="text-right text-sm uppercase tracking-widest">Night</h3>
-
             {nightActivities?.map((ma) => (
               <Button
                 onClick={() => saveActivity(ma)}
