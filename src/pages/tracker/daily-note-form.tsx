@@ -16,6 +16,7 @@ import db from './db'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from '@remix-run/react'
+import { cn } from 'src/lib/utils'
 
 export default function DailyNoteForm({ dateKey, buttonClassName }: { dateKey: string; buttonClassName?: string }) {
   const [note, setNote] = useState<string>('')
@@ -25,8 +26,8 @@ export default function DailyNoteForm({ dateKey, buttonClassName }: { dateKey: s
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className={buttonClassName} variant={'secondary'} size={'sm'}>
-          <Edit3Icon className="mr-2 w-4" /> Add Note
+        <Button className={cn(buttonClassName, 'w-full')} variant={'default'} size={'lg'}>
+          <Edit3Icon className="mr-2 w-4" /> Write a New Journal Entry
         </Button>
       </SheetTrigger>
       <SheetContent side={'top'}>

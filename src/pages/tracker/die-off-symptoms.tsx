@@ -5,6 +5,7 @@ import { PenLineIcon, Plus } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { formatDateKey } from 'src/lib/utils'
 import { ISymptom } from './db'
+import { TrackerTool } from './dashboard'
 
 export const defaultSymptoms = [
   'Tiredness',
@@ -59,13 +60,16 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
 
   return (
     <div>
-      <div className="my-4 flex items-center justify-between gap-4">
-        <h3 className="text-2xl font-light">Die-Off Symptoms</h3>
-        <div className="flex items-center gap-2">
-          <div className="text-right text-xs font-semibold">TOTAL</div>
-          <span className="text-2xl font-bold">{totalSymptoms}</span>
-        </div>
-      </div>
+      <TrackerTool
+        title="Myco Die-Off"
+        toolbarItems={
+          <div className="flex items-center gap-2">
+            <div className="text-right text-xs font-semibold">TOTAL</div>
+            <span className="text-2xl font-bold">{totalSymptoms}</span>
+          </div>
+        }
+      />
+      <p className="my-2 text-sm text-slate-600">Track myco die-off symptoms and experiences</p>
       <ul>
         <li>
           <form
