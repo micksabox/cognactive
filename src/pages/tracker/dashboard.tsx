@@ -34,8 +34,7 @@ export const TrackerTool: React.FC<TrackerToolProps> = ({ title, children, toolb
           <div className={cn('flex items-center py-2', toolbarClassName || 'justify-between')}>{toolbarItems}</div>
         </h3>
       )}
-
-      <div className="p-2">{children}</div>
+      {children && <div className="p-2">{children}</div>}
     </div>
   )
 }
