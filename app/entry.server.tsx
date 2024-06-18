@@ -74,6 +74,11 @@ function handleBrowserRequest(
 
           responseHeaders.set('Content-Type', 'text/html')
 
+          const url = new URL(request.url)
+          if (url.pathname.startsWith('/videos')) {
+            responseHeaders.set('Cache-Control', 'public, max-age=604800') // 1 week
+          }
+
           resolve(
             new Response(createReadableStreamFromReadable(body), {
               headers: responseHeaders,
