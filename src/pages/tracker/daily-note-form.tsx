@@ -15,17 +15,19 @@ import { Textarea } from 'src/components/ui/textarea'
 import db from './db'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { useNavigate } from '@remix-run/react'
+import { cn } from 'src/lib/utils'
 
-export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
+export default function DailyNoteForm({ dateKey, buttonClassName }: { dateKey: string; buttonClassName?: string }) {
   const [note, setNote] = useState<string>('')
 
-  //   const recentNotes = useLiveQuery(() => db.notes.orderBy('date').limit(3).toArray(), [dateKey])
+  const navigate = useNavigate()
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="ml-2" variant={'secondary'} size={'sm'}>
-          <Edit3Icon className="mr-2 w-4" /> Notes
+        <Button className={cn(buttonClassName, 'w-full')} variant={'secondary'} size={'lg'}>
+          <Edit3Icon className="mr-2 w-4" /> Write a New Journal Entry
         </Button>
       </SheetTrigger>
       <SheetContent side={'top'}>
@@ -52,6 +54,7 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
           </div> */}
         </div>
         <SheetFooter>
+          <p className="p-2 text-center text-xs text-gray-500">Notes are only stored locally on your device</p>
           <SheetClose asChild>
             <Button
               disabled={note.length == 0}
@@ -64,6 +67,7 @@ export default function DailyNoteForm({ dateKey }: { dateKey: string }) {
                   createdAt: new Date(),
                 })
                 setNote('')
+                navigate('/tracker-journal')
               }}
             >
               Save Note

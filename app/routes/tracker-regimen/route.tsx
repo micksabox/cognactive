@@ -41,10 +41,10 @@ const Regimen: React.FC = () => {
         <Alert className="mt-2">
           <AlertTitle>Phase 2</AlertTitle>
           <AlertDescription>
-            The supplements Niacin, Pom Seed Extract and Pterostilbene have been added to the regimen according to the
-            NAC protocol phase 2. Some phase 1 and phase 2 supplements have been hidden, but you can choose to make them
-            visible as needed. To make the transition to phase 2 smoother, only pomegranate extract is visible by
-            default.
+            The supplements Niacin, Pomegranate Seed Extract and Pterostilbene have been added to the regimen according
+            to the NAC protocol phase 2. Some phase 1 and phase 2 supplements have been hidden, but you can choose to
+            make them visible as needed. To make the transition to phase 2 smoother, only pomegranate extract is visible
+            by default. Customize your regimen by changing visibility.
           </AlertDescription>
         </Alert>
       )}

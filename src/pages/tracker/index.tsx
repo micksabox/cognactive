@@ -120,7 +120,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
               All regimen activity tracking data (tracking dates, experiences, supplements) is stored locally in web
               browser and not shared with any third-party.{' '}
               <Link className="underline underline-offset-auto" to={'/privacy'}>
-                See Privacy Policy
+                Learn more about cognactive Privacy &amp; Data Usage
               </Link>
               .<p className="font-semibold">Legal Disclaimer</p>
               The cognactive app helps track activities and events and is for personal use only. cognactive is not a

@@ -1,107 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import db, { ISupplement, INote } from 'src/pages/tracker/db'
+import React from 'react'
+import db, { INote } from 'src/pages/tracker/db'
 import { formatDateKey } from 'src/lib/utils'
 import ContentHeader from 'src/components/content-header.tsx'
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationNext,
-  PaginationPrevious,
-} from 'src/components/ui/pagination'
 
-interface JournalEntry {
-  [date: string]: (ISupplement | INote)[]
-}
+import DailyNoteForm from 'src/pages/tracker/daily-note-form'
+import { useLiveQuery } from 'dexie-react-hooks'
 
 const TrackerJournal: React.FC = () => {
-  const [entries, setEntries] = useState<JournalEntry>({})
-  const [page, setPage] = useState(0)
-  const pageSize = 50
-  const [totalEntries, setTotalEntries] = useState(0)
+  const journalNotes = useLiveQuery<INote[]>(() => db.notes.orderBy('date').reverse().toArray(), [])
 
-  const loadEntries = async () => {
-    const supplements: ISupplement[] = await db.supplements
-      .orderBy('date')
-      .reverse()
-      .offset(page * pageSize)
-      .limit(pageSize)
-      .toArray()
-    const notes: INote[] = await db.notes
-      .orderBy('date')
-      .reverse()
-      .offset(page * pageSize)
-      .limit(pageSize)
-      .toArray()
+  const currentDate = formatDateKey(new Date())
+  let lastDate = ''
 
-    const combinedEntries: JournalEntry = supplements
-      // @ts-ignore
-      .concat(notes)
-      .reduce((acc: JournalEntry, entry: ISupplement | INote) => {
-        const { date } = entry
-        if (!acc[date]) {
-          acc[date] = []
-        }
-        acc[date].push(entry)
-        return acc
-      }, {})
+  const journalElements = journalNotes?.flatMap((note, index) => {
+    const noteDate = formatDateKey(new Date(note.date))
+    const elements = []
 
-    setEntries((prevEntries) => ({
-      ...prevEntries,
-      ...combinedEntries,
-    }))
-  }
-
-  useEffect(() => {
-    loadEntries()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
-
-  useEffect(() => {
-    const fetchTotalEntries = async () => {
-      const totalSupplements = await db.supplements.count()
-      const totalNotes = await db.notes.count()
-      setTotalEntries(totalSupplements + totalNotes)
+    if (noteDate !== lastDate) {
+      elements.push(
+        <li key={`header-${index}`}>
+          <h2 className="text-xl font-bold">{noteDate === currentDate ? 'Today' : noteDate}</h2>
+        </li>,
+      )
+      lastDate = noteDate
     }
 
-    fetchTotalEntries()
-  }, [])
+    elements.push(
+      <li className="p-2" key={index}>
+        <p>{note.content}</p>
+      </li>,
+    )
 
+    return elements
+  })
   return (
     <div className="p-2">
-      <ContentHeader title="Journal" linkTo="/tracker" linkText="Tracker" />
-      {Object.keys(entries).length === 0 ? (
-        <div>No journal entries found.</div>
+      <div className="my-1">
+        <ContentHeader title="Note Journal" linkTo="/tracker" linkText="Tracker" />
+      </div>
+      <DailyNoteForm buttonClassName="my-2" dateKey={formatDateKey(new Date())} />
+      {journalNotes?.length === 0 ? (
+        <div>No notes found.</div>
       ) : (
-        <ul>
-          {Object.entries(entries).map(([date, contents], index) => (
-            <li key={index}>
-              <p className="text-slate-400">{formatDateKey(new Date(date))}</p>
-              {contents.map((content, contentIndex) => (
-                <p key={contentIndex}>
-                  {'content' in content
-                    ? `Note: ${content.content}`
-                    : `${content.name} - ${content.dosage} ${content.dosageUnit}`}
-                </p>
-              ))}
-            </li>
-          ))}
-        </ul>
+        <ul className="divide-y divide-gray-200">{journalElements}</ul>
       )}
-      <Pagination>
+      {/* <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious onClick={() => setPage((oldPage) => Math.max(0, oldPage - 1))} href="#" />
+            <PaginationPrevious
+              isActive={false}
+              onClick={() => setPage((oldPage) => Math.max(0, oldPage - 1))}
+              href="#"
+            />
           </PaginationItem>
           <PaginationItem>{page + 1}</PaginationItem>
           <PaginationItem>
             <PaginationNext
+              isActive={page < Math.floor(totalEntries / pageSize)}
               onClick={() => setPage((oldPage) => Math.min(oldPage + 1, Math.floor(totalEntries / pageSize)))}
-              href="#"
+              href="#next"
             />
           </PaginationItem>
         </PaginationContent>
-      </Pagination>
+      </Pagination> */}
     </div>
   )
 }

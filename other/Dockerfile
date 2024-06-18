@@ -41,8 +41,6 @@ COPY --from=deps /myapp/node_modules /myapp/node_modules
 
 ADD . .
 
-# TODO: Mount the secret and set it as an environment variable and 
-# run the build
 RUN npm run build
 
 RUN ls -la /myapp/public/build
