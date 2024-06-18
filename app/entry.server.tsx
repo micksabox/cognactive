@@ -75,7 +75,7 @@ function handleBrowserRequest(
           responseHeaders.set('Content-Type', 'text/html')
 
           const url = new URL(request.url)
-          if (url.pathname.startsWith('/videos')) {
+          if (url.pathname.match(/^\/videos\/.+\.mp4$/)) {
             responseHeaders.set('Cache-Control', 'public, max-age=604800') // 1 week
           }
 
