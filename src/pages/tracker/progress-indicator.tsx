@@ -90,17 +90,17 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
             </p>
             <div className="grid flex-grow grid-cols-3 gap-2">
               {phase2CycleStart && (
-                <p className="col-span-3 text-xs">
+                <p className="col-span-2 text-xs">
                   started on {formatDateKey(phase2CycleStart)}{' '}
                   <a
                     role="button"
                     className="text-blue-500"
                     onClick={(e) => {
                       e.preventDefault()
-                      setEditingPhase2CycleDate(true)
+                      setEditingPhase2CycleDate((prev) => !prev)
                     }}
                   >
-                    Edit
+                    {editingPhase2CycleDate ? 'Cancel' : 'Edit'}
                   </a>
                 </p>
               )}
@@ -111,24 +111,6 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
                   value={((daysSinceResumingPhase2 % fourWeeksInDays) / threeWeeksInDays) * 100}
                 />
                 <p className="text-center text-xs">3 weeks on</p>
-                {editingPhase2CycleDate && phase2CycleStart && (
-                  <Alert>
-                    <TimerIcon className="w-6" />
-                    <AlertTitle>Phase 2 Start / Resume Date</AlertTitle>
-                    <AlertDescription>
-                      When did you start or resume phase 2? Setting this date will reset the timer.
-                    </AlertDescription>
-                    <DatePicker
-                      toDate={new Date()}
-                      onSetDate={(d) => {
-                        if (d) {
-                          protocolTrackerState.setPhase2CycleStart(formatDateKey(d))
-                          setEditingPhase2CycleDate(false)
-                        }
-                      }}
-                    />
-                  </Alert>
-                )}
               </div>
               <div className="col-span-1">
                 {/* Show the final week by modulo calc by 28 and subtract 3 weeks */}
@@ -142,6 +124,24 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
           </div>
         )}
       </div>
+      {editingPhase2CycleDate && phase2CycleStart && (
+        <Alert>
+          <TimerIcon className="w-6" />
+          <AlertTitle>Phase 2 Cycle Start / Resume Date</AlertTitle>
+          <AlertDescription className="mb-2">
+            When did you start or resume phase 2? Setting this date will reset the timer.
+          </AlertDescription>
+          <DatePicker
+            toDate={new Date()}
+            onSetDate={(d) => {
+              if (d) {
+                protocolTrackerState.setPhase2CycleStart(formatDateKey(d))
+                setEditingPhase2CycleDate(false)
+              }
+            }}
+          />
+        </Alert>
+      )}
       {daysUntilTwoMonths <= 0 && (currentPhase == '1' || currentPhase == null) && (
         <Alert variant={'default'} className="my-2">
           <AlertTitle>
