@@ -26,7 +26,7 @@ export default function DailyNoteForm({ dateKey, buttonClassName }: { dateKey: s
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className={cn(buttonClassName, 'w-full')} variant={'default'} size={'lg'}>
+        <Button className={cn(buttonClassName, 'w-full')} variant={'secondary'} size={'lg'}>
           <Edit3Icon className="mr-2 w-4" /> Write a New Journal Entry
         </Button>
       </SheetTrigger>
