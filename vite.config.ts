@@ -28,15 +28,15 @@ export default defineConfig(async () => {
       },
     },
     plugins: [
+      mdx.default({
+        remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
+      }),
       remix({
         async routes(defineRoutes) {
           return flatRoutes('routes', defineRoutes)
         },
       }),
       svgr({}),
-      mdx.default({
-        remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
-      }),
       tsconfigPaths(),
     ],
     resolve: {
