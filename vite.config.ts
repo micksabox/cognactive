@@ -20,7 +20,6 @@ export default defineConfig(async () => {
   const remarkMdxFrontmatter = await import('remark-mdx-frontmatter')
 
   return {
-    base: './',
     build: {
       cssMinify: MODE === 'production',
       rollupOptions: {
