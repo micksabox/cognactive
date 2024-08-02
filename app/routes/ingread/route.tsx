@@ -3,7 +3,7 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { Button } from 'src/components/ui/button'
 import { useFetcher, useRouteError } from '@remix-run/react'
-import { ActionFunctionArgs, LoaderFunctionArgs, json } from '@remix-run/node'
+import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs, json } from '@remix-run/node'
 import { invariantResponse } from 'src/utils/misc'
 import { openai } from 'src/lib/openai.server'
 import { clsx } from 'clsx'
@@ -23,6 +23,17 @@ const videoConstraints = {
     // Front-facing camera
     exact: 'environment',
   },
+}
+
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: 'preload',
+      href: '/videos/watermarked_video0c3be294294da4ad89c2509dce30c8bb2.mp4',
+      as: 'video',
+      type: 'video/mp4',
+    },
+  ]
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -155,6 +166,13 @@ const CameraCapture: React.FC = () => {
           style={{ height: rootWidth }}
           className="mx-auto flex max-h-[512px] w-full max-w-[512px] items-center justify-center bg-gray-200"
         >
+          <video
+            src="/videos/watermarked_video0c3be294294da4ad89c2509dce30c8bb2.mp4"
+            playsInline
+            autoPlay
+            loop
+            className="w-full"
+          />
           <VideoIcon className="h-48 w-48 text-gray-300" />
         </div>
       )}
