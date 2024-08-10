@@ -77,13 +77,13 @@ export const Hero = () => {
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/fridai">
                       <SmartphoneChargingIcon className="mr-2" />
-                      F.R.I.D.A.I
+                      F.R.I.D.A.I <span className="ml-2 rounded-sm bg-cyan p-1 text-xs">NEW 🔥</span>
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/memery/platos-cave">
                       <ScrollIcon className="mr-2" />
-                      Memery Stream <span className="ml-2 rounded-sm bg-cyan p-1 text-xs">NEW</span>
+                      Memery Stream
                     </Link>
                   </Button>
                   <div>
