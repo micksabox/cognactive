@@ -50,7 +50,7 @@ const FridaiAcronym: React.FC = () => {
 
         <Letter letter="I" />
         <div className="flex items-center text-lg">
-          <CycleText words={['Interactive', 'Interesting']} interval={4000} />
+          <CycleText words={['Interactive', 'Investigative']} interval={4000} />
         </div>
 
         <Letter letter="D" />
@@ -60,7 +60,7 @@ const FridaiAcronym: React.FC = () => {
 
         <Letter letter="A" />
         <div className="flex items-center text-lg">
-          <CycleText words={['Artificial', 'Assistant']} interval={3600} />
+          <CycleText words={['Assistant', 'Artificial']} interval={3600} />
         </div>
 
         <Letter letter="I" />
