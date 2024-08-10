@@ -1,92 +1,72 @@
 import React, { useEffect, useState } from 'react'
+import CognactiveIcon from 'src/assets/icons/cognactive-icon'
+import { AnimatePresence, motion } from 'framer-motion'
 
-const FridaiAcronym: React.FC = () => {
-  const [activeIndices, setActiveIndices] = useState({
-    firstI: 0,
-    dMeaning: 0,
-    aMeaning: 0,
-    lastI: 0,
-  })
+const Letter: React.FC<{ letter: string }> = ({ letter }) => (
+  <div className={`flex h-10 w-10 items-center justify-center rounded-full text-xl font-bold`}>
+    {letter}
+    <CognactiveIcon className="absolute h-10 w-10" fungiVisibility="hidden" />
+  </div>
+)
+
+const CycleText = ({ words, interval = 3500 }: { words: string[]; interval?: number }) => {
+  const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    const setupCycleAnimation = (key: keyof typeof activeIndices, items: string[], baseInterval: number) => {
-      const cycle = () => {
-        setActiveIndices((prev) => ({
-          ...prev,
-          [key]: (prev[key] + 1) % items.length,
-        }))
+    const timer = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % words.length)
+    }, interval + (Math.random() * 500 - 250)) // Add some variation
 
-        const variation = Math.random() * 500 - 250 // +/- 250ms
-        setTimeout(cycle, baseInterval + variation)
-      }
-
-      const timer = setTimeout(cycle, baseInterval)
-      return () => clearTimeout(timer)
-    }
-
-    setupCycleAnimation('firstI', ['Interactive', 'Intelligent'], 4000)
-    setupCycleAnimation('dMeaning', ['Digital', 'Discovery', 'Dynamic', 'Data'], 4500)
-    setupCycleAnimation('aMeaning', ['Artificial', 'Assistant'], 4000)
-    setupCycleAnimation('lastI', ['Intelligence', 'Interface'], 4000)
-
-    return () => {
-      // Clean up timers if needed
-    }
-  }, [])
-
-  const CycleContainer: React.FC<{ items: string[]; activeIndex: number }> = ({ items, activeIndex }) => (
-    <span className="relative h-6 w-32 overflow-hidden">
-      {items.map((item, index) => (
-        <span
-          key={item}
-          className={`absolute left-0 top-0 w-full transition-all duration-500 ease-in-out ${
-            index === activeIndex ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-          }`}
-        >
-          {item}
-        </span>
-      ))}
-    </span>
-  )
+    return () => clearInterval(timer)
+  }, [words, interval])
 
   return (
-    <div className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2.5 rounded-lg bg-gray-100 p-5 shadow-md">
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-2xl font-bold text-white">
-        F
-      </div>
-      <div className="flex items-center text-lg">Fungal</div>
+    <div style={{ position: 'relative', height: '1.5em', width: '120px' }}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, x: -10 }}
+          transition={{ duration: 0.5 }}
+          style={{ position: 'absolute' }}
+        >
+          {words[index]}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  )
+}
 
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-2xl font-bold text-white">
-        R
-      </div>
-      <div className="flex items-center text-lg">Research</div>
+const FridaiAcronym: React.FC = () => {
+  return (
+    <div className="container">
+      <div className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2.5 p-4">
+        <Letter letter="F" />
+        <div className="flex items-center text-lg">Fungal</div>
 
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-2xl font-bold text-white">
-        I
-      </div>
-      <div className="flex items-center text-lg">
-        <CycleContainer items={['Interactive', 'Intelligent']} activeIndex={activeIndices.firstI} />
-      </div>
+        <Letter letter="R" />
+        <div className="flex items-center text-lg">Research</div>
 
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-2xl font-bold text-white">
-        D
-      </div>
-      <div className="flex items-center text-lg">
-        <CycleContainer items={['Digital', 'Discovery', 'Dynamic', 'Data']} activeIndex={activeIndices.dMeaning} />
-      </div>
+        <Letter letter="I" />
+        <div className="flex items-center text-lg">
+          <CycleText words={['Interactive', 'Interesting']} interval={4000} />
+        </div>
 
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-2xl font-bold text-white">
-        A
-      </div>
-      <div className="flex items-center text-lg">
-        <CycleContainer items={['Artificial', 'Assistant']} activeIndex={activeIndices.aMeaning} />
-      </div>
+        <Letter letter="D" />
+        <div className="flex items-center text-lg">
+          <CycleText words={['Digital', 'Discovery', 'Dynamic', 'Data']} interval={4500} />
+        </div>
 
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-2xl font-bold text-white">
-        I
-      </div>
-      <div className="flex items-center text-lg">
-        <CycleContainer items={['Intelligence', 'Interface']} activeIndex={activeIndices.lastI} />
+        <Letter letter="A" />
+        <div className="flex items-center text-lg">
+          <CycleText words={['Artificial', 'Assistant']} interval={3600} />
+        </div>
+
+        <Letter letter="I" />
+        <div className="flex items-center text-lg">
+          <CycleText words={['Intelligence', 'Interface']} interval={3900} />
+        </div>
       </div>
     </div>
   )

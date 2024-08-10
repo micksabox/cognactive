@@ -42,6 +42,7 @@
     "dexie-react-hooks": "^1.1.7",
     "embla-carousel-autoplay": "^8.0.0-rc20",
     "embla-carousel-react": "^8.0.0-rc20",
+    "framer-motion": "^11.3.24",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-resources-to-backend": "^1.1.4",

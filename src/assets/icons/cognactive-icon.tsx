@@ -4,6 +4,7 @@ interface IconProps {
   className?: string
   darkMode?: boolean
   biofilmVisibility?: 'visible' | 'hidden'
+  fungiVisibility?: 'visible' | 'hidden'
 }
 
 export default function CognactiveIcon(props: IconProps) {
@@ -112,6 +113,7 @@ export default function CognactiveIcon(props: IconProps) {
   Z"
       />
       <path
+        className={cn(props.fungiVisibility === 'hidden' && 'hidden')}
         id="mushroom"
         d="
   M 249.32 340.56
