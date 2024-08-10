@@ -1,4 +1,12 @@
-import { ActivitySquare, ScrollIcon, ListTodo, HeartHandshakeIcon, LayoutGridIcon, Scan } from 'lucide-react'
+import {
+  ActivitySquare,
+  ScrollIcon,
+  ListTodo,
+  HeartHandshakeIcon,
+  LayoutGridIcon,
+  Scan,
+  SmartphoneChargingIcon,
+} from 'lucide-react'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 
 import { Button } from '../ui/button'
@@ -64,6 +72,12 @@ export const Hero = () => {
                     <Link to="/ingread">
                       <Scan className="mr-2" />
                       Ingredient Scanner
+                    </Link>
+                  </Button>
+                  <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
+                    <Link to="/fridai">
+                      <SmartphoneChargingIcon className="mr-2" />
+                      F.R.I.D.A.I
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
