@@ -2,6 +2,24 @@ import React, { useEffect, useState } from 'react'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from 'src/components/ui/button'
+import { Form, useLoaderData } from '@remix-run/react'
+import { json, LoaderFunction } from '@remix-run/node'
+import { PaperSearchItem, semanticScholarClient } from '@/utils/semantic-scholar.server'
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url)
+  const searchTerm = url.searchParams.get('searchTerm')
+
+  if (!searchTerm) {
+    return json({ papers: [], searchTerm: '' })
+  }
+
+  const papers = await semanticScholarClient.searchPapers(searchTerm, 10)
+
+  console.log(papers)
+
+  return json({ papers: papers.data, searchTerm })
+}
 
 const Letter: React.FC<{ letter: string }> = ({ letter }) => (
   <div className={`flex h-10 w-10 items-center justify-center rounded-full text-xl font-bold`}>
@@ -40,6 +58,8 @@ const CycleText = ({ words, interval = 3500 }: { words: string[]; interval?: num
 }
 
 const FridaiAcronym: React.FC = () => {
+  const { papers, searchTerm } = useLoaderData<typeof loader>()
+
   return (
     <div className="container flex flex-col items-center justify-center">
       <p className="my-8 text-2xl">Construct a vector to explore and navigate the fungal academic research space</p>
@@ -71,7 +91,43 @@ const FridaiAcronym: React.FC = () => {
         </div>
       </div>
 
-      <p>F.R.I.D.A.I. is coming soon. Follow along, join the discussion and construction on Github.</p>
+      <Form method="get" className="my-8 flex w-full max-w-md flex-col items-center">
+        <input
+          defaultValue={searchTerm}
+          type="text"
+          name="searchTerm"
+          placeholder="Enter search term"
+          className="w-full rounded-md border p-2"
+        />
+        <Button type="submit" className="mt-4">
+          Search
+        </Button>
+      </Form>
+
+      {papers.length > 0 && (
+        <div className="mt-8 w-full max-w-2xl">
+          <h2 className="mb-4 text-xl font-bold">Search Results:</h2>
+          <ul className="space-y-4">
+            {papers.map((paper: PaperSearchItem, index: number) => (
+              <li key={index} className="rounded-md border p-4">
+                <h3 className="text-lg font-semibold">
+                  <a
+                    href={`/fridai/${paper.paperId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {paper.title}
+                  </a>
+                </h3>
+                <p className="mt-2 text-sm">{paper.title}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <p className="mt-8">F.R.I.D.A.I. is coming soon. Follow along, join the discussion and construction on Github.</p>
       <Button className="my-8" asChild>
         <a href="https://github.com/micksabox/cognactive/discussions/4" target="_blank" rel="noopener noreferrer">
           Launch Discussion
