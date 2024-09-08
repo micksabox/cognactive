@@ -34,7 +34,7 @@
     "@tanstack/react-table": "^8.12.0",
     "@transmart/cli": "^0.2.4",
     "@uidotdev/usehooks": "^2.4.1",
-    "axios": "^1.7.3",
+    "axios": "^1.7.7",
     "axios-rate-limit": "^1.4.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
