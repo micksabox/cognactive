@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
 import { useSymptomCount, useTrackSymptom } from './use-track-symptom'
 import { Button } from 'src/components/ui/button'
-import { PenLineIcon, Plus } from 'lucide-react'
+import { BarChart2, PenLineIcon, Plus } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { formatDateKey } from 'src/lib/utils'
 import { ISymptom } from './db'
 import { TrackerTool } from './dashboard'
+import { Link } from '@remix-run/react'
 
 export const defaultSymptoms = [
   'Tiredness',
@@ -69,7 +70,15 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
           </div>
         }
       />
-      <p className="my-2 text-sm text-slate-600">Track myco die-off symptoms and experiences</p>
+      <div className="my-2 flex items-center justify-between gap-2">
+        <p className="text-sm text-slate-600">Track myco die-off symptoms and experiences</p>
+        <Button className="text-blue-500" size={'sm'} variant={'link'} asChild>
+          <Link to="/trends">
+            <BarChart2 className="inline-block w-4" />
+            View Chart
+          </Link>
+        </Button>
+      </div>
       <ul>
         <li>
           <form

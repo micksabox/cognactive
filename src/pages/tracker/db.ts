@@ -20,6 +20,7 @@ export interface ISupplement {
   dosageUnit: string
 }
 
+// Used in the database
 export interface ISymptom {
   id?: number
   date: string // format: yyyy-mm-dd
@@ -27,6 +28,10 @@ export interface ISymptom {
   severity: number
   custom: number
   createdAt: Date
+}
+
+export interface DieOffSymptom extends Omit<ISymptom, 'createdAt'> {
+  createdAt: string
 }
 
 export interface IBreakthrough {
