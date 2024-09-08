@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "types": ["@remix-run/node", "node", "vite/client"],
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "module": "ESNext",
     "useDefineForClassFields": true,
     "target": "ESNext",
@@ -12,6 +15,7 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+
     "skipLibCheck": true,
     "preserveConstEnums": true,
     "sourceMap": true,
@@ -20,6 +24,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "rootDir": ".",
     "jsx": "react-jsx",

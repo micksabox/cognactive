@@ -12,7 +12,7 @@ interface IProps {
 export function Header(props: IProps) {
   const matches = useMatches()
 
-  const isHomepage = matches.findLastIndex((m) => m.pathname === '/') == matches.length - 1
+  const isHomepage = matches.findIndex((m) => m.pathname === '/') == matches.length - 1
   const transition = useNavigation()
   const busy = transition.state !== 'idle'
 

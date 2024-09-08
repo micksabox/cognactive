@@ -5,7 +5,7 @@ import {
   HeartHandshakeIcon,
   LayoutGridIcon,
   Scan,
-  FileSearch,
+  SmartphoneChargingIcon,
 } from 'lucide-react'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 
@@ -76,8 +76,8 @@ export const Hero = () => {
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/fridai">
-                      <FileSearch className="mr-2" />
-                      F.R.I.D.A.I <span className="ml-2 rounded-sm bg-cyan p-1 text-xs">NEW 🔥</span>
+                      <SmartphoneChargingIcon className="mr-2" />
+                      F.R.I.D.A.I
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>

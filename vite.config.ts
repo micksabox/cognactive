@@ -20,7 +20,6 @@ export default defineConfig(async () => {
   const remarkMdxFrontmatter = await import('remark-mdx-frontmatter')
 
   return {
-    base: './',
     build: {
       cssMinify: MODE === 'production',
       rollupOptions: {
@@ -32,8 +31,12 @@ export default defineConfig(async () => {
         remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
       }),
       remix({
+        ignoredRouteFiles: ['**/*'],
+        serverModuleFormat: 'esm',
         async routes(defineRoutes) {
-          return flatRoutes('routes', defineRoutes)
+          return flatRoutes('routes', defineRoutes, {
+            ignoredRouteFiles: ['.*', '**/*.css', '**/*.test.{js,jsx,ts,tsx}'],
+          })
         },
       }),
       svgr({}),
@@ -54,7 +57,7 @@ export default defineConfig(async () => {
     },
     server: {
       host: true,
-      port: 5000,
+      port: 5001,
     },
   }
 })

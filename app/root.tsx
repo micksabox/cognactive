@@ -1,14 +1,8 @@
 import React from 'react'
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react'
 
-// TODO: Remove after Vite migration
-import cognactiveSymbolStyles from '../src/assets/icons/cognactive-symbol.css?url'
-import globalStyles from '../src/styles/globals.css?url'
-import type { LinksFunction } from '@remix-run/node'
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: globalStyles },
-  { rel: 'stylesheet', href: cognactiveSymbolStyles },
-]
+import 'src/assets/icons/cognactive-symbol.css'
+import 'src/styles/globals.css'
 // import 'src/i18n/config'
 // /TODO
 
@@ -103,7 +97,6 @@ export default function Root() {
 
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
         <Toaster />
       </body>
     </html>
