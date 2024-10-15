@@ -50,4 +50,14 @@ export const initialFungcastEpisodes: Episode[] = [
     imageUrl: 'https://img.youtube.com/vi/c6GOs6vJO3k/hqdefault.jpg',
     youtubeLink: 'https://www.youtube.com/embed/c6GOs6vJO3k?si=LKbDFMQ8JpjU-Xsx',
   },
+  {
+    id: 4,
+    link: 'https://www.youtube.com/embed/3kdUS04xXPA',
+    title: 'UFOs on the Level',
+    subtitle: 'Majerowski-Peribsen 2: Shadow Biome-Alien Fungi & Neanderthal DNA Shape Humanity',
+    duration: '1:46:18',
+    categories: ['cdf'],
+    imageUrl: 'https://img.youtube.com/vi/3kdUS04xXPA/hqdefault.jpg',
+    youtubeLink: 'https://www.youtube.com/embed/3kdUS04xXPA',
+  },
 ]
