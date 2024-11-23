@@ -10,7 +10,7 @@ import {
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 
 import { Button } from '../ui/button'
-import { Link } from '@remix-run/react'
+import { Link } from 'react-router'
 
 // Temporary. See docs/decisions/02-i18n
 import t from 'src/i18n/locales/en/translation.json'

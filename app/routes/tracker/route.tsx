@@ -1,4 +1,4 @@
-import { useLoaderData } from '@remix-run/react'
+import { useLoaderData } from 'react-router'
 import { PROTOCOL_PHASE, PROTOCOL_PHASE_2_CYCLE_START, PROTOCOL_START_DATE } from 'src/constants'
 import ProtocolTracker from 'src/pages/tracker/index'
 import { useLocalStorage } from '@uidotdev/usehooks'

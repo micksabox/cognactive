@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Link, useRouteError } from '@remix-run/react'
+import { Link, useRouteError } from 'react-router'
 import { Button } from '../ui/button'
 
 export default function ErrorPage() {

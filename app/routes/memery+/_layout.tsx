@@ -1,5 +1,4 @@
-import { Link, Outlet, useLoaderData } from '@remix-run/react'
-import { LoaderFunctionArgs } from '@remix-run/node'
+import { Link, Outlet, useLoaderData, LoaderFunctionArgs } from 'react-router'
 import React from 'react'
 import { getMemeByKey } from './utils.server'
 import { invariantResponse } from 'src/utils/misc'

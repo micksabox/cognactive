@@ -2,8 +2,7 @@ import { ScanLine, Trash2, VideoIcon, VideoOff } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { Button } from 'src/components/ui/button'
-import { useFetcher, useRouteError } from '@remix-run/react'
-import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs } from '@remix-run/node'
+import { useFetcher, useRouteError, ActionFunctionArgs, LinksFunction, LoaderFunctionArgs } from 'react-router'
 import { invariantResponse } from 'src/utils/misc'
 import { openai } from 'src/lib/openai.server'
 import { clsx } from 'clsx'
@@ -242,14 +241,12 @@ const CameraCapture: React.FC = () => {
           </div>
         </>
       )}
-
       {!isScanning && isCaptureEnable && captureFetcher.data && yeastIngredients.length > 0 && (
         <Alert variant={'destructive'}>
           <AlertTitle>Yeast Ingredients Found</AlertTitle>
           <AlertDescription>{yeastIngredients.length} ingredients with yeast found.</AlertDescription>
         </Alert>
       )}
-
       <div className="p-4 pt-0">
         {isScanning && (
           <>

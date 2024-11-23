@@ -1,8 +1,6 @@
 import Component from './content.mdx'
 
-import type { LinksFunction } from '@remix-run/node'
-
-export const links: LinksFunction = () => {
+export const links = () => {
   return [
     {
       rel: 'preload',

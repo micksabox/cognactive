@@ -1,5 +1,5 @@
 import db from 'src/pages/tracker/db'
-import { ClientLoaderFunctionArgs, useLoaderData } from '@remix-run/react'
+import { ClientLoaderFunctionArgs, useLoaderData } from 'react-router'
 import { DataTable } from './data-table'
 import { columns } from './columns'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'

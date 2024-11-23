@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CheckCircle, ExternalLink, XCircle } from 'lucide-react'
-import { Link } from '@remix-run/react'
+import { Link } from 'react-router'
 
 const PrivacyDimensions: React.FC = () => {
   const [selectedDimension, setSelectedDimension] = useState('localDataStorage')

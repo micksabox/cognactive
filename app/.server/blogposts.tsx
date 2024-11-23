@@ -1,4 +1,4 @@
-import { ServerBuild } from '@remix-run/node'
+import { ServerBuild } from 'react-router';
 
 // This code and technique modified from https://github.com/pcattori/remix-blog-mdx
 
@@ -18,7 +18,7 @@ export const getPosts = async (): Promise<PostMeta[]> => {
   // @ts-ignore
   const modules = import.meta.glob<{ frontmatter: Frontmatter }>('../routes/blog+/posts+/*.mdx', { eager: true })
   // @ts-ignore
-  const build = await import('virtual:remix/server-build')
+  const build = await import('virtual:react-router/server-build')
   const posts = Object.entries(modules).map(([file, post]) => {
     let id = file.replace('../', '').replace(/\.mdx$/, '')
     let slug = build.routes[id].path

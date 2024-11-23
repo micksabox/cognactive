@@ -7,7 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { Button } from 'src/components/ui/button'
 import { useProtocolTrackerState } from './use-protocol-tracker-state'
 import { formatDateKey } from 'src/lib/utils'
-import { useNavigate } from '@remix-run/react'
+import { useNavigate } from 'react-router'
 import { useState } from 'react'
 import { DatePicker } from 'src/components/date-picker'
 

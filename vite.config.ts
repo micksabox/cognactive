@@ -1,19 +1,9 @@
 import { defineConfig } from 'vite'
-import { vitePlugin as remix } from '@remix-run/dev'
-import { installGlobals } from '@remix-run/node'
+import { reactRouter } from '@react-router/dev/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
-
-installGlobals()
-
-declare module '@remix-run/node' {
-  // or cloudflare, deno, etc.
-  interface Future {
-    v3_singleFetch: true
-  }
-}
 
 const MODE = process.env.NODE_ENV
 
@@ -36,13 +26,7 @@ export default defineConfig(async () => {
       mdx.default({
         remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
       }),
-      remix({
-        serverModuleFormat: 'esm',
-        future: {
-          v3_singleFetch: true,
-          v3_routeConfig: true,
-        },
-      }),
+      reactRouter(),
       svgr({}),
       tsconfigPaths(),
     ],

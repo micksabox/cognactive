@@ -1,6 +1,6 @@
 import satori, { SatoriOptions } from 'satori'
 import { Resvg } from '@resvg/resvg-js'
-import { LoaderFunctionArgs } from '@remix-run/node'
+import { LoaderFunctionArgs } from 'react-router'
 import React from 'react'
 
 import fs from 'fs'

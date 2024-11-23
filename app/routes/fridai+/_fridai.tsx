@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from 'src/components/ui/button'
-import { Form, useLoaderData } from '@remix-run/react'
-import { json, LoaderFunction } from '@remix-run/node'
+import { Form, useLoaderData, LoaderFunction } from 'react-router'
 import { PaperSearchItem, semanticScholarClient } from '@/utils/semantic-scholar.server'
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -11,14 +10,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   const searchTerm = url.searchParams.get('searchTerm')
 
   if (!searchTerm) {
-    return json({ papers: [], searchTerm: '' })
+    return { papers: [], searchTerm: '' }
   }
 
   const papers = await semanticScholarClient.searchPapers(searchTerm, 10)
 
   console.log(papers)
 
-  return json({ papers: papers.data, searchTerm })
+  return { papers: papers.data, searchTerm }
 }
 
 const Letter: React.FC<{ letter: string }> = ({ letter }) => (
@@ -58,7 +57,7 @@ const CycleText = ({ words, interval = 3500 }: { words: string[]; interval?: num
 }
 
 const FridaiAcronym: React.FC = () => {
-  const { papers, searchTerm } = useLoaderData<typeof loader>()
+  const { papers, searchTerm } = useLoaderData()
 
   return (
     <div className="container flex flex-col items-center justify-center">

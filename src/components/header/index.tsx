@@ -4,7 +4,7 @@ import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { cn } from 'src/lib/utils'
 import { Button } from '../ui/button'
 import { Github } from 'lucide-react'
-import { Link, useNavigation, useMatches } from '@remix-run/react'
+import { Link, useNavigation, useMatches } from 'react-router'
 import { useSpinDelay } from 'spin-delay'
 interface IProps {
   className?: string

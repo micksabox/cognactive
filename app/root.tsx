@@ -1,5 +1,5 @@
 import React from 'react'
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from 'react-router'
 
 import 'src/assets/icons/cognactive-symbol.css'
 import 'src/styles/globals.css'

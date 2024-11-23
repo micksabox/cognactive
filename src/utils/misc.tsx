@@ -1,4 +1,4 @@
-import { useFormAction, useNavigation } from '@remix-run/react'
+import { useFormAction, useNavigation } from 'react-router'
 import { useSpinDelay } from 'spin-delay'
 import { HOSTNAME } from 'src/constants'
 
