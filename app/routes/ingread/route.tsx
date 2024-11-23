@@ -3,7 +3,7 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { Button } from 'src/components/ui/button'
 import { useFetcher, useRouteError } from '@remix-run/react'
-import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs, json } from '@remix-run/node'
+import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs } from '@remix-run/node'
 import { invariantResponse } from 'src/utils/misc'
 import { openai } from 'src/lib/openai.server'
 import { clsx } from 'clsx'
@@ -40,7 +40,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)
   const entrypoint = url.searchParams.get('entry')
 
-  return json({ entrypoint })
+  return { entrypoint }
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -108,7 +108,7 @@ export async function action({ request }: ActionFunctionArgs) {
     }
   }
 
-  return json({ assistant: responseContent, ingredients: parsedIngredients })
+  return { assistant: responseContent, ingredients: parsedIngredients }
 }
 
 const CameraCapture: React.FC = () => {

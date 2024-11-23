@@ -1,5 +1,5 @@
 import db from 'src/pages/tracker/db'
-import { ClientLoaderFunctionArgs, json, useLoaderData } from '@remix-run/react'
+import { ClientLoaderFunctionArgs, useLoaderData } from '@remix-run/react'
 import { DataTable } from './data-table'
 import { columns } from './columns'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
@@ -10,7 +10,7 @@ export const loader = async ({ request }: { request: Request }) => {
   const url = new URL(request.url)
   const startedPhase2 = url.searchParams.get('startPhase2') === 'true'
 
-  return json({ startedPhase2 })
+  return { startedPhase2 }
 }
 
 export const clientLoader = async (args: ClientLoaderFunctionArgs) => {

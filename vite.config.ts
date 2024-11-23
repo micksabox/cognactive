@@ -9,6 +9,13 @@ import path from 'path'
 
 installGlobals()
 
+declare module '@remix-run/node' {
+  // or cloudflare, deno, etc.
+  interface Future {
+    v3_singleFetch: true
+  }
+}
+
 const MODE = process.env.NODE_ENV
 
 // https://vitejs.dev/config/
@@ -37,6 +44,9 @@ export default defineConfig(async () => {
           return flatRoutes('routes', defineRoutes, {
             ignoredRouteFiles: ['.*', '**/*.css', '**/*.test.{js,jsx,ts,tsx}'],
           })
+        },
+        future: {
+          v3_singleFetch: true,
         },
       }),
       svgr({}),

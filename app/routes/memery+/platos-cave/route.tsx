@@ -1,4 +1,4 @@
-import { MetaFunction, json } from '@remix-run/node'
+import { MetaFunction } from '@remix-run/node'
 import { getMemeByKey } from '../utils.server'
 
 import Readme from './readme.md'
@@ -22,7 +22,7 @@ export const meta: MetaFunction = () => {
 
 export const loader = async () => {
   const meme = await getMemeByKey('platos-cave')
-  return json({ meme })
+  return { meme }
 }
 
 export default function PlatosCaveRoute() {
