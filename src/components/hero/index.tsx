@@ -15,6 +15,7 @@ import { Link } from 'react-router'
 // Temporary. See docs/decisions/02-i18n
 import t from 'src/i18n/locales/en/translation.json'
 import { GITHUB_REPO_BASE } from 'src/constants'
+import Meteors from '../ui/meteors'
 
 interface FeatureProps {
   icon: React.ElementType
@@ -49,6 +50,7 @@ export const Hero = () => {
   return (
     <div className="flex bg-gradient-to-b from-slate-600 to-slate-900">
       <section className="w-full py-8 text-white">
+        <Meteors number={30} />
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6 lg:grid-cols-2">
             <div className="flex flex-col justify-center space-y-4 text-center">
