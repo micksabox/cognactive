@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import { vitePlugin as remix } from '@remix-run/dev'
 import { installGlobals } from '@remix-run/node'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { flatRoutes } from 'remix-flat-routes'
 
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
@@ -38,15 +37,10 @@ export default defineConfig(async () => {
         remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
       }),
       remix({
-        ignoredRouteFiles: ['**/*'],
         serverModuleFormat: 'esm',
-        async routes(defineRoutes) {
-          return flatRoutes('routes', defineRoutes, {
-            ignoredRouteFiles: ['.*', '**/*.css', '**/*.test.{js,jsx,ts,tsx}'],
-          })
-        },
         future: {
           v3_singleFetch: true,
+          v3_routeConfig: true,
         },
       }),
       svgr({}),
