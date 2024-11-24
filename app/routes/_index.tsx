@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { MetaFunction } from '@remix-run/node'
+import { MetaFunction } from 'react-router'
 import { Hero } from 'src/components/hero'
 import { HOSTNAME } from 'src/constants'
 

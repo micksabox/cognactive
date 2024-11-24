@@ -1,5 +1,4 @@
-import { useLoaderData } from '@remix-run/react'
-import { json, LoaderFunction } from '@remix-run/node'
+import { useLoaderData, LoaderFunction } from 'react-router'
 import { semanticScholarClient } from '@/utils/semantic-scholar.server'
 import type { Paper } from '@/utils/semantic-scholar.server'
 
@@ -13,7 +12,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   try {
     const paper = await semanticScholarClient.getPaper(paperId)
     console.log('paper', paper, paperId)
-    return json({ paper })
+    return { paper }
   } catch (error) {
     console.error('Error fetching paper:', error)
     throw new Response('Failed to fetch paper details', { status: 500 })

@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react'
+import { Link } from 'react-router'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { ArrowUpRightSquare, Github } from 'lucide-react'
 import { GITHUB_REPO_BASE, TELEGRAM_CHAT_LINK } from 'src/constants'

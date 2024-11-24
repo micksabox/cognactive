@@ -1,5 +1,4 @@
-import { Link, Outlet, useLoaderData } from '@remix-run/react'
-import { LoaderFunctionArgs, json } from '@remix-run/node'
+import { Link, Outlet, useLoaderData, LoaderFunctionArgs } from 'react-router'
 import React from 'react'
 import { getMemeByKey } from './utils.server'
 import { invariantResponse } from 'src/utils/misc'
@@ -14,7 +13,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   try {
     const meme = await getMemeByKey(memeKey)
 
-    return json({ meme, memeKey })
+    return { meme, memeKey }
   } catch (error) {
     console.log(error)
     throw new Response('Not found', { status: 404 })

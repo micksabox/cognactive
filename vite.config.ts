@@ -1,13 +1,9 @@
 import { defineConfig } from 'vite'
-import { vitePlugin as remix } from '@remix-run/dev'
-import { installGlobals } from '@remix-run/node'
+import { reactRouter } from '@react-router/dev/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { flatRoutes } from 'remix-flat-routes'
 
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
-
-installGlobals()
 
 const MODE = process.env.NODE_ENV
 
@@ -30,15 +26,7 @@ export default defineConfig(async () => {
       mdx.default({
         remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
       }),
-      remix({
-        ignoredRouteFiles: ['**/*'],
-        serverModuleFormat: 'esm',
-        async routes(defineRoutes) {
-          return flatRoutes('routes', defineRoutes, {
-            ignoredRouteFiles: ['.*', '**/*.css', '**/*.test.{js,jsx,ts,tsx}'],
-          })
-        },
-      }),
+      reactRouter(),
       svgr({}),
       tsconfigPaths(),
     ],

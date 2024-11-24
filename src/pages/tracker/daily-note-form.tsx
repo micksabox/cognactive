@@ -15,7 +15,7 @@ import { Textarea } from 'src/components/ui/textarea'
 import db from './db'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { useNavigate } from '@remix-run/react'
+import { useNavigate } from 'react-router'
 import { cn } from 'src/lib/utils'
 
 export default function DailyNoteForm({ dateKey, buttonClassName }: { dateKey: string; buttonClassName?: string }) {

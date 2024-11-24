@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast'
 import { formatDateKey } from 'src/lib/utils'
 import { ISymptom } from './db'
 import { TrackerTool } from './dashboard'
-import { Link } from '@remix-run/react'
+import { Link } from 'react-router'
 
 export const defaultSymptoms = [
   'Tiredness',

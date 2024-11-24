@@ -1,4 +1,4 @@
-import { LoaderFunction, redirect } from '@remix-run/node'
+import { LoaderFunction, redirect } from 'react-router'
 
 export const loader: LoaderFunction = () => {
   return redirect('/blog')

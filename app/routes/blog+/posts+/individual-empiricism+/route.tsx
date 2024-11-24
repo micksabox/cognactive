@@ -1,6 +1,6 @@
 import Component from './post.md'
 
-import { MetaFunction } from '@remix-run/node'
+import { MetaFunction } from 'react-router'
 import { redirectToImageGenerator, openGraphImageMeta } from 'src/utils/misc'
 
 export const meta: MetaFunction = () => {

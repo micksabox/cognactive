@@ -1,5 +1,5 @@
 import React from 'react'
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from 'react-router'
 
 import 'src/assets/icons/cognactive-symbol.css'
 import 'src/styles/globals.css'
@@ -72,7 +72,7 @@ export default function Root() {
         {/* Twitter previews */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@cognactive" />
-        <meta name="twitter:creator" content="@micksabox" />
+        <meta name="twitter:creator" content="@myconull" />
         <meta property="twitter:domain" content={DOMAIN} />
         <meta property="twitter:url" content={HOSTNAME} />
         <meta name="twitter:image:alt" content="cognactive" />

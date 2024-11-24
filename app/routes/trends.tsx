@@ -1,4 +1,4 @@
-import { useLoaderData } from '@remix-run/react'
+import { useLoaderData } from 'react-router'
 import { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import ContentHeader from 'src/components/content-header.tsx'
@@ -22,7 +22,7 @@ export function HydrateFallback() {
 }
 
 const SymptomAnalysis = () => {
-  const { symptoms } = useLoaderData<typeof clientLoader>()
+  const { symptoms } = useLoaderData()
   const [range, setRange] = useState<'weekly' | 'monthly'>('weekly')
 
   const processData = (data: DieOffSymptom[], range: 'weekly' | 'monthly') => {

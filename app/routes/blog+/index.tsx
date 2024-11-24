@@ -1,5 +1,4 @@
-import { json } from '@remix-run/node'
-import { Link, useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData } from 'react-router'
 
 import * as firstPost from './posts+/metagame.mdx'
 
@@ -16,11 +15,11 @@ function postFromModule(mod: any) {
 export const loader = async () => {
   const posts = [postFromModule(firstPost)]
 
-  return json(posts)
+  return { posts }
 }
 
 export default function Component() {
-  const posts = useLoaderData<typeof loader>()
+  const { posts } = useLoaderData<typeof loader>()
 
   return (
     <div className="p-10">
