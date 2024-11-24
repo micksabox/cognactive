@@ -1,5 +1,4 @@
-import { Link, useLoaderData } from '@remix-run/react'
-import { json, LoaderFunction } from '@remix-run/node'
+import { Link, useLoaderData, LoaderFunction } from 'react-router'
 import { GithubIcon, MonitorPlay } from 'lucide-react'
 import { Episode, initialFungcastEpisodes } from './episode-list'
 import HeroVideoDialog from 'src/components/ui/hero-video-dialog'
@@ -12,11 +11,11 @@ export const loader: LoaderFunction = async () => {
     episodes: initialFungcastEpisodes,
   }
 
-  return json(fungcastData)
+  return fungcastData
 }
 
 export default function FungCast() {
-  const data = useLoaderData<typeof loader>()
+  const data = useLoaderData()
 
   return (
     <div className="container mx-auto px-4 py-8">
