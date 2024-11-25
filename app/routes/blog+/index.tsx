@@ -1,25 +1,25 @@
-import { Link, useLoaderData } from 'react-router'
+import { Link } from 'react-router'
+import { getPosts } from '@/.server/blogposts'
 
-import * as firstPost from './posts+/metagame.mdx'
+import type { Route } from './+types/index'
 
-// Enable with vite support
-// import { getPosts } from '@/.server/blogposts'
-
-function postFromModule(mod: any) {
-  return {
-    slug: mod.filename.replace(/\.mdx?$/, ''),
-    ...mod.attributes,
-  }
-}
+// function postFromModule(mod: any) {
+//   return {
+//     slug: mod.filename.replace(/\.mdx?$/, ''),
+//     ...mod.attributes,
+//   }
+// }
 
 export const loader = async () => {
-  const posts = [postFromModule(firstPost)]
+  const posts = await getPosts()
 
   return { posts }
 }
 
-export default function Component() {
-  const { posts } = useLoaderData<typeof loader>()
+export default function Component({ loaderData }: Route.ComponentProps) {
+  const { posts } = loaderData
+
+  console.log(posts)
 
   return (
     <div className="p-10">
@@ -28,10 +28,8 @@ export default function Component() {
         {posts.map((post) => (
           <li key={post.slug}>
             <Link prefetch="intent" to={`posts/${post.slug}`}>
-              {post.title}
+              {post.frontmatter.title}
             </Link>
-            <p>{post.description}</p>
-            <p>Published on {post.published}</p>
           </li>
         ))}
       </ul>

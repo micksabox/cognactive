@@ -74,7 +74,7 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
         <p className="text-sm text-slate-600">Track myco die-off symptoms and experiences</p>
         <Button className="text-blue-500" size={'sm'} variant={'link'} asChild>
           <Link to="/trends">
-            <BarChart2 className="inline-block w-4" />
+            <BarChart2 className="mr-2 inline-block w-4" />
             View Chart
           </Link>
         </Button>
