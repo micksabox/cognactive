@@ -3,7 +3,7 @@ import ProtocolTracker from 'src/pages/tracker/index'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import type { Route } from './+types/route'
 
-import { meta as RootMeta } from '../_index'
+import { meta as RootMeta } from '../homepage'
 import React from 'react'
 import { ProtocolTrackerStateContext } from 'src/pages/tracker/use-protocol-tracker-state'
 
