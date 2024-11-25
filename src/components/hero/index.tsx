@@ -5,7 +5,7 @@ import {
   HeartHandshakeIcon,
   LayoutGridIcon,
   Scan,
-  SmartphoneChargingIcon,
+  MonitorPlay,
 } from 'lucide-react'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 
@@ -74,10 +74,16 @@ export const Hero = () => {
                       Ingredient Scanner
                     </Link>
                   </Button>
-                  <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
+                  {/* <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/fridai">
                       <SmartphoneChargingIcon className="mr-2" />
                       F.R.I.D.A.I
+                    </Link>
+                  </Button> */}
+                  <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
+                    <Link to="/fungcaster">
+                      <MonitorPlay className="mr-2" />
+                      Fungcaster
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
@@ -89,7 +95,7 @@ export const Hero = () => {
                   <div>
                     <p className="my-2">What is the NAC protocol?</p>
                     <Button size={'lg'} variant={'ghost'} className="border border-white text-white shadow-md" asChild>
-                      <a href="/files/NAC_Protocol.pdf">
+                      <a href="https://www.docdroid.net/4H1DgHE/nac-protocol-printable-pdf">
                         <ScrollIcon className="mr-2 inline-block w-4" /> Read NAC protocol whitepaper
                       </a>
                     </Button>
