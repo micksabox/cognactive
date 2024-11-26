@@ -9,7 +9,10 @@ export const loader = async () => {
     return { posts }
   } catch (error) {
     console.error(error)
-    throw new Error('Failed to load blog posts')
+    throw new Response('Failed to load blog posts: ' + (error instanceof Error ? error.message : 'Unknown error'), {
+      status: 500,
+      statusText: 'Internal Server Error',
+    })
   }
 }
 
