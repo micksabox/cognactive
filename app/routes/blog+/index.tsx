@@ -3,23 +3,18 @@ import { getPosts } from '@/.server/blogposts'
 
 import type { Route } from './+types/index'
 
-// function postFromModule(mod: any) {
-//   return {
-//     slug: mod.filename.replace(/\.mdx?$/, ''),
-//     ...mod.attributes,
-//   }
-// }
-
 export const loader = async () => {
-  const posts = await getPosts()
-
-  return { posts }
+  try {
+    const posts = await getPosts()
+    return { posts }
+  } catch (error) {
+    console.error(error)
+    throw new Error('Failed to load blog posts')
+  }
 }
 
 export default function Component({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData
-
-  console.log(posts)
 
   return (
     <div className="p-10">
