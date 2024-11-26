@@ -1,7 +1,7 @@
 import { MetaFunction } from 'react-router'
 import { getMemeByKey } from '../utils.server'
 
-import Readme from './readme.md'
+import Readme from './readme.mdx'
 import { openGraphImageMeta, redirectToImageGenerator } from 'src/utils/misc'
 
 export const meta: MetaFunction = () => {

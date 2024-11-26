@@ -7,7 +7,7 @@ import fs from 'fs'
 import { OPEN_GRAPH_IMAGE_HEIGHT, OPEN_GRAPH_IMAGE_WIDTH } from 'src/utils/misc'
 
 export function getLogoBase64() {
-  const logoPath = new URL('../public/logo.png', import.meta.url).pathname
+  const logoPath = new URL('../../../public/logo.png', import.meta.url).pathname
 
   const logoData = fs.readFileSync(logoPath)
   return `data:image/png;base64,${logoData.toString('base64')}`

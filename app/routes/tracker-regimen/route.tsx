@@ -1,23 +1,22 @@
 import db from 'src/pages/tracker/db'
-import { ClientLoaderFunctionArgs, useLoaderData } from 'react-router'
 import { DataTable } from './data-table'
 import { columns } from './columns'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { useLiveQuery } from 'dexie-react-hooks'
 import ContentHeader from 'src/components/content-header.tsx'
+import type { Route } from './+types/route'
 
-export const loader = async ({ request }: { request: Request }) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
   const url = new URL(request.url)
   const startedPhase2 = url.searchParams.get('startPhase2') === 'true'
 
-  return { startedPhase2 }
+  return { startedPhase2, regimenActivities: [] }
 }
 
-export const clientLoader = async (args: ClientLoaderFunctionArgs) => {
+export const clientLoader = async (args: Route.ClientLoaderArgs) => {
   const [serverData, clientData] = await Promise.all([args.serverLoader(), db.regimen.toArray()])
 
   return {
-    // @ts-ignore
     ...serverData,
     regimenActivities: clientData,
   }
@@ -29,9 +28,7 @@ export function HydrateFallback() {
   return <p>Loading Regimen...</p>
 }
 
-const Regimen: React.FC = () => {
-  const loaderData = useLoaderData<typeof clientLoader>()
-
+const Regimen: React.FC<Route.ComponentProps> = ({ loaderData }) => {
   const regimenActivities = useLiveQuery(() => db.regimen.orderBy('id').toArray(), [])
 
   return (

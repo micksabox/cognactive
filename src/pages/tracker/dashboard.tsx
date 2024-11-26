@@ -125,7 +125,9 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
       <TrackerTool
         toolbarItems={
           <Button asChild size={'sm'} variant={'secondary'}>
-            <Link to={'/tracker-regimen'}>Customize</Link>
+            <Link to={'/tracker-regimen'} viewTransition>
+              Customize
+            </Link>
           </Button>
         }
         title="Daily Regimen"
@@ -196,7 +198,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         title="Note Journal"
         toolbarItems={
           <Button asChild size={'sm'} variant={'secondary'}>
-            <Link to={'/tracker-journal'}>
+            <Link to={'/tracker-journal'} viewTransition>
               <BookIcon className="mr-2 w-4" /> Read All Notes
             </Link>
           </Button>

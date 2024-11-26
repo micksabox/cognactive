@@ -1,9 +1,9 @@
-import { useLoaderData } from 'react-router'
 import { PROTOCOL_PHASE, PROTOCOL_PHASE_2_CYCLE_START, PROTOCOL_START_DATE } from 'src/constants'
 import ProtocolTracker from 'src/pages/tracker/index'
 import { useLocalStorage } from '@uidotdev/usehooks'
+import type { Route } from './+types/route'
 
-import { meta as RootMeta } from '../_index'
+import { meta as RootMeta } from '../homepage'
 import React from 'react'
 import { ProtocolTrackerStateContext } from 'src/pages/tracker/use-protocol-tracker-state'
 
@@ -21,8 +21,8 @@ export const clientLoader = async () => {
   }
 }
 
-const TrackerComponent: React.FC = () => {
-  const clientData = useLoaderData<typeof clientLoader>()
+const TrackerComponent: React.FC<Route.ComponentProps> = ({ loaderData }) => {
+  const clientData = loaderData
 
   const [currentPhase, setCurrentPhase] = useLocalStorage<string | null>(PROTOCOL_PHASE, clientData.currentPhase)
   const [phase2CycleStart, setPhase2CycleStart] = useLocalStorage<string | null>(

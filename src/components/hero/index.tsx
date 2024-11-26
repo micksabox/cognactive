@@ -62,14 +62,14 @@ export const Hero = () => {
                 <p className="mb-4">Open source tools and tech for the anti-fungal NAC protocol.</p>
                 <div className="mx-auto flex max-w-sm flex-col gap-2">
                   <Button className="bg-cyan py-6 text-lg font-semibold" size={'lg'} asChild>
-                    <Link to="/tracker">
+                    <Link to="/tracker" viewTransition>
                       <ListTodo className="mr-2" />
                       Regimen Tracker
                       {/* {t('get-started')} */}
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
-                    <Link to="/ingread">
+                    <Link to="/ingread" viewTransition>
                       <Scan className="mr-2" />
                       Ingredient Scanner
                     </Link>
@@ -81,13 +81,13 @@ export const Hero = () => {
                     </Link>
                   </Button> */}
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
-                    <Link to="/fungcaster">
+                    <Link to="/fungcaster" viewTransition>
                       <MonitorPlay className="mr-2" />
                       Fungcaster
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
-                    <Link to="/memery/platos-cave">
+                    <Link to="/memery/platos-cave" viewTransition>
                       <ScrollIcon className="mr-2" />
                       Memery Stream
                     </Link>

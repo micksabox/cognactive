@@ -1,17 +1,14 @@
-import { useLoaderData } from 'react-router'
 import { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import ContentHeader from 'src/components/content-header.tsx'
 import { Button } from 'src/components/ui/button'
-import db, { DieOffSymptom } from 'src/pages/tracker/db'
+import db, { ISymptom } from 'src/pages/tracker/db'
+import type { Route } from './+types/trends'
 
 export const clientLoader = async () => {
   const symptoms = await db.symptoms.toArray()
   return {
-    symptoms: symptoms.map((symptom) => ({
-      ...symptom,
-      createdAt: new Date(symptom.createdAt),
-    })),
+    symptoms,
   }
 }
 
@@ -21,11 +18,11 @@ export function HydrateFallback() {
   return <p>Loading Symptom Analysis...</p>
 }
 
-const SymptomAnalysis = () => {
-  const { symptoms } = useLoaderData()
+const SymptomAnalysis: React.FC<Route.ComponentProps> = ({ loaderData }) => {
+  const { symptoms } = loaderData
   const [range, setRange] = useState<'weekly' | 'monthly'>('weekly')
 
-  const processData = (data: DieOffSymptom[], range: 'weekly' | 'monthly') => {
+  const processData = (data: ISymptom[], range: 'weekly' | 'monthly') => {
     const groupedData: { [key: string]: number } = {}
 
     data.forEach((symptom) => {

@@ -1,11 +1,12 @@
-import { Link, useLoaderData, LoaderFunction } from 'react-router'
+import { Link } from 'react-router'
 import { GithubIcon, MonitorPlay } from 'lucide-react'
 import { Episode, initialFungcastEpisodes } from './episode-list'
 import HeroVideoDialog from 'src/components/ui/hero-video-dialog'
 import { Button } from 'src/components/ui/button'
 import { GITHUB_REPO_BASE } from 'src/constants'
+import type { Route } from './+types/route'
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const fungcastData = {
     title: 'Fungcaster',
     episodes: initialFungcastEpisodes,
@@ -14,8 +15,8 @@ export const loader: LoaderFunction = async () => {
   return fungcastData
 }
 
-export default function FungCast() {
-  const data = useLoaderData()
+export default function FungCast({ loaderData }: Route.ComponentProps) {
+  const data = loaderData
 
   return (
     <div className="container mx-auto px-4 py-8">

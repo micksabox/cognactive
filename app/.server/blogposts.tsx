@@ -1,4 +1,4 @@
-import { ServerBuild } from 'react-router';
+import { ServerBuild } from 'react-router'
 
 // This code and technique modified from https://github.com/pcattori/remix-blog-mdx
 
