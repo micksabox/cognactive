@@ -2,7 +2,7 @@
 
 ## open source/access
 
-### Modern [Remix](https://remix.run) web app providing open-source software and AI utility for the open access NAC protocol. [What is the NAC protocol?](/public/files/NAC_Protocol.pdf)
+### Modern [React Router 7 framework](https://reactrouter.com) web app providing open-source software and AI utility for the open access NAC protocol. [What is the NAC protocol?](/public/files/NAC_Protocol.pdf)
 
 > Breaking the mold
 
@@ -21,7 +21,7 @@ Presented intuitively as a slick mobile application, you will love taking cognac
 
 ### Local Data Storage Policy
 
-These data entities are stored using a local browser-based IndexedDB. These are not sent anywhere and stay completely on your device.
+These data entities are stored using a local browser-based IndexedDB. These are not sent anywhere and stay completely on your device. See
 
 - myco die-off experiences
 - journal notes
@@ -47,19 +47,18 @@ npm install
 npm run dev
 ```
 
-Navigate to `http://localhost:3000` to see cognactive.
+Navigate to `http://localhost:5001` to see cognactive.
 
 ## NAC stack
 
-Built on the Typescript full stack web framework [Remix](https://remix.run).
+Built on the Typescript full stack web framework [React Router 7](https://reactrouter.com).
 
 - [vite](https://vitejs.dev/)
 - [react](https://reactjs.org/)
-- [remix](https://remix.run)
+- [react-router](https://reactrouter.com)
 - [shadcn ui](https://ui.shadcn.com/)
 - [react-lucide](https://lucide.dev/)
 - [transmart](https://github.com/Quilljou/transmart)
-- [react-query](https://tanstack.com/query/latest/)
 - [tailwindcss](https://tailwindcss.com/)
 - [postcss](https://postcss.org/)
 - [eslint](https://eslint.org/)/[stylelint](https://stylelint.io/)
@@ -74,7 +73,7 @@ Built on the Typescript full stack web framework [Remix](https://remix.run).
 ```sh
 src
 ├── app              # App entry and routes
-│   ├── routes       # Remix routes
+│   ├── routes       # React router framework routes
 │   │   └── index.tsx  # Root route
 │   └── root.tsx     # Root component
 ├── src
