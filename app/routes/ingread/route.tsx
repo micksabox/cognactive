@@ -51,7 +51,7 @@ export async function action({ request }: Route.ActionArgs) {
   invariantResponse(typeof imageBase64 === 'string', 'Image is required', { status: 400 })
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-4-vision-preview',
+    model: 'gpt-4o',
     messages: [
       {
         role: 'user',
