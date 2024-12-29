@@ -1,5 +1,5 @@
-import spanish from 'src/i18n/locales/es/translation.json'
-import english from 'src/i18n/locales/en/translation.json'
+import spanish from 'app/i18n/locales/es/translation.json'
+import english from 'app/i18n/locales/en/translation.json'
 
 const languages = ['en', 'es'] as const
 export const supportedLanguages = [...languages]

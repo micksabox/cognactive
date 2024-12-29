@@ -1,9 +1,9 @@
-import { LANGUAGES } from './src/i18n/config'
+import { supportedLanguages } from './app/localization/resource'
 
 export default {
   baseLocale: 'en',
-  locales: LANGUAGES,
-  localePath: 'src/i18n/locales',
+  locales: supportedLanguages,
+  localePath: 'app/i18n/locales',
   openAIApiKey: process.env.OPENAI_API_KEY,
   openAIApiUrl: process.env.OPENAI_API_URL,
 }

@@ -1,6 +1,6 @@
 import { useFormAction, useNavigation } from 'react-router'
 import { useSpinDelay } from 'spin-delay'
-import { HOSTNAME } from 'src/constants'
+import { HOSTNAME } from 'app/constants'
 
 /**
  
