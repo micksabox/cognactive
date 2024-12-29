@@ -3,6 +3,7 @@ import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { ArrowUpRightSquare, Github } from 'lucide-react'
 import { GITHUB_REPO_BASE, TELEGRAM_CHAT_LINK } from 'src/constants'
 import { Button } from '../ui/button'
+import { LanguageSelector } from '../language-selector'
 
 const Footer: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const Footer: React.FC = () => {
             <Github className="w-4" />
           </a>
         </Button>
+        <LanguageSelector triggerClassName="text-white" />
       </div>
       <p className="my-2">
         <Link className="underline underline-offset-auto" to={'/privacy'}>

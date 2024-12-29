@@ -2,9 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { useCallback, useMemo } from 'react'
 import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { cn } from 'src/lib/utils'
-import { LANGUAGES } from 'src/i18n/config'
+import { supportedLanguages } from 'app/localization/resource'
 import { Languages, ChevronDown } from 'lucide-react'
 import i18next from 'i18next'
+import { Button } from '../ui/button'
 
 const getLocaleDisplayName = (locale: string, displayLocale?: string) => {
   const displayName = new Intl.DisplayNames([displayLocale || locale], {
@@ -13,11 +14,15 @@ const getLocaleDisplayName = (locale: string, displayLocale?: string) => {
   return displayName.charAt(0).toLocaleUpperCase() + displayName.slice(1)
 }
 
-const LanguageSelector = () => {
+type LanguageSelectorProps = {
+  triggerClassName?: string
+}
+
+const LanguageSelector = ({ triggerClassName }: LanguageSelectorProps) => {
   const { i18n } = useTranslation()
 
   const localesAndNames = useMemo(() => {
-    return LANGUAGES.map((locale) => ({
+    return supportedLanguages.map((locale) => ({
       locale,
       name: getLocaleDisplayName(locale),
     }))
@@ -25,6 +30,9 @@ const LanguageSelector = () => {
 
   const languageChanged = useCallback(async (locale: any) => {
     i18next.changeLanguage(locale)
+    const searchParams = new URLSearchParams(window.location.search)
+    searchParams.set('lng', locale)
+    window.history.replaceState(null, '', `${window.location.pathname}?${searchParams.toString()}`)
   }, [])
 
   const { resolvedLanguage: currentLanguage } = i18n
@@ -33,14 +41,14 @@ const LanguageSelector = () => {
     <div className="flex items-end">
       <Popover>
         <PopoverTrigger>
-          <div className="flex items-center gap-1 fill-black text-black">
+          <Button variant={'outline'} className={cn('flex items-center gap-1', triggerClassName)}>
             <Languages size={18} />
             {currentLanguage && getLocaleDisplayName(currentLanguage)}
             <ChevronDown size={12} />
-          </div>
+          </Button>
         </PopoverTrigger>
 
-        <PopoverContent className="absolute mt-1 max-h-60 w-auto overflow-auto rounded-md bg-white p-0 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+        <PopoverContent className="absolute mt-1 max-h-60 w-auto overflow-auto rounded-md bg-white p-0 py-1 text-base shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none sm:text-sm">
           {localesAndNames.map(({ locale, name }) => {
             const isSelected = currentLanguage === locale
             return (

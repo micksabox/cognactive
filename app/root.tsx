@@ -7,7 +7,6 @@ import type { Route } from './+types/root'
 
 import { useTranslation } from 'react-i18next'
 import { useChangeLanguage } from 'remix-i18next/react'
-import { LanguageSwitcher } from '@/components/language-switcher'
 
 import { Toaster } from 'react-hot-toast'
 
@@ -105,8 +104,6 @@ export default function Root({ loaderData }: Route.ComponentProps) {
         <div className="h-min-screen">
           <Header className="fixed top-0 z-10 h-16" />
           <div className="mt-16">
-            <LanguageSwitcher />
-
             <Outlet />
           </div>
         </div>

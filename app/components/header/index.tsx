@@ -1,18 +1,17 @@
-import React from 'react'
-
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { cn } from 'src/lib/utils'
 import { Button } from '../ui/button'
 import { Github } from 'lucide-react'
 import { Link, useNavigation, useMatches } from 'react-router'
 import { useSpinDelay } from 'spin-delay'
+// import { LanguageSelector } from '../language-selector'
 interface IProps {
   className?: string
 }
 export function Header(props: IProps) {
   const matches = useMatches()
 
-  const isHomepage = matches.findIndex((m) => m.pathname === '/') == matches.length - 1
+  const isHomepage = matches.every((m) => m.pathname === '/')
   const transition = useNavigation()
   const busy = transition.state !== 'idle'
 
@@ -36,7 +35,6 @@ export function Header(props: IProps) {
         cognactive
       </Link>
       <div className="flex items-center gap-4">
-        {/* <LanguageSelector /> */}
         {isHomepage && (
           <Button asChild>
             <a href="https://github.com/micksabox/cognactive" target="_blank" rel="noreferrer">
