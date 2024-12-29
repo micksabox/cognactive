@@ -5,6 +5,12 @@ import type { AppLoadContext, EntryContext } from 'react-router'
 import { createReadableStreamFromReadable } from '@react-router/node'
 import { ServerRouter } from 'react-router'
 import { isbot } from 'isbot'
+import { createInstance } from 'i18next'
+import { I18nextProvider, initReactI18next } from 'react-i18next'
+import i18n from './localization/i18n' // i18n configuration file
+import i18nextOpts from './localization/i18n.server'
+import { resources } from './localization/resource'
+
 import { renderToPipeableStream } from 'react-dom/server'
 
 const ABORT_DELAY = 5_000
@@ -18,7 +24,7 @@ export default function handleRequest(
 ) {
   return isbot(request.headers.get('user-agent') || '')
     ? handleBotRequest(request, responseStatusCode, responseHeaders, reactRouterContext)
-    : handleBrowserRequest(request, responseStatusCode, responseHeaders, reactRouterContext)
+    : handleBrowserRequest(request, responseStatusCode, responseHeaders, reactRouterContext, loadContext)
 }
 
 function handleBotRequest(
@@ -59,15 +65,32 @@ function handleBotRequest(
   })
 }
 
-function handleBrowserRequest(
+async function handleBrowserRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
   reactRouterContext: EntryContext,
+  appContext: AppLoadContext,
 ) {
+  const instance = createInstance()
+  const lng = appContext.lang
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ns = i18nextOpts.getRouteNamespaces(reactRouterContext as any)
+
+  await instance
+    .use(initReactI18next) // Tell our instance to use react-i18next
+    .init({
+      ...i18n, // spread the configuration
+      lng, // The locale we detected above
+      ns, // The namespaces the routes about to render wants to use
+      resources,
+    })
+
   return new Promise((resolve, reject) => {
     const { pipe, abort } = renderToPipeableStream(
-      <ServerRouter context={reactRouterContext} url={request.url} abortDelay={ABORT_DELAY} />,
+      <I18nextProvider i18n={instance}>
+        <ServerRouter context={reactRouterContext} url={request.url} abortDelay={ABORT_DELAY} />
+      </I18nextProvider>,
       {
         onShellReady() {
           const body = new PassThrough()
