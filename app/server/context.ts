@@ -20,7 +20,7 @@ export const getLoadContext = async (c: Context) => {
     env,
     clientEnv,
     // We do not add this to AppLoadContext type because it's not needed in the loaders, but it's used above to handle requests
-    // body: c.body,
+    body: c.body,
   }
 }
 

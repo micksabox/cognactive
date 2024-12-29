@@ -87,6 +87,7 @@ async function handleBrowserRequest(
     })
 
   return new Promise((resolve, reject) => {
+    let didError = false
     const { pipe, abort } = renderToPipeableStream(
       <I18nextProvider i18n={instance}>
         <ServerRouter context={reactRouterContext} url={request.url} abortDelay={ABORT_DELAY} />
@@ -94,18 +95,14 @@ async function handleBrowserRequest(
       {
         onShellReady() {
           const body = new PassThrough()
-
+          const stream = createReadableStreamFromReadable(body)
           responseHeaders.set('Content-Type', 'text/html')
 
-          const url = new URL(request.url)
-          if (url.pathname.match(/^\/videos\/.+\.mp4$/)) {
-            responseHeaders.set('Cache-Control', 'public, max-age=604800') // 1 week
-          }
-
           resolve(
-            new Response(createReadableStreamFromReadable(body), {
+            // @ts-expect-error - We purposely do not define the body as existent so it's not used inside loaders as it's injected there as well
+            appContext.body(stream, {
               headers: responseHeaders,
-              status: responseStatusCode,
+              status: didError ? 500 : responseStatusCode,
             }),
           )
 
@@ -115,6 +112,8 @@ async function handleBrowserRequest(
           reject(error)
         },
         onError(error: unknown) {
+          didError = true
+
           console.error(error)
           responseStatusCode = 500
         },
