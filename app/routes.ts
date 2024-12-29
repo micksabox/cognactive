@@ -8,6 +8,7 @@ const routes = [
   route('/tracker-regimen', './routes/tracker-regimen/route.tsx'),
   route('/trends', './routes/trends.tsx'),
   route('/fridai', './routes/fridai+/_fridai.tsx'),
+  route('/resource/locales', './routes/resource.locales.tsx'),
   route('/fungcaster', './routes/fungcaster/route.tsx'),
   ...prefix('/blog', [
     layout('./routes/blog+/_layout.tsx', [

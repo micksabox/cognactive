@@ -1,4 +1,6 @@
+/// <reference types="react-router" />
 /// <reference types="vite/client" />
+/// <reference types="vitest" />
 /// <reference types="vite-plugin-svgr/client" />
 import 'react'
 declare module '*.mdx' {
