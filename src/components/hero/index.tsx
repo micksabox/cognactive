@@ -12,9 +12,8 @@ import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 import { Button } from '../ui/button'
 import { Link } from 'react-router'
 
-// Temporary. See docs/decisions/02-i18n
-import t from 'src/i18n/locales/en/translation.json'
 import { GITHUB_REPO_BASE } from 'src/constants'
+import { useTranslation } from 'react-i18next'
 
 interface FeatureProps {
   icon: React.ElementType
@@ -46,6 +45,8 @@ const HeroFeature: React.FC<FeatureProps> = ({ icon: Icon, title, description, l
 }
 
 export const Hero = () => {
+  const { t } = useTranslation()
+
   return (
     <div className="flex bg-gradient-to-b from-slate-600 to-slate-900">
       <section className="w-full py-8 text-white">
@@ -57,15 +58,14 @@ export const Hero = () => {
                   <CognactiveIcon className="fill-white" darkMode />
                 </div>
                 <h1 className="my-4 text-3xl font-bold tracking-tighter text-transparent text-white sm:text-5xl xl:text-6xl/none">
-                  {t['hero-title']}
+                  {t('hero-title')}
                 </h1>
                 <p className="mb-4">Open source tools and tech for the anti-fungal NAC protocol.</p>
                 <div className="mx-auto flex max-w-sm flex-col gap-2">
                   <Button className="bg-cyan py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/tracker" viewTransition>
                       <ListTodo className="mr-2" />
-                      Regimen Tracker
-                      {/* {t('get-started')} */}
+                      {t('get-started')}
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
@@ -107,18 +107,18 @@ export const Hero = () => {
               <div className="grid grid-cols-1 gap-2">
                 <HeroFeature
                   icon={() => <ActivitySquare size={16} />}
-                  title={t['tracking']}
-                  description={t['tracking-desc']}
+                  title={t('tracking')}
+                  description={t('tracking-desc')}
                 />
                 <HeroFeature
                   icon={() => <LayoutGridIcon size={16} />}
-                  title={t['hero-appexperience']}
-                  description={t['hero-appexperience-desc']}
+                  title={t('hero-appexperience')}
+                  description={t('hero-appexperience-desc')}
                 />
                 <HeroFeature
                   icon={() => <HeartHandshakeIcon size={16} />}
-                  title={t['hero-opensource']}
-                  description={t['hero-opensource-desc']}
+                  title={t('hero-opensource')}
+                  description={t('hero-opensource-desc')}
                   link={GITHUB_REPO_BASE}
                   linkText="Source code available here."
                 />

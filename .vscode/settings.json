@@ -14,5 +14,10 @@
     "className",
     "ngClass",
     "tw"
-  ]
+  ],
+  "i18n-ally.localesPaths": [
+    "src/i18n/locales",
+  ],
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.annotations": true
 }

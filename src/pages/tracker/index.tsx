@@ -8,7 +8,6 @@ import { toast } from 'react-hot-toast'
 import useIsAppInstalled from 'src/pages/tracker/use-is-app-installed'
 import { Alert, AlertDescription, AlertTitle } from 'src/components/ui/alert'
 import { LayoutGrid, ShareIcon } from 'lucide-react'
-import { getEnv } from 'src/lib/env'
 import { parse } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from 'src/components/ui/popover'
 import { PROTOCOL_PHASE, PROTOCOL_PHASE_2_CYCLE_START, PROTOCOL_START_DATE } from 'src/constants'
@@ -23,7 +22,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
   const isAppInstalled = useIsAppInstalled()
 
   const handleStartProtocol = useCallback(() => {
-    if (isAppInstalled || getEnv() === 'development') {
+    if (isAppInstalled || ENV.MODE === 'development') {
       const currentDate = formatDateKey(pickerDate || new Date())
       localStorage.setItem(PROTOCOL_START_DATE, currentDate)
       setStartDate(currentDate)

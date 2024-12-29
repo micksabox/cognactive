@@ -1,12 +1,12 @@
 {
-  "title": "Vite React Tailwind Starter",
+  "title": "cognactive",
   "features": "Características",
-  "modernstack": "Pila moderna y eficiente",
-  "modernstack-desc": "Construido con vite, react, tailwindcss, shadcnui y más",
-  "i18nsupport": "Soporte i18n de serie",
-  "i18nsupport-desc": "Envía tu producto con diferentes idiomas de forma nativa",
-  "linters": "Linters para todo el código al guardar",
-  "linters-desc": "Construido con eslint, prettier, stylelint, commitlint",
-  "hero-title": "Construye aplicaciones con la mejor experiencia de desarrollo que amamos",
-  "get-started": "Empezar"
+  "tracking": "Rastrea tu NAC",
+  "tracking-desc": "Rastrea tu régimen del protocolo NAC, experiencias de eliminación de mico y más. Respeto por tu privacidad con almacenamiento local de datos. Flexible con soporte para régimen personalizable.",
+  "hero-appexperience": "Aplicación para tu NAC",
+  "hero-appexperience-desc": "Lleva las herramientas de cognactive contigo en tu viaje. Instala la aplicación web móvil cognactive en tu pantalla de inicio y úsala como una aplicación. Compatible con iOS y Android.",
+  "hero-opensource": "Código abierto",
+  "hero-opensource-desc": "Cognactive está listo para personalización, colaboración y mejoras como un bien público tecnológico de la comunidad global.",
+  "hero-title": "Rastrea el Protocolo NAC",
+  "get-started": "Iniciar Rastreador"
 }
