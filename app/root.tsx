@@ -22,7 +22,7 @@ export async function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function Root({ loaderData }: Route.ComponentProps) {
-  const { lang } = loaderData
+  const { lang, clientEnv } = loaderData
 
   useChangeLanguage(lang)
   const { i18n } = useTranslation()
@@ -35,6 +35,8 @@ export default function Root({ loaderData }: Route.ComponentProps) {
 
         <Meta />
         <Links />
+
+        <script dangerouslySetInnerHTML={{ __html: `window.ENV = ${JSON.stringify(clientEnv)}` }} />
 
         {/* Standalone web app support */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
