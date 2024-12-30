@@ -4,6 +4,7 @@ import { Button } from '../ui/button'
 import { Github } from 'lucide-react'
 import { Link, useNavigation, useMatches } from 'react-router'
 import { useSpinDelay } from 'spin-delay'
+import { useTranslation } from 'react-i18next'
 // import { LanguageSelector } from '../language-selector'
 interface IProps {
   className?: string
@@ -19,6 +20,8 @@ export function Header(props: IProps) {
     delay: 200,
     minDuration: 300,
   })
+
+  const { t } = useTranslation('translation')
 
   return (
     <div
@@ -38,7 +41,7 @@ export function Header(props: IProps) {
         {isHomepage && (
           <Button asChild>
             <a href="https://github.com/micksabox/cognactive" target="_blank" rel="noreferrer">
-              View Code &nbsp;
+              {t('github-link-title')} &nbsp;
               <Github className="w-4" />
             </a>
           </Button>
