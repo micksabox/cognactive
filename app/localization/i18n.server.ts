@@ -8,7 +8,7 @@ const i18next = new RemixI18Next({
       // Detect language from stored cookie
       const cookie = request.headers.get('Cookie')
       const lng = cookie?.match(/lng=([^;]+)/)?.[1]
-      return lng || null
+      return lng || 'en'
     },
     supportedLanguages: i18n.supportedLngs,
     fallbackLanguage: i18n.fallbackLng,
