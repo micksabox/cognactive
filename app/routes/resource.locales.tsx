@@ -38,3 +38,19 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   return Response.json(namespaces[ns.success ? ns.data : 'translation'], { headers })
 }
+
+export const action = async ({ request }: Route.ActionArgs) => {
+  const formData = await request.formData()
+  const lng = formData.get('lng')
+
+  const referrer = request.headers.get('Referer') || '/'
+
+  const headers = new Headers()
+  headers.append('Set-Cookie', `lng=${lng}; Path=/; SameSite=Lax`)
+  headers.append('Location', referrer)
+
+  return new Response('Ok', {
+    headers,
+    status: 302,
+  })
+}

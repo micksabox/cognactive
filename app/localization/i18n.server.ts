@@ -4,6 +4,12 @@ import i18n from '@/localization/i18n' // your i18n configuration file
 
 const i18next = new RemixI18Next({
   detection: {
+    findLocale: async (request) => {
+      // Detect language from stored cookie
+      const cookie = request.headers.get('Cookie')
+      const lng = cookie?.match(/lng=([^;]+)/)?.[1]
+      return lng || null
+    },
     supportedLanguages: i18n.supportedLngs,
     fallbackLanguage: i18n.fallbackLng,
   },

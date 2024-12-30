@@ -56,16 +56,20 @@ const LanguageSelector = ({ triggerClassName }: LanguageSelectorProps) => {
           {localesAndNames.map(({ locale, name }) => {
             const isSelected = currentLanguage === locale
             return (
-              <div
-                key={locale}
-                onClick={() => languageChanged(locale)}
-                className={cn(
-                  'relative w-full cursor-pointer select-none rounded-md px-4 py-3 hover:bg-zinc-200',
-                  isSelected && 'bg-zinc-100',
-                )}
-              >
-                <span className={cn('block truncate', isSelected && 'font-bold text-primary')}>{name}</span>
-              </div>
+              <form key={locale} action="/resource/locales" method="post">
+                <input type="hidden" name="lng" value={locale} />
+                <button
+                  className={cn(
+                    'relative w-full cursor-pointer select-none rounded-md px-4 py-3 hover:bg-zinc-200',
+                    isSelected && 'bg-zinc-100',
+                  )}
+                  type="submit"
+                >
+                  <div key={locale}>
+                    <span className={cn('block truncate', isSelected && 'font-bold text-primary')}>{name}</span>
+                  </div>
+                </button>
+              </form>
             )
           })}
         </div>
