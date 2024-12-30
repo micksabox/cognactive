@@ -1,6 +1,6 @@
 import { supportedLanguages } from './app/localization/resource'
 
-export default {
+module.exports = {
   baseLocale: 'en',
   locales: supportedLanguages,
   localePath: 'app/i18n/locales',
