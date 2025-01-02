@@ -13,7 +13,10 @@ const routes = [
   ...prefix('/blog', [
     layout('./routes/blog+/_layout.tsx', [
       index('./routes/blog+/index.tsx'),
-      ...prefix('/posts', [route('/food-guide', './routes/blog+/posts+/food-guide/route.tsx')]),
+      ...prefix('/posts', [
+        route('food-guide', './routes/blog+/posts+/food-guide/route.tsx'),
+        route('metagame', './routes/blog+/posts+/metagame.mdx'),
+      ]),
     ]),
   ]),
   ...prefix('/privacy', [index('./routes/privacy+/index.tsx'), route('/policy', './routes/privacy+/policy.tsx')]),
