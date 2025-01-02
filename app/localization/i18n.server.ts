@@ -14,6 +14,13 @@ const i18next = new RemixI18Next({
         return firstPathComponent
       }
 
+      const cookie = request.headers.get('Cookie')
+      const lng = cookie?.match(/lng=([^;]+)/)?.[1]
+      if (lng) {
+        return lng
+      }
+
+      // Try to detect from Accept-Language header
       // Try to detect from Accept-Language header
       const acceptLanguage = request.headers.get('Accept-Language')
       if (acceptLanguage) {
@@ -24,9 +31,7 @@ const i18next = new RemixI18Next({
       }
 
       // Else detect language from stored cookie
-      const cookie = request.headers.get('Cookie')
-      const lng = cookie?.match(/lng=([^;]+)/)?.[1]
-      return lng || 'en'
+      return 'en'
     },
     supportedLanguages: i18n.supportedLngs,
     fallbackLanguage: i18n.fallbackLng,
