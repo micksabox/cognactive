@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             </span>
             <Button size={'sm'} asChild>
               <Link to={TELEGRAM_CHAT_LINK}>
-                Chat NAC <ArrowUpRightSquare className="ml-2 inline-block w-4" />
+                {t('chat-nac-link-title')} <ArrowUpRightSquare className="ml-2 inline-block w-4" />
               </Link>
             </Button>
             <Button size={'sm'} asChild>

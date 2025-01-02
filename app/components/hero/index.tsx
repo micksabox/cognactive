@@ -45,7 +45,7 @@ const HeroFeature: React.FC<FeatureProps> = ({ icon: Icon, title, description, l
 }
 
 export const Hero = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('translation')
 
   return (
     <div className="flex bg-gradient-to-b from-slate-600 to-slate-900">
