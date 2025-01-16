@@ -21,7 +21,7 @@ export function Header(props: IProps) {
     minDuration: 300,
   })
 
-  const { t } = useTranslation('translation')
+  const { t } = useTranslation()
 
   return (
     <div
@@ -41,7 +41,7 @@ export function Header(props: IProps) {
         {isHomepage && (
           <Button asChild>
             <a href="https://github.com/micksabox/cognactive" target="_blank" rel="noreferrer">
-              {t('github-link-title')} &nbsp;
+              {t('homepage.github-link-title')} &nbsp;
               <Github className="w-4" />
             </a>
           </Button>

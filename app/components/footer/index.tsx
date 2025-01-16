@@ -7,7 +7,7 @@ import { LanguageSelector } from '../language-selector'
 import { useTranslation } from 'react-i18next'
 
 const Footer: React.FC = () => {
-  const { t } = useTranslation('translation')
+  const { t } = useTranslation()
 
   return (
     <footer className="w-full bg-foreground text-xs text-slate-500">
@@ -19,12 +19,12 @@ const Footer: React.FC = () => {
             </span>
             <Button size={'sm'} asChild>
               <Link to={TELEGRAM_CHAT_LINK}>
-                {t('chat-nac-link-title')} <ArrowUpRightSquare className="ml-2 inline-block w-4" />
+                {t('footer.chat-nac-link-title')} <ArrowUpRightSquare className="ml-2 inline-block w-4" />
               </Link>
             </Button>
             <Button size={'sm'} asChild>
               <a href={GITHUB_REPO_BASE} target="_blank" rel="noreferrer">
-                {t('github-link-title')} &nbsp;
+                {t('homepage.github-link-title')} &nbsp;
                 <Github className="w-4" />
               </a>
             </Button>
@@ -33,11 +33,11 @@ const Footer: React.FC = () => {
         </div>
         <p className="my-2">
           <Link className="underline underline-offset-auto" to={'/privacy'}>
-            {t('data-usage-title')}
+            {t('footer.data-usage-title')}
           </Link>
         </p>
         <p className="bottom-inset">
-          <span className="font-semibold">{t('medical-disclaimer')}:</span> {t('medical-disclaimer-desc')}
+          <span className="font-semibold">{t('footer.medical-disclaimer')}:</span> {t('footer.medical-disclaimer-desc')}
         </p>
       </div>
     </footer>

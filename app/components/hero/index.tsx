@@ -45,11 +45,11 @@ const HeroFeature: React.FC<FeatureProps> = ({ icon: Icon, title, description, l
 }
 
 export const Hero = () => {
-  const { t } = useTranslation('translation')
+  const { t } = useTranslation()
 
   return (
     <div className="flex bg-gradient-to-b from-slate-600 to-slate-900">
-      <section className="w-full py-8 text-white">
+      <div className="w-full py-8 text-white">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6 lg:grid-cols-2">
             <div className="flex flex-col justify-center space-y-4 text-center">
@@ -58,20 +58,20 @@ export const Hero = () => {
                   <CognactiveIcon className="fill-white" darkMode />
                 </div>
                 <h1 className="my-4 text-3xl font-bold tracking-tighter text-transparent text-white sm:text-5xl xl:text-6xl/none">
-                  {t('hero-title')}
+                  {t('homepage.hero-title')}
                 </h1>
-                <p className="mb-4">Open source tools and tech for the anti-fungal NAC protocol.</p>
+                <p className="mb-4">{t('homepage.hero-subtitle')}</p>
                 <div className="mx-auto flex max-w-sm flex-col gap-2">
                   <Button className="bg-cyan py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/tracker" viewTransition>
                       <ListTodo className="mr-2" />
-                      {t('get-started')}
+                      {t('homepage.tracker-link-title')}
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/ingread" viewTransition>
                       <Scan className="mr-2" />
-                      Ingredient Scanner
+                      {t('homepage.ingredient-scanner-link-title')}
                     </Link>
                   </Button>
                   {/* <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
@@ -83,13 +83,13 @@ export const Hero = () => {
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/fungcaster" viewTransition>
                       <MonitorPlay className="mr-2" />
-                      Fungcaster
+                      {t('homepage.fungcaster')}
                     </Link>
                   </Button>
                   <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
                     <Link to="/memery/platos-cave" viewTransition>
                       <ScrollIcon className="mr-2" />
-                      Memery Stream
+                      {t('homepage.cave-allegory')}
                     </Link>
                   </Button>
                   <div>
@@ -107,18 +107,18 @@ export const Hero = () => {
               <div className="grid grid-cols-1 gap-2">
                 <HeroFeature
                   icon={() => <ActivitySquare size={16} />}
-                  title={t('tracking')}
-                  description={t('tracking-desc')}
+                  title={t('homepage.tracking')}
+                  description={t('homepage.tracking-desc')}
                 />
                 <HeroFeature
                   icon={() => <LayoutGridIcon size={16} />}
-                  title={t('hero-appexperience')}
-                  description={t('hero-appexperience-desc')}
+                  title={t('homepage.hero-appexperience')}
+                  description={t('homepage.hero-appexperience-desc')}
                 />
                 <HeroFeature
                   icon={() => <HeartHandshakeIcon size={16} />}
-                  title={t('hero-opensource')}
-                  description={t('hero-opensource-desc')}
+                  title={t('homepage.hero-opensource')}
+                  description={t('homepage.hero-opensource-desc')}
                   link={GITHUB_REPO_BASE}
                   linkText="Source code available here."
                 />
@@ -126,7 +126,7 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

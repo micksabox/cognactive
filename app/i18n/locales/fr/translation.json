@@ -1,19 +1,24 @@
 {
   "title": "cognactive",
-  "features": "Fonctionnalités",
-  "tracking": "Suivez votre NAC",
-  "tracking-desc": "Suivez le régime du protocole NAC, les expériences de détoxification mycotique et plus encore. Respect de votre vie privée avec le stockage local des données. Flexible avec le support pour un régime personnalisable.",
-  "hero-appexperience": "Appliquez votre NAC",
-  "hero-appexperience-desc": "Emportez la boîte à outils cognactive avec vous dans votre voyage. Installez l'application web mobile cognactive sur votre écran d'accueil et utilisez-la comme une application. Compatible avec iOS et Android.",
-  "hero-opensource": "Open source",
-  "hero-opensource-desc": "Cognactive est prêt pour la personnalisation, la collaboration et les améliorations en tant que bien public technologique communautaire mondial.",
-  "hero-title": "Suivez le Protocole NAC",
-  "get-started": "Lancer le Suivi",
-  "fungcaster": "Fungcaster",
-  "github-link-title": "Voir le code",
-  "data-usage-title": "Utilisation des données et politique de confidentialité",
-  "medical-disclaimer": "Avertissement médical",
-  "medical-disclaimer-desc": "Ce site web est fourni à des fins éducatives et informatives uniquement et ne constitue pas un avis médical ou des services professionnels. Rien ici ne doit être interprété comme une tentative de diagnostiquer, traiter, guérir ou prévenir une condition, une maladie ou un trouble, et ceux qui recherchent un avis médical doivent consulter un médecin agréé.",
-  "sad_lucky_firefox_dare": "Chat NAC",
-  "chat-nac-link-title": "Chat NAC"
+  "homepage": {
+    "tracker-link-title": "Lancer le tracker",
+    "github-link-title": "Voir le code",
+    "tracking": "Suivez votre NAC",
+    "tracking-desc": "Suivez le régime du protocole NAC, les expériences de détoxification mycologique et plus encore. Respect de votre vie privée avec stockage local des données. Flexible avec prise en charge d'un régime personnalisable.",
+    "hero-appexperience": "Appliquez votre NAC",
+    "hero-appexperience-desc": "Emportez la ceinture à outils cognactive avec vous dans votre voyage. Installez l'application web mobile cognactive sur votre écran d'accueil et utilisez-la comme une application. Compatible avec iOS et Android.",
+    "hero-opensource": "Open source",
+    "hero-opensource-desc": "Cognactive est prêt pour la personnalisation, la collaboration et les améliorations en tant que bien public technologique mondial.",
+    "hero-title": "Suivre le protocole NAC",
+    "fungcaster": "Regarder des vidéos",
+    "ingredient-scanner-link-title": "Scanner d'ingrédients",
+    "hero-subtitle": "Outils et technologies open source pour le protocole NAC antifongique et immunomodulateur.",
+    "cave-allegory": "Allégorie de la caverne de Platon"
+  },
+  "footer": {
+    "data-usage-title": "Utilisation des données et politique de confidentialité",
+    "medical-disclaimer": "Avertissement médical",
+    "medical-disclaimer-desc": "Ce site web est fourni à des fins éducatives et informatives uniquement et ne constitue pas un avis médical ou des services professionnels. Rien ici ne doit être interprété comme une tentative de diagnostiquer, traiter, guérir ou prévenir toute condition, maladie ou affection, et ceux qui recherchent un avis médical doivent consulter un médecin agréé.",
+    "chat-nac-link-title": "Chat NAC"
+  }
 }

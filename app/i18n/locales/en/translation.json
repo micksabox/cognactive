@@ -1,18 +1,24 @@
 {
   "title": "cognactive",
-  "features": "Features",
-  "tracking": "Track your NAC",
-  "tracking-desc": "Track NAC protocol regimen, myco die-off experiences and more. Respect for your privacy with local data storage. Flexible with support for customizable regimen.",
-  "hero-appexperience": "App your NAC",
-  "hero-appexperience-desc": "Take the cognactive toolbelt with you on your journey. Install the cognactive mobile web app to your home screen and use it like an app. Compatible with iOS and Android.",
-  "hero-opensource": "Open source",
-  "hero-opensource-desc": "Cognactive is ready for customization, collaboration and improvements as a global community technological public good.",
-  "hero-title": "Track NAC Protocol",
-  "get-started": "Launch Tracker",
-  "fungcaster": "Fungcaster",
-  "github-link-title": "View Code",
-  "data-usage-title": "Data Usage & Privacy Policy",
-  "medical-disclaimer": "Medical Disclaimer",
-  "medical-disclaimer-desc": "This website is provided for educational and informational purposes only and does not constitute providing medical advice or professional services. Nothing herein should be construed as an attempt to diagnose, treat, cure, or prevent any condition, illness, or disease, and those seeking medical advice should consult with a licensed physician.",
-  "chat-nac-link-title": "Chat NAC"
+  "footer": {
+    "data-usage-title": "Data Usage & Privacy Policy",
+    "medical-disclaimer": "Medical Disclaimer",
+    "medical-disclaimer-desc": "This website is provided for educational and informational purposes only and does not constitute providing medical advice or professional services. Nothing herein should be construed as an attempt to diagnose, treat, cure, or prevent any condition, illness, or disease, and those seeking medical advice should consult with a licensed physician.",
+    "chat-nac-link-title": "Chat NAC"
+  },
+  "homepage": {
+    "github-link-title": "View Code",
+    "tracker-link-title": "Launch Tracker",
+    "ingredient-scanner-link-title": "Ingredient Scanner",
+    "tracking": "Track your NAC",
+    "tracking-desc": "Track NAC protocol regimen, myco die-off experiences and more. Respect for your privacy with local data storage. Flexible with support for customizable regimen.",
+    "hero-appexperience": "App your NAC",
+    "hero-appexperience-desc": "Take the cognactive toolbelt with you on your journey. Install the cognactive mobile web app to your home screen and use it like an app. Compatible with iOS and Android.",
+    "hero-opensource": "Open source",
+    "hero-opensource-desc": "Cognactive is ready for customization, collaboration and improvements as a global community technological public good.",
+    "hero-title": "Track NAC Protocol",
+    "hero-subtitle": "Open source tools and tech for the anti-fungal and immunomodular NAC protocol.",
+    "fungcaster": "Watch Videos",
+    "cave-allegory": "Plato's Allegory of the Cave"
+  }
 }
