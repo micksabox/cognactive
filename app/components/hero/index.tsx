@@ -86,17 +86,17 @@ export const Hero = () => {
                       {t('homepage.fungcaster')}
                     </Link>
                   </Button>
-                  <Button className="py-6 text-lg font-semibold" size={'lg'} asChild>
+                  <Button className="text-md py-6 font-semibold" size={'lg'} asChild>
                     <Link to="/memery/platos-cave" viewTransition>
                       <ScrollIcon className="mr-2" />
                       {t('homepage.cave-allegory')}
                     </Link>
                   </Button>
                   <div>
-                    <p className="my-2">What is the NAC protocol?</p>
+                    <p className="my-2">{t('homepage.whitepaper-label')}</p>
                     <Button size={'lg'} variant={'ghost'} className="border border-white text-white shadow-md" asChild>
                       <a href="https://www.docdroid.net/4H1DgHE/nac-protocol-printable-pdf">
-                        <ScrollIcon className="mr-2 inline-block w-4" /> Read NAC protocol whitepaper
+                        <ScrollIcon className="mr-2 inline-block w-4" /> {t('homepage.whitepaper-prompt')}
                       </a>
                     </Button>
                   </div>

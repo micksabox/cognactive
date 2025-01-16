@@ -19,6 +19,8 @@
     "hero-title": "Track NAC Protocol",
     "hero-subtitle": "Open source tools and tech for the anti-fungal and immunomodular NAC protocol.",
     "fungcaster": "Watch Videos",
-    "cave-allegory": "Plato's Allegory of the Cave"
+    "cave-allegory": "Allegory of the Cave",
+    "whitepaper-prompt": "Read whitepaper",
+    "whitepaper-label": "What is the NAC protocol?"
   }
 }
