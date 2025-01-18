@@ -4,6 +4,7 @@ import ContentHeader from 'src/components/content-header.tsx'
 import { Button } from 'src/components/ui/button'
 import db, { ISymptom } from 'src/pages/tracker/db'
 import type { Route } from './+types/trends'
+import { useTranslation } from 'react-i18next'
 
 export const clientLoader = async () => {
   const symptoms = await db.symptoms.toArray()
@@ -15,10 +16,12 @@ export const clientLoader = async () => {
 clientLoader.hydrate = true
 
 export function HydrateFallback() {
-  return <p>Loading Symptom Analysis...</p>
+  const { t } = useTranslation()
+  return <p>{t('tracker.trends.loading')}</p>
 }
 
 const SymptomAnalysis: React.FC<Route.ComponentProps> = ({ loaderData }) => {
+  const { t } = useTranslation()
   const { symptoms } = loaderData
   const [range, setRange] = useState<'weekly' | 'monthly'>('weekly')
 
@@ -53,22 +56,28 @@ const SymptomAnalysis: React.FC<Route.ComponentProps> = ({ loaderData }) => {
 
   return (
     <div className="max-w-md p-2 md:container">
-      <ContentHeader title="Myco Die-Off" linkTo="/tracker" linkText="Tracker" />
-      <p className="text-sm text-gray-500">Chart showing {range === 'weekly' ? 'weekly' : 'monthly'} data</p>
+      <ContentHeader
+        title={t('tracker.trends.title')}
+        linkTo="/tracker"
+        linkText={t('tracker.trends.back_to_tracker')}
+      />
+      <p className="text-sm text-gray-500">
+        {t('tracker.trends.chart_description', { period: t(`tracker.trends.period.${range}`) })}
+      </p>
       <div className="my-4">
         <Button
           variant={range === 'weekly' ? 'default' : 'outline'}
           className="rounded-r-none"
           onClick={() => setRange('weekly')}
         >
-          Week
+          {t('tracker.trends.period.week')}
         </Button>
         <Button
           variant={range === 'monthly' ? 'default' : 'outline'}
           className="rounded-l-none"
           onClick={() => setRange('monthly')}
         >
-          Month
+          {t('tracker.trends.period.month')}
         </Button>
       </div>
       <ResponsiveContainer width="100%" height={400}>
@@ -86,7 +95,7 @@ const SymptomAnalysis: React.FC<Route.ComponentProps> = ({ loaderData }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="severity" fill="#8884d8" name="Symptom Severity" />
+          <Bar dataKey="severity" fill="#8884d8" name={t('tracker.trends.chart.symptom_severity')} />
         </BarChart>
       </ResponsiveContainer>
     </div>

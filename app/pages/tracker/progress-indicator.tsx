@@ -10,6 +10,7 @@ import { formatDateKey } from 'src/lib/utils'
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
 import { DatePicker } from 'src/components/date-picker'
+import { useTranslation } from 'react-i18next'
 
 interface ProgressIndicatorProps {
   startDate: Date
@@ -17,6 +18,7 @@ interface ProgressIndicatorProps {
 }
 
 const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, currentDate }) => {
+  const { t } = useTranslation()
   const dayNumber = differenceInCalendarDays(currentDate, startDate) + 1
   const twoMonthsLater = addMonths(startDate, 2)
   const daysUntilTwoMonths = differenceInCalendarDays(twoMonthsLater, currentDate)
@@ -53,18 +55,18 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
         {currentPhase == '1' && (
           <>
             <div className="flex items-center gap-2">
-              <span className="inline-block w-20 flex-grow font-semibold">Phase 1</span>
+              <span className="inline-block w-20 flex-grow font-semibold">
+                {t('tracker.progress_indicator.phase_1')}
+              </span>
               <Progress className="flex-grow" value={(dayNumber / 60) * 100} max={60} />
               <ArrowRight />
-              <span className="text-xs">
-                2 month
-                <br />
-                milestone
-              </span>
+              <span className="text-xs">{t('tracker.progress_indicator.two_month_milestone')}</span>
             </div>
             {dayNumber > phase2EligibleTimerDaysThreshold && (
               <div className="flex items-center gap-2">
-                <span className="inline-block w-20 self-start font-semibold">Phase 2 Eligible</span>
+                <span className="inline-block w-20 self-start font-semibold">
+                  {t('tracker.progress_indicator.phase_2_eligible')}
+                </span>
                 <div className="flex-grow flex-col">
                   <div className="flex items-center gap-2">
                     {daysSinceLastDieoff && (
@@ -75,9 +77,11 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
                       />
                     )}
                     <Goal className="w-8" />
-                    <span className="text-xs">3 weeks of no die-off</span>
+                    <span className="text-xs">{t('tracker.progress_indicator.weeks_no_die_off')}</span>
                   </div>
-                  <p className="text-xs">Latest die-off symptom: {latestDieOffSymptom?.date ?? 'N/A'} </p>
+                  <p className="text-xs">
+                    {t('tracker.progress_indicator.latest_die_off', { date: latestDieOffSymptom?.date ?? '-' })}
+                  </p>
                 </div>
               </div>
             )}
@@ -86,12 +90,14 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
         {currentPhase === '2' && (
           <div className="flex items-start gap-2">
             <p>
-              <span className="inline-block w-20 self-start font-semibold">Phase 2</span>
+              <span className="inline-block w-20 self-start font-semibold">
+                {t('tracker.progress_indicator.phase_2')}
+              </span>
             </p>
             <div className="grid flex-grow grid-cols-3 gap-2">
               {phase2CycleStart && (
                 <p className="col-span-2 text-xs">
-                  started on {formatDateKey(phase2CycleStart)}{' '}
+                  {t('tracker.progress_indicator.phase_2_started', { date: formatDateKey(phase2CycleStart) })}{' '}
                   <a
                     role="button"
                     className="text-blue-500"
@@ -100,25 +106,25 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
                       setEditingPhase2CycleDate((prev) => !prev)
                     }}
                   >
-                    {editingPhase2CycleDate ? 'Cancel' : 'Edit'}
+                    {editingPhase2CycleDate
+                      ? t('tracker.progress_indicator.cancel')
+                      : t('tracker.progress_indicator.edit')}
                   </a>
                 </p>
               )}
               <div className="col-span-2">
-                {/* Handle multiple cycles by modulo calc days by 28 and stop at 3 weeks (21 days) */}
                 <Progress
                   className="w-full"
                   value={((daysSinceResumingPhase2 % fourWeeksInDays) / threeWeeksInDays) * 100}
                 />
-                <p className="text-center text-xs">3 weeks on</p>
+                <p className="text-center text-xs">{t('tracker.progress_indicator.three_weeks_on')}</p>
               </div>
               <div className="col-span-1">
-                {/* Show the final week by modulo calc by 28 and subtract 3 weeks */}
                 <Progress
                   className="w-full"
                   value={(((daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays) / 7) * 100}
                 />
-                <p className="text-center text-xs">1 week off</p>
+                <p className="text-center text-xs">{t('tracker.progress_indicator.one_week_off')}</p>
               </div>
             </div>
           </div>
@@ -127,9 +133,9 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
       {editingPhase2CycleDate && phase2CycleStart && (
         <Alert>
           <TimerIcon className="w-6" />
-          <AlertTitle>Phase 2 Cycle Start / Resume Date</AlertTitle>
+          <AlertTitle>{t('tracker.progress_indicator.phase_2_cycle_date.title')}</AlertTitle>
           <AlertDescription className="mb-2">
-            When did you start or resume phase 2? Setting this date will reset the timer.
+            {t('tracker.progress_indicator.phase_2_cycle_date.description')}
           </AlertDescription>
           <DatePicker
             toDate={new Date()}
@@ -145,10 +151,11 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
       {daysUntilTwoMonths <= 0 && (currentPhase == '1' || currentPhase == null) && (
         <Alert variant={'default'} className="my-2">
           <AlertTitle>
-            Phase 2 <span className="text-xs text-gray-500">Optional</span>
+            {t('tracker.progress_indicator.phase_2_setup.title')}{' '}
+            <span className="text-xs text-gray-500">{t('tracker.progress_indicator.phase_2_setup.optional')}</span>
           </AlertTitle>
           <AlertDescription>
-            Once past the 2 month milestone, continue phase 1 as needed or prepare for phase 2 of the NAC protocol.
+            {t('tracker.progress_indicator.phase_2_setup.description')}
             <br />
             <Button
               onClick={() => {
@@ -163,13 +170,13 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ startDate, curren
               variant={'cyan'}
               size={'sm'}
             >
-              Setup Phase 2
+              {t('tracker.progress_indicator.phase_2_setup.setup_button')}
             </Button>
           </AlertDescription>
         </Alert>
       )}
       {currentPhase == '2' && (daysSinceResumingPhase2 % fourWeeksInDays) - threeWeeksInDays > 0 && (
-        <p className="my-4 text-xl font-bold text-purple-950">BSO only on week off.</p>
+        <p className="my-4 text-xl font-bold text-purple-950">{t('tracker.progress_indicator.bso_only')}</p>
       )}
     </>
   )

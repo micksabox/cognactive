@@ -23,5 +23,110 @@
     "medical-disclaimer": "Descargo de Responsabilidad Médica",
     "medical-disclaimer-desc": "Este sitio web se proporciona solo con fines educativos e informativos y no constituye la prestación de asesoramiento médico o servicios profesionales. Nada aquí debe interpretarse como un intento de diagnosticar, tratar, curar o prevenir ninguna condición, enfermedad o dolencia, y aquellos que busquen asesoramiento médico deben consultar con un médico licenciado.",
     "chat-nac-link-title": "Chat NAC"
+  },
+  "tracker": {
+    "start_tracking": "Rastrea actividades diarias y experiencias de eliminación de micotoxinas para el protocolo NAC.",
+    "start_date": "Fecha de Inicio del Protocolo",
+    "start_button": "Comenzar a Rastrear el Protocolo NAC",
+    "started_on": "Protocolo NAC iniciado el",
+    "reset_tracking": "Restablecer Seguimiento",
+    "reset_description": "Restablece la fecha de inicio del seguimiento y elimina todos los datos.",
+    "reset_button": "Restablecer Rastreador",
+    "reset_confirm": "¿Estás seguro? Tu progreso se restablecerá. Todos los datos de actividad serán borrados. Esta acción no se puede deshacer.",
+    "reset_error": "Algo salió mal al restablecer los datos del rastreador",
+    "install_title": "Instalar cognactive en el dispositivo móvil",
+    "install_description": "Para continuar, abre esta página web desde tu dispositivo móvil. Luego abre el menú Compartir y selecciona 'Agregar a la pantalla de inicio'.",
+    "privacy_title": "Política de Privacidad",
+    "privacy_text": "Todos los datos de seguimiento de actividades del régimen (fechas de seguimiento, experiencias, suplementos) se almacenan localmente en el navegador web y no se comparten con terceros.",
+    "privacy_link": "Aprende más sobre la Privacidad y Uso de Datos de cognactive",
+    "legal_title": "Aviso Legal",
+    "legal_text": "La aplicación cognactive ayuda a rastrear actividades y eventos y es solo para uso personal. cognactive no es una aplicación médica. Usa esta aplicación bajo tu propio riesgo y responsabilidad.",
+    "dashboard": {
+      "day": "Día",
+      "date_error": "La fecha seleccionada no puede ser anterior a la fecha de inicio o posterior a hoy.",
+      "date_start": "Seguimiento iniciado en este día",
+      "daily_regimen": "Régimen Diario",
+      "customize": "Personalizar",
+      "morning": "Mañana",
+      "night": "Noche",
+      "note_journal": "Diario de Notas",
+      "read_all_notes": "Leer Todas las Notas",
+      "food_guide": "Guía de Alimentos"
+    },
+    "progress_indicator": {
+      "phase_1": "Fase 1",
+      "phase_2": "Fase 2",
+      "two_month_milestone": "Hito de 2 meses",
+      "phase_2_eligible": "Elegible para Fase 2",
+      "weeks_no_die_off": "3 semanas sin eliminación",
+      "latest_die_off": "Último síntoma de eliminación: {{date}}",
+      "phase_2_started": "comenzó el {{date}}",
+      "edit": "Editar",
+      "cancel": "Cancelar",
+      "three_weeks_on": "3 semanas activas",
+      "one_week_off": "1 semana de descanso",
+      "phase_2_cycle_date": {
+        "title": "Fecha de Inicio / Reanudación del Ciclo de Fase 2",
+        "description": "¿Cuándo comenzaste o reanudaste la fase 2? Establecer esta fecha restablecerá el temporizador."
+      },
+      "phase_2_setup": {
+        "title": "Fase 2",
+        "optional": "Opcional",
+        "description": "Una vez superado el hito de 2 meses, continúa la fase 1 según sea necesario o prepárate para la fase 2 del protocolo NAC.",
+        "setup_button": "Configurar Fase 2"
+      },
+      "bso_only": "Solo BSO en la semana de descanso."
+    },
+    "die_off_symptoms": {
+      "title": "Eliminación de Micotoxinas",
+      "description": "Rastrea los síntomas y experiencias de eliminación de micotoxinas",
+      "view_chart": "Ver Gráfico",
+      "total": "TOTAL",
+      "new_symptom": {
+        "placeholder": "Describe un nuevo síntoma",
+        "track_button": "Rastrear",
+        "error": "Describe tu síntoma con más detalle",
+        "success": "{{date}}\nSíntoma rastreado{{custom}}\n{{symptom}}"
+      },
+      "symptoms": {
+        "tiredness": "Cansancio",
+        "exhaustion": "Exhausto",
+        "muscle_soreness": "Dolor muscular",
+        "increased_discharge": "Aumento de secreción nasal o torácica",
+        "cold_flu": "Síntomas de resfriado o gripe",
+        "cold_sores": "Herpes labial",
+        "headaches": "Dolores de cabeza",
+        "irritability": "Irritabilidad",
+        "stool_changes": "Cambio en la frecuencia, volumen o color de las heces",
+        "rash": "Erupción",
+        "bloated_stomach": "Estómago hinchado",
+        "cramps": "Calambres",
+        "increased_gas": "Aumento de gases"
+      }
+    },
+    "daily_note": {
+      "new_entry": "Escribe una Nueva Entrada en el Diario",
+      "whats_notable": "¿Qué es notable sobre {{date}}?",
+      "prompt": "¿Comiste algo especial? ¿Hiciste algo diferente?",
+      "placeholder": "Escribe tu nota aquí",
+      "privacy_notice": "Las notas solo se almacenan localmente en tu dispositivo",
+      "save_button": "Guardar Nota",
+      "success": "Nota guardada"
+    },
+    "trends": {
+      "loading": "Cargando Análisis de Síntomas...",
+      "title": "Eliminación de Micotoxinas",
+      "back_to_tracker": "Rastreador",
+      "chart_description": "Gráfico que muestra datos de {{period}}",
+      "period": {
+        "weekly": "semanal",
+        "monthly": "mensual",
+        "week": "Semana",
+        "month": "Mes"
+      },
+      "chart": {
+        "symptom_severity": "Severidad del Síntoma"
+      }
+    }
   }
 }

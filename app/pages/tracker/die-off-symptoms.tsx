@@ -7,28 +7,31 @@ import { formatDateKey } from 'src/lib/utils'
 import { ISymptom } from './db'
 import { TrackerTool } from './dashboard'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
-export const defaultSymptoms = [
-  'Tiredness',
-  'Exhaustion',
-  'Muscle soreness',
-  'Increased chest or nasal discharge',
-  'Cold or flu like symptoms',
-  'Cold sores',
-  'Headaches',
-  'Irritability',
-  'Change in stool frequency, volume or color',
-  'Rash',
-  'Bloated stomach',
-  'Cramps',
-  'Increased gas',
-]
+// Map the default symptoms to their translation keys
+const defaultSymptomKeys = [
+  'tiredness',
+  'exhaustion',
+  'muscle_soreness',
+  'increased_discharge',
+  'cold_flu',
+  'cold_sores',
+  'headaches',
+  'irritability',
+  'stool_changes',
+  'rash',
+  'bloated_stomach',
+  'cramps',
+  'increased_gas',
+] as const
 
 type DieOffSymptomsProps = {
   date: Date
 }
 
 const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
+  const { t } = useTranslation()
   const dateKey = formatDateKey(props.date)
 
   const { symptoms, customSymptoms, addSymptom } = useTrackSymptom(dateKey)
@@ -36,6 +39,9 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
   const totalSymptoms = useSymptomCount(undefined)
 
   const inputRef = useRef<HTMLInputElement | null>(null)
+
+  // Get the translated default symptoms
+  const defaultSymptoms = defaultSymptomKeys.map((key) => t(`tracker.die_off_symptoms.symptoms.${key}`))
 
   const handleSymptomChange = (symptom: string, custom: boolean) => {
     if (custom && defaultSymptoms.includes(symptom)) {
@@ -50,7 +56,14 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
       createdAt: new Date(),
     }).then((maybeId) => {
       if (maybeId) {
-        toast.success(`${dateKey}\nTracked${custom ? ' custom ' : ' '}symptom\n${symptom}`, { position: 'top-left' })
+        toast.success(
+          t('tracker.die_off_symptoms.new_symptom.success', {
+            date: dateKey,
+            custom: custom ? ' custom' : '',
+            symptom,
+          }),
+          { position: 'top-left' },
+        )
       }
 
       if (inputRef.current) {
@@ -62,20 +75,20 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
   return (
     <div>
       <TrackerTool
-        title="Myco Die-Off"
+        title={t('tracker.die_off_symptoms.title')}
         toolbarItems={
           <div className="flex items-center gap-2">
-            <div className="text-right text-xs font-semibold">TOTAL</div>
+            <div className="text-right text-xs font-semibold">{t('tracker.die_off_symptoms.total')}</div>
             <span className="text-2xl font-bold">{totalSymptoms}</span>
           </div>
         }
       />
       <div className="my-2 flex items-center justify-between gap-2">
-        <p className="text-sm text-slate-600">Track myco die-off symptoms and experiences</p>
+        <p className="text-sm text-slate-600">{t('tracker.die_off_symptoms.description')}</p>
         <Button className="text-blue-500" size={'sm'} variant={'link'} asChild>
           <Link to="/trends" viewTransition>
             <BarChart2 className="mr-2 inline-block w-4" />
-            View Chart
+            {t('tracker.die_off_symptoms.view_chart')}
           </Link>
         </Button>
       </div>
@@ -90,7 +103,7 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
               if (customSymptom.length > 2) {
                 handleSymptomChange(customSymptom, true)
               } else {
-                toast.error('Describe your symptom in more detail')
+                toast.error(t('tracker.die_off_symptoms.new_symptom.error'))
               }
             }}
           >
@@ -98,13 +111,13 @@ const DieOffSymptoms: React.FC<DieOffSymptomsProps> = (props) => {
               ref={inputRef}
               className="ml-4 w-full p-2"
               type="text"
-              placeholder="Describe a new symptom"
+              placeholder={t('tracker.die_off_symptoms.new_symptom.placeholder')}
               name="custom_symptom"
             />
             <PenLineIcon className="absolute left-0 w-4 text-slate-400" />
             <Button size={'sm'} variant={'secondary'} type="submit">
               <Plus className="w-4" />
-              Track
+              {t('tracker.die_off_symptoms.new_symptom.track_button')}
             </Button>
           </form>
         </li>

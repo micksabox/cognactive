@@ -12,6 +12,8 @@ import { parse } from 'date-fns'
 import { Popover, PopoverContent, PopoverTrigger } from 'src/components/ui/popover'
 import { PROTOCOL_PHASE, PROTOCOL_PHASE_2_CYCLE_START, PROTOCOL_START_DATE } from 'src/constants'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
+
 interface ProtocolTrackerProps {
   clientCachedStartDate: string | null
 }
@@ -20,6 +22,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
   const [startDate, setStartDate] = useState<string | null>(clientCachedStartDate)
   const [pickerDate, setPickerDate] = useState<Date | undefined>()
   const isAppInstalled = useIsAppInstalled()
+  const { t } = useTranslation()
 
   const handleStartProtocol = useCallback(() => {
     if (isAppInstalled || ENV.MODE === 'development') {
@@ -50,7 +53,7 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
       {startDate ? (
         <>
           <div className="flex items-center">
-            <span>Started NAC protocol on</span>
+            <span>{t('tracker.started_on')}</span>
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant={'outline'} size={'sm'} className="text-md ml-2 font-light">
@@ -59,15 +62,13 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
-                <p className="text-xl font-bold">Reset Tracking</p>
-                <p>Reset the tracking start date and delete all data.</p>
+                <p className="text-xl font-bold">{t('tracker.reset_tracking')}</p>
+                <p>{t('tracker.reset_description')}</p>
                 <Button
                   className="mt-2"
                   variant={'destructive'}
                   onClick={() => {
-                    const sure = confirm(
-                      'Are you sure? Your progress will be reset. All activity data will be erased. This action cannot be undone.',
-                    )
+                    const sure = confirm(t('tracker.reset_confirm'))
                     if (sure) {
                       db.resetAllData().then(
                         () => {
@@ -78,13 +79,13 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
                         },
                         (err) => {
                           console.log(err)
-                          toast.error('Something went wrong while resetting tracker data')
+                          toast.error(t('tracker.reset_error'))
                         },
                       )
                     }
                   }}
                 >
-                  Reset Tracker
+                  {t('tracker.reset_button')}
                 </Button>
               </PopoverContent>
             </Popover>
@@ -93,37 +94,34 @@ const ProtocolTracker: React.FC<ProtocolTrackerProps> = ({ clientCachedStartDate
         </>
       ) : (
         <div className="pb-8">
-          <p className="text-xl">Track daily activities and myco die-off experiences for the NAC protocol.</p>
+          <p className="text-xl">{t('tracker.start_tracking')}</p>
 
           <br />
-          <p className="font-semibold text-slate-500">Protocol Start Date</p>
+          <p className="font-semibold text-slate-500">{t('tracker.start_date')}</p>
           <DatePicker onSetDate={(d) => setPickerDate(d)} />
           <br />
           <Button size={'lg'} className="mt-4 w-full" onClick={handleStartProtocol}>
-            Start Tracking NAC Protocol
+            {t('tracker.start_button')}
           </Button>
           {!isAppInstalled && (
             <Alert id="app-install-alert" className="mt-2">
               <LayoutGrid className="w-4" />
-              <AlertTitle>Install cognactive to mobile device</AlertTitle>
+              <AlertTitle>{t('tracker.install_title')}</AlertTitle>
               <AlertDescription>
-                To continue, open this webpage from your mobile device. Then open the Share menu{' '}
-                <ShareIcon className="inline-block w-4" /> and select &apos;Add to Home Screen&apos;.
+                {t('tracker.install_description')} <ShareIcon className="inline-block w-4" />
               </AlertDescription>
             </Alert>
           )}
           {isAppInstalled && (
             <div className="mt-2 p-2 text-sm">
               By proceeding you agree to:
-              <p className="font-semibold">Privacy Policy</p>
-              All regimen activity tracking data (tracking dates, experiences, supplements) is stored locally in web
-              browser and not shared with any third-party.{' '}
+              <p className="font-semibold">{t('tracker.privacy_title')}</p>
+              {t('tracker.privacy_text')}{' '}
               <Link className="underline underline-offset-auto" to={'/privacy'}>
-                Learn more about cognactive Privacy &amp; Data Usage
+                {t('tracker.privacy_link')}
               </Link>
-              .<p className="font-semibold">Legal Disclaimer</p>
-              The cognactive app helps track activities and events and is for personal use only. cognactive is not a
-              medical app. Use this app at your own risk and liability.
+              .<p className="font-semibold">{t('tracker.legal_title')}</p>
+              {t('tracker.legal_text')}
             </div>
           )}
         </div>

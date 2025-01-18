@@ -1,6 +1,5 @@
 import { differenceInCalendarDays, isSameDay, startOfDay } from 'date-fns'
 import { BookIcon, BotIcon, CheckCircle2, Moon, Sun } from 'lucide-react'
-
 import { Button } from 'src/components/ui/button'
 import DieOffSymptoms from './die-off-symptoms'
 import { useTrackSupplement } from './use-track-supplement'
@@ -13,6 +12,7 @@ import { Link } from 'react-router'
 import ProgressIndicator from './progress-indicator'
 import DailyNoteForm from './daily-note-form'
 import { useRegimen } from './use-regimen'
+import { useTranslation } from 'react-i18next'
 
 interface DashboardProps {
   startDate: Date
@@ -41,6 +41,7 @@ export const TrackerTool: React.FC<TrackerToolProps> = ({ title, children, toolb
 
 const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date())
+  const { t } = useTranslation()
 
   // On focus sets date to today
   useEffect(function resetToToday() {
@@ -94,7 +95,9 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
       </TrackerTool>
       <TrackerTool>
         <div className="flex items-center">
-          <span className="w-32 text-2xl font-bold">Day {dayNumber} </span>
+          <span className="w-32 text-2xl font-bold">
+            {t('tracker.dashboard.day')} {dayNumber}{' '}
+          </span>
           <DatePicker
             currentDate={currentDate}
             fromDate={startDate}
@@ -105,14 +108,14 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
                 return
               }
               if (isSameDay(d, startDate)) {
-                toast('Tracking started on this day', { position: 'bottom-center' })
+                toast(t('tracker.dashboard.date_start'), { position: 'bottom-center' })
                 setCurrentDate(startDate)
                 return
               }
               if (startOfDay(d) >= start && d <= new Date()) {
                 setCurrentDate(d)
               } else {
-                toast.error('Selected date cannot be before the start date or after today.', {
+                toast.error(t('tracker.dashboard.date_error'), {
                   position: 'bottom-center',
                   duration: 1000,
                 })
@@ -126,11 +129,11 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         toolbarItems={
           <Button asChild size={'sm'} variant={'secondary'}>
             <Link to={'/tracker-regimen'} viewTransition>
-              Customize
+              {t('tracker.dashboard.customize')}
             </Link>
           </Button>
         }
-        title="Daily Regimen"
+        title={t('tracker.dashboard.daily_regimen')}
       >
         <div className="grid grid-cols-2 gap-2">
           <Button
@@ -140,7 +143,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             className="flex justify-between bg-gradient-to-r from-blue-300 to-green-800"
           >
             <Sun className="w-4 text-yellow-300" />
-            Morning
+            {t('tracker.dashboard.morning')}
           </Button>
           <Button
             onClick={() => {
@@ -149,7 +152,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
             className="flex justify-between bg-gradient-to-r from-slate-900 to-blue-900"
           >
             <Moon className="w-4 text-blue-400" />
-            Night
+            {t('tracker.dashboard.night')}
           </Button>
         </div>
 
@@ -195,11 +198,11 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
         </div>
       </TrackerTool>
       <TrackerTool
-        title="Note Journal"
+        title={t('tracker.dashboard.note_journal')}
         toolbarItems={
           <Button asChild size={'sm'} variant={'secondary'}>
             <Link to={'/tracker-journal'} viewTransition>
-              <BookIcon className="mr-2 w-4" /> Read All Notes
+              <BookIcon className="mr-2 w-4" /> {t('tracker.dashboard.read_all_notes')}
             </Link>
           </Button>
         }
@@ -211,7 +214,7 @@ const Dashboard: React.FC<DashboardProps> = ({ startDate }) => {
       <div className="bottom-inset fixed bottom-3 right-3">
         <Button asChild variant={'cyan'}>
           <Link prefetch="render" to="/blog/posts/food-guide">
-            <BotIcon className="mr-2" /> Food Guide
+            <BotIcon className="mr-2" /> {t('tracker.dashboard.food_guide')}
           </Link>
         </Button>
       </div>
