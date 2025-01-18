@@ -57,7 +57,6 @@
       "phase_1": "Fase 1",
       "phase_2": "Fase 2",
       "two_month_milestone": "Hito de 2 meses",
-      "phase_2_eligible": "Elegible para Fase 2",
       "weeks_no_die_off": "3 semanas sin eliminación",
       "latest_die_off": "Último síntoma de eliminación: {{date}}",
       "phase_2_started": "comenzó el {{date}}",
@@ -75,7 +74,8 @@
         "description": "Una vez superado el hito de 2 meses, continúa la fase 1 según sea necesario o prepárate para la fase 2 del protocolo NAC.",
         "setup_button": "Configurar Fase 2"
       },
-      "bso_only": "Solo BSO en la semana de descanso."
+      "bso_only": "Solo BSO en la semana de descanso.",
+      "phase_2_eligible": "Elegibilidad para la Fase 2"
     },
     "die_off_symptoms": {
       "title": "Eliminación de Micotoxinas",
@@ -127,6 +127,7 @@
       "chart": {
         "symptom_severity": "Severidad del Síntoma"
       }
-    }
+    },
+    "pick_date": "Elige una fecha"
   }
 }

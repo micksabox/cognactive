@@ -24,6 +24,7 @@
     "whitepaper-label": "What is the NAC protocol?"
   },
   "tracker": {
+    "pick_date": "Pick a date",
     "start_tracking": "Track daily activities and myco die-off experiences for the NAC protocol.",
     "start_date": "Protocol Start Date",
     "start_button": "Start Tracking NAC Protocol",
@@ -56,7 +57,7 @@
       "phase_1": "Phase 1",
       "phase_2": "Phase 2",
       "two_month_milestone": "2 month milestone",
-      "phase_2_eligible": "Phase 2 Eligible",
+      "phase_2_eligible": "Phase 2 Eligibility",
       "weeks_no_die_off": "3 weeks of no die-off",
       "latest_die_off": "Latest die-off symptom: {{date}}",
       "phase_2_started": "started on {{date}}",

@@ -56,7 +56,6 @@
       "phase_1": "Phase 1",
       "phase_2": "Phase 2",
       "two_month_milestone": "Jalon de 2 mois",
-      "phase_2_eligible": "Éligible pour la phase 2",
       "weeks_no_die_off": "3 semaines sans détoxification",
       "latest_die_off": "Dernier symptôme de détoxification : {{date}}",
       "phase_2_started": "commencé le {{date}}",
@@ -74,7 +73,8 @@
         "description": "Une fois passé le jalon de 2 mois, continuez la phase 1 si nécessaire ou préparez-vous pour la phase 2 du protocole NAC.",
         "setup_button": "Configurer la phase 2"
       },
-      "bso_only": "BSO uniquement pendant la semaine de pause."
+      "bso_only": "BSO uniquement pendant la semaine de pause.",
+      "phase_2_eligible": "Éligibilité Phase 2"
     },
     "die_off_symptoms": {
       "title": "Détoxification mycotique",
@@ -126,6 +126,7 @@
       "chart": {
         "symptom_severity": "Gravité des symptômes"
       }
-    }
+    },
+    "pick_date": "Choisissez une date"
   }
 }
