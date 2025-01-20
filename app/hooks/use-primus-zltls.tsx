@@ -56,7 +56,7 @@ export function usePrimusZKTLS({ appId, templateId }: PrimusZKTLSConfig): Primus
       }
 
       const responseJson = await response.json()
-      const signedRequestStr = responseJson.signResult
+      const signedRequestStr = JSON.stringify(responseJson)
 
       // Start attestation process
       const attestation = await primusZKTLS.startAttestation(signedRequestStr)
@@ -67,6 +67,10 @@ export function usePrimusZKTLS({ appId, templateId }: PrimusZKTLSConfig): Primus
       return verifyResult
     } catch (err) {
       const error = err instanceof Error ? err : new Error('Unknown error occurred')
+      console.error('PrimusZKTLS verification error:', error.message)
+      if (error instanceof Error) {
+        console.error('Stack trace:', error.stack)
+      }
       setError(error)
       return false
     } finally {

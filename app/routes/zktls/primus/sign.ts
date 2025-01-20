@@ -28,7 +28,9 @@ export async function loader({ request }: Route.LoaderArgs) {
     const signResult = await primusZKTLS.sign(signParams)
     console.log('signResult=', signResult)
 
-    return { signResult }
+    return new Response(signResult, {
+      headers: { 'Content-Type': 'application/json' },
+    })
   } catch (error) {
     console.error('Error signing request:', error)
     throw new Response('Error processing request', { status: 500 })

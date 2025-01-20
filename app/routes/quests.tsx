@@ -11,8 +11,8 @@ export async function loader() {
 export default function QuestsRoute(props: Route.ComponentProps) {
   const [address, setAddress] = useState('')
   const { verify, isLoading, error } = usePrimusZKTLS({
-    appId: '0xdbfbfc425f05845d5994d0678177e57bb9b8f4bd',
-    templateId: '44eb64a7-aaa6-46fa-ad3d-75dacf8aa515',
+    appId: props.loaderData.appId,
+    templateId: '2e3160ae-8b1e-45e3-8c59-426366278b9d',
   })
 
   const handleVerify = async (e: React.FormEvent) => {
