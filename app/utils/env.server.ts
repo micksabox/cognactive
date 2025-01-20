@@ -4,6 +4,8 @@ import { z } from 'zod'
 
 const schema = z.object({
   NODE_ENV: z.enum(['production', 'development', 'test'] as const),
+  PRIMUS_APP_ID: z.string().default('MOCK_PRIMUS_APP_ID'),
+  PRIMUS_APP_SECRET: z.string().default('MOCK_PRIMUS_APP_SECRET'),
   // If using database and sessions uncomment these
   //   DATABASE_PATH: z.string(),
   //   DATABASE_URL: z.string(),

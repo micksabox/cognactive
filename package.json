@@ -19,6 +19,7 @@
     "@instructor-ai/instructor": "^0.0.4",
     "@loadable/component": "^5.15.3",
     "@mdx-js/rollup": "^3.0.0",
+    "@primuslabs/zktls-js-sdk": "^0.2.5",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.6",

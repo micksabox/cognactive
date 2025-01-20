@@ -19,6 +19,8 @@ const routes = [
       ]),
     ]),
   ]),
+  route('/quests', './routes/quests.tsx'),
+  route('/zktls/primus/sign', './routes/zktls/primus/sign.ts'),
   ...prefix('/privacy', [index('./routes/privacy+/index.tsx'), route('/policy', './routes/privacy+/policy.tsx')]),
   layout('./routes/memery+/_layout.tsx', [route('/memery/platos-cave', './routes/memery+/platos-cave/route.tsx')]),
   route('/image-generator', './routes/image-generator/route.tsx'),
