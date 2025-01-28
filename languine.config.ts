@@ -21,6 +21,14 @@ export default defineConfig({
         },
       ],
     },
+    mdx: {
+      include: [
+        {
+          from: './app/routes/memery+/platos-cave/en/readme.mdx',
+          to: './app/routes/memery+/platos-cave/[locale]/readme.mdx',
+        },
+      ],
+    },
   },
   llm: {
     provider: 'openai',

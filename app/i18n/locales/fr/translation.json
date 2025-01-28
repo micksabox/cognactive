@@ -15,7 +15,7 @@
     "hero-subtitle": "Outils et technologies open source pour le protocole NAC antifongique et immunomodulateur.",
     "whitepaper-prompt": "Lire le livre blanc",
     "whitepaper-label": "Qu'est-ce que le protocole NAC ?",
-    "cave-allegory": "Allégorie de la caverne"
+    "cave-allegory": "Caverne des Allégories"
   },
   "footer": {
     "data-usage-title": "Utilisation des données et politique de confidentialité",
@@ -128,5 +128,13 @@
       }
     },
     "pick_date": "Choisissez une date"
+  },
+  "memery": {
+    "platos-cave": {
+      "title": "Allégorie de la Caverne de Platon",
+      "description": "L'Allégorie de la Caverne de Platon décrit un groupe de personnes qui ont vécu enchaînées au mur d'une caverne toute leur vie, face à un mur blanc. Les gens regardent les ombres projetées sur le mur par des objets passant devant un feu derrière eux et commencent à attribuer des formes à ces ombres. Selon l'allégorie, les ombres sont aussi proches que les prisonniers peuvent voir la réalité. Platon suggère que les ombres sont la réalité des prisonniers mais qu'il existe un niveau de réalité supérieur, plus vrai, caché aux yeux humains.",
+      "relevance": "Tout ce qui influence la pensée humaine peut être caractérisé comme les marionnettistes dans l'allégorie de la caverne. Les champignons comme le candida et le cryptococcus peuvent être considérés comme les marionnettistes dans cette métaphore. Cela est dû à l'influence sur l'axe intestin-cerveau et à la résidence dans le cerveau."
+    },
+    "title": "Caverne des Allégories"
   }
 }

@@ -16,7 +16,7 @@
     "hero-subtitle": "Herramientas y tecnología de código abierto para el protocolo NAC antifúngico e inmunomodulador.",
     "whitepaper-prompt": "Leer el documento técnico",
     "whitepaper-label": "¿Qué es el protocolo NAC?",
-    "cave-allegory": "Alegoría de la caverna"
+    "cave-allegory": "Cueva de Alegorías"
   },
   "footer": {
     "data-usage-title": "Uso de Datos y Política de Privacidad",
@@ -129,5 +129,13 @@
       }
     },
     "pick_date": "Elige una fecha"
+  },
+  "memery": {
+    "platos-cave": {
+      "title": "La Alegoría de la Cueva de Platón",
+      "description": "La Alegoría de la Cueva de Platón describe a un grupo de personas que han vivido encadenadas a la pared de una cueva toda su vida, frente a una pared en blanco. Las personas observan sombras proyectadas en la pared por objetos que pasan frente a un fuego detrás de ellas y comienzan a atribuir formas a estas sombras. Según la alegoría, las sombras son lo más cerca que los prisioneros están de ver la realidad. Platón sugiere que las sombras son la realidad de los prisioneros, pero que hay un nivel de realidad más alto y verdadero, oculto a los ojos humanos.",
+      "relevance": "Cualquier cosa que influya en el pensamiento humano puede caracterizarse como los titiriteros en la alegoría de la cueva. Hongos como la cándida y el criptococo pueden considerarse los titiriteros en esta metáfora. Esto se debe a la influencia en el eje intestino-cerebro y la residencia en el cerebro."
+    },
+    "title": "Cueva de Alegorías"
   }
 }

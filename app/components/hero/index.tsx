@@ -6,6 +6,7 @@ import {
   LayoutGridIcon,
   Scan,
   MonitorPlay,
+  FlameIcon,
 } from 'lucide-react'
 import CognactiveIcon from 'src/assets/icons/cognactive-icon'
 
@@ -88,7 +89,7 @@ export const Hero = () => {
                   </Button>
                   <Button className="text-md py-6 font-semibold" size={'lg'} asChild>
                     <Link to="/memery/platos-cave" viewTransition>
-                      <ScrollIcon className="mr-2" />
+                      <FlameIcon className="mr-2" />
                       {t('homepage.cave-allegory')}
                     </Link>
                   </Button>

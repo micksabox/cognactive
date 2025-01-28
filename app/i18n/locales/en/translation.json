@@ -19,7 +19,7 @@
     "hero-title": "Track NAC Protocol",
     "hero-subtitle": "Open source tools and tech for the anti-fungal and immunomodular NAC protocol.",
     "fungcaster": "Watch Videos",
-    "cave-allegory": "Allegory of the Cave",
+    "cave-allegory": "Cave of Allegories",
     "whitepaper-prompt": "Read whitepaper",
     "whitepaper-label": "What is the NAC protocol?"
   },
@@ -127,6 +127,14 @@
       "chart": {
         "symptom_severity": "Symptom Severity"
       }
+    }
+  },
+  "memery": {
+    "title": "Cave of Allegories",
+    "platos-cave": {
+      "title": "Plato's Allegory of the Cave",
+      "description": "Plato's Allegory of the Cave describes a group of people who have lived chained to the wall of a cave all of their lives, facing a blank wall. The people watch shadows projected on the wall from objects passing in front of a fire behind them and begin to ascribe forms to these shadows. According to the allegory, the shadows are as close as the prisoners get to viewing reality. Plato suggests that the shadows are the prisoners' reality but that there is a higher, more true level of reality, hidden from human eyes.",
+      "relevance": "Anything that influences human thought can be characterized as the puppeteers in the allegory of the cave. Fungi like candida and cryptococcus can be considered the puppeteers in this metaphor. This is due to the influence on the gut-brain axis and residence in the brain."
     }
   }
 }
