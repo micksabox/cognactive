@@ -6,6 +6,21 @@
     "medical-disclaimer-desc": "This website is provided for educational and informational purposes only and does not constitute providing medical advice or professional services. Nothing herein should be construed as an attempt to diagnose, treat, cure, or prevent any condition, illness, or disease, and those seeking medical advice should consult with a licensed physician.",
     "chat-nac-link-title": "Chat NAC"
   },
+  "privacy": {
+    "title": "Privacy & Data Usage",
+    "policy-link": "Read full privacy policy",
+    "regimen-title": "Protocol Regimen Tracking Utility",
+    "dimensions": {
+      "local-storage": {
+        "title": "Local Data Privacy",
+        "description": "Regimen activity data is stored only on your device and never transmitted to servers."
+      },
+      "third-party": {
+        "title": "No Third-Party Sharing",
+        "description": "Regimen activity data is not shared with third parties."
+      }
+    }
+  },
   "homepage": {
     "github-link-title": "View Code",
     "tracker-link-title": "Launch Tracker",

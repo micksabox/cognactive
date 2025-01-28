@@ -29,6 +29,14 @@ export default defineConfig({
         },
       ],
     },
+    md: {
+      include: [
+        {
+          from: './app/routes/privacy+/en/privacy.md',
+          to: './app/routes/privacy+/[locale]/privacy.md',
+        },
+      ],
+    },
   },
   llm: {
     provider: 'openai',
