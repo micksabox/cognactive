@@ -28,8 +28,8 @@ export default defineConfig({
           to: './app/routes/memery+/platos-cave/[locale]/readme.mdx',
         },
         {
-          from: './app/routes/privacy+/en/privacy.md',
-          to: './app/routes/privacy+/[locale]/privacy.md',
+          from: './app/routes/privacy+/en/privacy.mdx',
+          to: './app/routes/privacy+/[locale]/privacy.mdx',
         },
       ],
     },
