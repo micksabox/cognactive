@@ -1,0 +1,155 @@
+{
+  "title": "cognactive",
+  "footer": {
+    "data-usage-title": "Data Usage & Privacy Policy",
+    "medical-disclaimer": "Medical Disclaimer",
+    "medical-disclaimer-desc": "This website is provided for educational and informational purposes only and does not constitute providing medical advice or professional services. Nothing herein should be construed as an attempt to diagnose, treat, cure, or prevent any condition, illness, or disease, and those seeking medical advice should consult with a licensed physician.",
+    "chat-nac-link-title": "Chat NAC"
+  },
+  "privacy": {
+    "title": "Privacy & Data Usage",
+    "policy-link": "Read full privacy policy",
+    "regimen-title": "Protocol Regimen Tracking Utility",
+    "dimensions": {
+      "local-storage": {
+        "title": "Local Data Privacy",
+        "description": "Regimen activity data is stored only on your device and never transmitted to servers."
+      },
+      "third-party": {
+        "title": "No Third-Party Sharing",
+        "description": "Regimen activity data is not shared with third parties."
+      }
+    }
+  },
+  "homepage": {
+    "github-link-title": "View Code",
+    "tracker-link-title": "Launch Tracker",
+    "ingredient-scanner-link-title": "Ingredient Scanner",
+    "tracking": "Track your NAC",
+    "tracking-desc": "Track NAC protocol regimen, myco die-off experiences and more. Respect for your privacy with local data storage. Flexible with support for customizable regimen.",
+    "hero-appexperience": "App your NAC",
+    "hero-appexperience-desc": "Take the cognactive toolbelt with you on your journey. Install the cognactive mobile web app to your home screen and use it like an app. Compatible with iOS and Android.",
+    "hero-opensource": "Open source",
+    "hero-opensource-desc": "Cognactive is ready for customization, collaboration and improvements as a global community technological public good.",
+    "hero-title": "Track NAC Protocol",
+    "hero-subtitle": "Open source tools and tech for the anti-fungal and immunomodular NAC protocol.",
+    "fungcaster": "Watch Videos",
+    "cave-allegory": "Cave of Allegories",
+    "whitepaper-prompt": "Read whitepaper",
+    "whitepaper-label": "What is the NAC protocol?"
+  },
+  "tracker": {
+    "pick_date": "Pick a date",
+    "start_tracking": "Track daily activities and myco die-off experiences for the NAC protocol.",
+    "start_date": "Protocol Start Date",
+    "start_button": "Start Tracking NAC Protocol",
+    "started_on": "Started NAC protocol on",
+    "reset_tracking": "Reset Tracking",
+    "reset_description": "Reset the tracking start date and delete all data.",
+    "reset_button": "Reset Tracker",
+    "reset_confirm": "Are you sure? Your progress will be reset. All activity data will be erased. This action cannot be undone.",
+    "reset_error": "Something went wrong while resetting tracker data",
+    "install_title": "Install cognactive to mobile device",
+    "install_description": "To continue, open this webpage from your mobile device. Then open the Share menu and select 'Add to Home Screen'.",
+    "privacy_title": "Privacy Policy",
+    "privacy_text": "All regimen activity tracking data (tracking dates, experiences, supplements) is stored locally in web browser and not shared with any third-party.",
+    "privacy_link": "Learn more about cognactive Privacy & Data Usage",
+    "legal_title": "Legal Disclaimer",
+    "legal_text": "The cognactive app helps track activities and events and is for personal use only. cognactive is not a medical app. Use this app at your own risk and liability.",
+    "dashboard": {
+      "day": "Day",
+      "date_error": "Selected date cannot be before the start date or after today.",
+      "date_start": "Tracking started on this day",
+      "daily_regimen": "Daily Regimen",
+      "customize": "Customize",
+      "morning": "Morning",
+      "night": "Night",
+      "note_journal": "Note Journal",
+      "read_all_notes": "Read All Notes",
+      "food_guide": "Food Guide"
+    },
+    "progress_indicator": {
+      "phase_1": "Phase 1",
+      "phase_2": "Phase 2",
+      "two_month_milestone": "2 month milestone",
+      "phase_2_eligible": "Phase 2 Eligibility",
+      "weeks_no_die_off": "3 weeks of no die-off",
+      "latest_die_off": "Latest die-off symptom: {{date}}",
+      "phase_2_started": "started on {{date}}",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "three_weeks_on": "3 weeks on",
+      "one_week_off": "1 week off",
+      "phase_2_cycle_date": {
+        "title": "Phase 2 Cycle Start / Resume Date",
+        "description": "When did you start or resume phase 2? Setting this date will reset the timer."
+      },
+      "phase_2_setup": {
+        "title": "Phase 2",
+        "optional": "Optional",
+        "description": "Once past the 2 month milestone, continue phase 1 as needed or prepare for phase 2 of the NAC protocol.",
+        "setup_button": "Setup Phase 2"
+      },
+      "bso_only": "BSO only on week off."
+    },
+    "die_off_symptoms": {
+      "title": "Myco Die-Off",
+      "description": "Track myco die-off symptoms and experiences",
+      "view_chart": "View Chart",
+      "total": "TOTAL",
+      "new_symptom": {
+        "placeholder": "Describe a new symptom",
+        "track_button": "Track",
+        "error": "Describe your symptom in more detail",
+        "success": "{{date}}\nTracked{{custom}} symptom\n{{symptom}}"
+      },
+      "symptoms": {
+        "tiredness": "Tiredness",
+        "exhaustion": "Exhaustion",
+        "muscle_soreness": "Muscle soreness",
+        "increased_discharge": "Increased chest or nasal discharge",
+        "cold_flu": "Cold or flu like symptoms",
+        "cold_sores": "Cold sores",
+        "headaches": "Headaches",
+        "irritability": "Irritability",
+        "stool_changes": "Change in stool frequency, volume or color",
+        "rash": "Rash",
+        "bloated_stomach": "Bloated stomach",
+        "cramps": "Cramps",
+        "increased_gas": "Increased gas"
+      }
+    },
+    "daily_note": {
+      "new_entry": "Write a New Journal Entry",
+      "whats_notable": "What's notable about {{date}}?",
+      "prompt": "Eat anything special? Do anything different?",
+      "placeholder": "Write your note here",
+      "privacy_notice": "Notes are only stored locally on your device",
+      "save_button": "Save Note",
+      "success": "Note saved"
+    },
+    "trends": {
+      "loading": "Loading Symptom Analysis...",
+      "title": "Myco Die-Off",
+      "back_to_tracker": "Tracker",
+      "chart_description": "Chart showing {{period}} data",
+      "period": {
+        "weekly": "weekly",
+        "monthly": "monthly",
+        "week": "Week",
+        "month": "Month"
+      },
+      "chart": {
+        "symptom_severity": "Symptom Severity"
+      }
+    }
+  },
+  "memery": {
+    "title": "Cave of Allegories",
+    "platos-cave": {
+      "title": "Plato's Allegory of the Cave",
+      "description": "Plato's Allegory of the Cave describes a group of people who have lived chained to the wall of a cave all of their lives, facing a blank wall. The people watch shadows projected on the wall from objects passing in front of a fire behind them and begin to ascribe forms to these shadows. According to the allegory, the shadows are as close as the prisoners get to viewing reality. Plato suggests that the shadows are the prisoners' reality but that there is a higher, more true level of reality, hidden from human eyes.",
+      "relevance": "Anything that influences human thought can be characterized as the puppeteers in the allegory of the cave. Fungi like candida and cryptococcus can be considered the puppeteers in this metaphor. This is due to the influence on the gut-brain axis and residence in the brain."
+    }
+  }
+}

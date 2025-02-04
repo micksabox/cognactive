@@ -4,6 +4,8 @@
     "streetsidesoftware.code-spell-checker",
     "bradlc.vscode-tailwindcss",
     "eamodio.gitlens",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "Lokalise.i18n-ally",
+    "inlang.vs-code-extension"
   ]
 }

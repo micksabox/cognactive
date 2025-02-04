@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { reactRouter } from '@react-router/dev/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { reactRouterHonoServer } from 'react-router-hono-server/dev'
 
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
@@ -27,12 +28,17 @@ export default defineConfig(async () => {
         remarkPlugins: [remarkFrontmatter.default, remarkMdxFrontmatter.default],
       }),
       reactRouter(),
+      reactRouterHonoServer({
+        dev: {
+          exclude: [/^\/(resources)\/.+/],
+        },
+      }),
       svgr({}),
       tsconfigPaths(),
     ],
     resolve: {
       alias: {
-        src: path.resolve(__dirname, './src'),
+        src: path.resolve(__dirname, './app'),
         '@': path.resolve(__dirname, './app'),
       },
     },

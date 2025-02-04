@@ -3,8 +3,10 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '
 
 import 'src/assets/icons/cognactive-symbol.css'
 import 'src/styles/globals.css'
-// import 'src/i18n/config'
-// /TODO
+import type { Route } from './+types/root'
+
+import { useTranslation } from 'react-i18next'
+import { useChangeLanguage } from 'remix-i18next/react'
 
 import { Toaster } from 'react-hot-toast'
 
@@ -13,15 +15,27 @@ import ErrorPage from 'src/components/error-page'
 import Footer from 'src/components/footer'
 import { DOMAIN, HOSTNAME } from 'src/constants'
 
-export default function Root() {
+export async function loader({ context }: Route.LoaderArgs) {
+  const { lang, clientEnv } = context
+  return { lang, clientEnv }
+}
+
+export default function Root({ loaderData }: Route.ComponentProps) {
+  const { lang, clientEnv } = loaderData
+
+  useChangeLanguage(lang)
+  const { i18n } = useTranslation()
+
   return (
-    <html lang="en">
+    <html lang={i18n.language} dir={i18n.dir()}>
       <head>
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
 
         <Meta />
         <Links />
+
+        <script dangerouslySetInnerHTML={{ __html: `window.ENV = ${JSON.stringify(clientEnv)}` }} />
 
         {/* Standalone web app support */}
         <meta name="apple-mobile-web-app-capable" content="yes" />

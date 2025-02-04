@@ -19,7 +19,9 @@
   "parser": "@typescript-eslint/parser",
   "settings": {
     "import/resolver": {
-      "typescript": true
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
     }
   },
   "plugins": ["unused-imports", "react", "@typescript-eslint", "import", "prettier"],

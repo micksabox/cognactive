@@ -1,7 +1,6 @@
 import { MetaFunction } from 'react-router'
-import { getMemeByKey } from '../utils.server'
-
-import Readme from './readme.mdx'
+import { lazy, Suspense } from 'react'
+import type { Route } from './+types/route'
 import { openGraphImageMeta, redirectToImageGenerator } from 'src/utils/misc'
 
 export const meta: MetaFunction = () => {
@@ -20,15 +19,20 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-export const loader = async () => {
-  const meme = await getMemeByKey('platos-cave')
-  return { meme }
+export const loader = async ({ context }: Route.LoaderArgs) => {
+  const { lang } = context
+  return { lang }
 }
 
-export default function PlatosCaveRoute() {
+export default function PlatosCaveRoute({ loaderData }: Route.ComponentProps) {
+  const { lang } = loaderData
+  const ReadmeComponent = lazy(() => import(`./${lang}/readme.mdx`))
+
   return (
     <div className="prose">
-      <Readme />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ReadmeComponent />
+      </Suspense>
     </div>
   )
 }

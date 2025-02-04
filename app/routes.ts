@@ -8,11 +8,15 @@ const routes = [
   route('/tracker-regimen', './routes/tracker-regimen/route.tsx'),
   route('/trends', './routes/trends.tsx'),
   route('/fridai', './routes/fridai+/_fridai.tsx'),
+  route('/resource/locales', './routes/resource.locales.tsx'),
   route('/fungcaster', './routes/fungcaster/route.tsx'),
   ...prefix('/blog', [
     layout('./routes/blog+/_layout.tsx', [
       index('./routes/blog+/index.tsx'),
-      ...prefix('/posts', [route('/food-guide', './routes/blog+/posts+/food-guide/route.tsx')]),
+      ...prefix('/posts', [
+        route('food-guide', './routes/blog+/posts+/food-guide/route.tsx'),
+        route('metagame', './routes/blog+/posts+/metagame.mdx'),
+      ]),
     ]),
   ]),
   ...prefix('/privacy', [index('./routes/privacy+/index.tsx'), route('/policy', './routes/privacy+/policy.tsx')]),

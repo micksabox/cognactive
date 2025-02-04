@@ -1,0 +1,140 @@
+{
+  "title": "cognactive",
+  "homepage": {
+    "tracker-link-title": "Lancer le tracker",
+    "github-link-title": "Voir le code",
+    "tracking": "Suivez votre NAC",
+    "tracking-desc": "Suivez le régime du protocole NAC, les expériences de détoxification mycologique et plus encore. Respect de votre vie privée avec stockage local des données. Flexible avec prise en charge d'un régime personnalisable.",
+    "hero-appexperience": "Appliquez votre NAC",
+    "hero-appexperience-desc": "Emportez la ceinture à outils cognactive avec vous dans votre voyage. Installez l'application web mobile cognactive sur votre écran d'accueil et utilisez-la comme une application. Compatible avec iOS et Android.",
+    "hero-opensource": "Open source",
+    "hero-opensource-desc": "Cognactive est prêt pour la personnalisation, la collaboration et les améliorations en tant que bien public technologique mondial.",
+    "hero-title": "Suivre le protocole NAC",
+    "fungcaster": "Regarder des vidéos",
+    "ingredient-scanner-link-title": "Scanner d'ingrédients",
+    "hero-subtitle": "Outils et technologies open source pour le protocole NAC antifongique et immunomodulateur.",
+    "whitepaper-prompt": "Lire le livre blanc",
+    "whitepaper-label": "Qu'est-ce que le protocole NAC ?",
+    "cave-allegory": "Caverne des Allégories"
+  },
+  "footer": {
+    "data-usage-title": "Utilisation des données et politique de confidentialité",
+    "medical-disclaimer": "Avertissement médical",
+    "medical-disclaimer-desc": "Ce site web est fourni à des fins éducatives et informatives uniquement et ne constitue pas un avis médical ou des services professionnels. Rien ici ne doit être interprété comme une tentative de diagnostiquer, traiter, guérir ou prévenir toute condition, maladie ou affection, et ceux qui recherchent un avis médical doivent consulter un médecin agréé.",
+    "chat-nac-link-title": "Chat NAC"
+  },
+  "tracker": {
+    "start_tracking": "Suivez les activités quotidiennes et les expériences de détoxification mycotique pour le protocole NAC.",
+    "start_date": "Date de début du protocole",
+    "start_button": "Commencer le suivi du protocole NAC",
+    "started_on": "Protocole NAC commencé le",
+    "reset_tracking": "Réinitialiser le suivi",
+    "reset_description": "Réinitialisez la date de début du suivi et supprimez toutes les données.",
+    "reset_button": "Réinitialiser le suivi",
+    "reset_confirm": "Êtes-vous sûr ? Vos progrès seront réinitialisés. Toutes les données d'activité seront effacées. Cette action ne peut pas être annulée.",
+    "reset_error": "Une erreur s'est produite lors de la réinitialisation des données de suivi",
+    "install_title": "Installer cognactive sur un appareil mobile",
+    "install_description": "Pour continuer, ouvrez cette page web depuis votre appareil mobile. Ensuite, ouvrez le menu Partager et sélectionnez 'Ajouter à l'écran d'accueil'.",
+    "privacy_title": "Politique de confidentialité",
+    "privacy_text": "Toutes les données de suivi d'activité du régime (dates de suivi, expériences, suppléments) sont stockées localement dans le navigateur web et ne sont pas partagées avec des tiers.",
+    "privacy_link": "En savoir plus sur la confidentialité et l'utilisation des données de cognactive",
+    "legal_title": "Avertissement légal",
+    "legal_text": "L'application cognactive aide à suivre les activités et événements et est destinée à un usage personnel uniquement. cognactive n'est pas une application médicale. Utilisez cette application à vos propres risques et responsabilités.",
+    "dashboard": {
+      "day": "Jour",
+      "date_error": "La date sélectionnée ne peut pas être antérieure à la date de début ou postérieure à aujourd'hui.",
+      "date_start": "Suivi commencé ce jour",
+      "daily_regimen": "Régime quotidien",
+      "customize": "Personnaliser",
+      "morning": "Matin",
+      "night": "Nuit",
+      "note_journal": "Journal de notes",
+      "read_all_notes": "Lire toutes les notes",
+      "food_guide": "Guide alimentaire"
+    },
+    "progress_indicator": {
+      "phase_1": "Phase 1",
+      "phase_2": "Phase 2",
+      "two_month_milestone": "Jalon de 2 mois",
+      "weeks_no_die_off": "3 semaines sans détoxification",
+      "latest_die_off": "Dernier symptôme de détoxification : {{date}}",
+      "phase_2_started": "commencé le {{date}}",
+      "edit": "Modifier",
+      "cancel": "Annuler",
+      "three_weeks_on": "3 semaines en cours",
+      "one_week_off": "1 semaine de pause",
+      "phase_2_cycle_date": {
+        "title": "Date de début / reprise du cycle de la phase 2",
+        "description": "Quand avez-vous commencé ou repris la phase 2 ? Définir cette date réinitialisera le minuteur."
+      },
+      "phase_2_setup": {
+        "title": "Phase 2",
+        "optional": "Optionnel",
+        "description": "Une fois passé le jalon de 2 mois, continuez la phase 1 si nécessaire ou préparez-vous pour la phase 2 du protocole NAC.",
+        "setup_button": "Configurer la phase 2"
+      },
+      "bso_only": "BSO uniquement pendant la semaine de pause.",
+      "phase_2_eligible": "Éligibilité Phase 2"
+    },
+    "die_off_symptoms": {
+      "title": "Détoxification mycotique",
+      "description": "Suivez les symptômes et expériences de détoxification mycotique",
+      "view_chart": "Voir le graphique",
+      "total": "TOTAL",
+      "new_symptom": {
+        "placeholder": "Décrivez un nouveau symptôme",
+        "track_button": "Suivre",
+        "error": "Décrivez votre symptôme plus en détail",
+        "success": "{{date}}\nSymptôme suivi{{custom}}\n{{symptom}}"
+      },
+      "symptoms": {
+        "tiredness": "Fatigue",
+        "exhaustion": "Épuisement",
+        "muscle_soreness": "Douleurs musculaires",
+        "increased_discharge": "Augmentation des sécrétions thoraciques ou nasales",
+        "cold_flu": "Symptômes de rhume ou de grippe",
+        "cold_sores": "Boutons de fièvre",
+        "headaches": "Maux de tête",
+        "irritability": "Irritabilité",
+        "stool_changes": "Changement de fréquence, volume ou couleur des selles",
+        "rash": "Éruption cutanée",
+        "bloated_stomach": "Ventre ballonné",
+        "cramps": "Crampes",
+        "increased_gas": "Augmentation des gaz"
+      }
+    },
+    "daily_note": {
+      "new_entry": "Écrire une nouvelle entrée de journal",
+      "whats_notable": "Qu'est-ce qui est notable à propos de {{date}} ?",
+      "prompt": "Avez-vous mangé quelque chose de spécial ? Avez-vous fait quelque chose de différent ?",
+      "placeholder": "Écrivez votre note ici",
+      "privacy_notice": "Les notes sont uniquement stockées localement sur votre appareil",
+      "save_button": "Enregistrer la note",
+      "success": "Note enregistrée"
+    },
+    "trends": {
+      "loading": "Chargement de l'analyse des symptômes...",
+      "title": "Détoxification mycotique",
+      "back_to_tracker": "Suivi",
+      "chart_description": "Graphique montrant les données de {{period}}",
+      "period": {
+        "weekly": "hebdomadaire",
+        "monthly": "mensuel",
+        "week": "Semaine",
+        "month": "Mois"
+      },
+      "chart": {
+        "symptom_severity": "Gravité des symptômes"
+      }
+    },
+    "pick_date": "Choisissez une date"
+  },
+  "memery": {
+    "platos-cave": {
+      "title": "Allégorie de la Caverne de Platon",
+      "description": "L'Allégorie de la Caverne de Platon décrit un groupe de personnes qui ont vécu enchaînées au mur d'une caverne toute leur vie, face à un mur blanc. Les gens regardent les ombres projetées sur le mur par des objets passant devant un feu derrière eux et commencent à attribuer des formes à ces ombres. Selon l'allégorie, les ombres sont aussi proches que les prisonniers peuvent voir la réalité. Platon suggère que les ombres sont la réalité des prisonniers mais qu'il existe un niveau de réalité supérieur, plus vrai, caché aux yeux humains.",
+      "relevance": "Tout ce qui influence la pensée humaine peut être caractérisé comme les marionnettistes dans l'allégorie de la caverne. Les champignons comme le candida et le cryptococcus peuvent être considérés comme les marionnettistes dans cette métaphore. Cela est dû à l'influence sur l'axe intestin-cerveau et à la résidence dans le cerveau."
+    },
+    "title": "Caverne des Allégories"
+  }
+}

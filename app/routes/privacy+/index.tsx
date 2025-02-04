@@ -1,32 +1,34 @@
 import { useState } from 'react'
 import { CheckCircle, ExternalLink, XCircle } from 'lucide-react'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 const PrivacyDimensions: React.FC = () => {
+  const { t } = useTranslation()
   const [selectedDimension, setSelectedDimension] = useState('localDataStorage')
 
   const dimensions = [
     {
       id: 'localDataStorage',
-      name: 'Local Data Privacy',
-      description: 'Regimen activity data is stored only on your device and never transmitted to servers.',
+      name: t('privacy.dimensions.local-storage.title'),
+      description: t('privacy.dimensions.local-storage.description'),
       icon: CheckCircle,
     },
     {
       id: 'thirdPartySharing',
-      name: 'No Third-Party Sharing',
-      description: 'Regimen activity data is not shared with third parties.',
+      name: t('privacy.dimensions.third-party.title'),
+      description: t('privacy.dimensions.third-party.description'),
       icon: XCircle,
     },
   ]
 
   return (
     <div className="container mx-auto">
-      <h2 className="py-8 text-4xl font-bold">Privacy &amp; Data Usage</h2>
+      <h2 className="py-8 text-4xl font-bold">{t('privacy.title')}</h2>
       <Link className="text-slate-6000" to="policy">
-        Read full privacy policy <ExternalLink className="ml-2 inline-block h-6 w-6" />
+        {t('privacy.policy-link')} <ExternalLink className="ml-2 inline-block h-6 w-6" />
       </Link>
-      <h2 className="py-4 text-2xl font-semibold">Protocol Regimen Tracking Utility</h2>
+      <h2 className="py-4 text-2xl font-semibold">{t('privacy.regimen-title')}</h2>
       <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
         {dimensions.map((dimension) => (
           <button
