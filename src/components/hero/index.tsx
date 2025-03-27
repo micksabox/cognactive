@@ -95,7 +95,7 @@ export const Hero = () => {
                   <div>
                     <p className="my-2">What is the NAC protocol?</p>
                     <Button size={'lg'} variant={'ghost'} className="border border-white text-white shadow-md" asChild>
-                      <a href="https://www.docdroid.net/4H1DgHE/nac-protocol-printable-pdf">
+                      <a href="https://www.docdroid.net/Lf6X0Tc/the-nac-protocol-pdf">
                         <ScrollIcon className="mr-2 inline-block w-4" /> Read NAC protocol whitepaper
                       </a>
                     </Button>
